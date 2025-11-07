@@ -25,10 +25,10 @@ return (
     <div className="text-center z-20">
        {/* PUNTO ROJO INICIAL QUE SALTA DOS VECES */}
   <motion.div
-  className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-2 h-2 rounded-full bg-red-700 "
+  className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-2.5 h-2.5 rounded-full bg-red-700 "
   initial={{ y: 0, opacity: 0 }}
   animate={{
-    opacity: [0, 1, 1, 1, 0],
+    opacity: [1, 1, 1, 1, 0],
     y: [0, -120, 0, -60, -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
@@ -43,7 +43,7 @@ return (
     initial={{ scale: 0.2 }}
     animate={
       showBounce
-        ? { scale: [0.7, 1.9, 1] }
+        ? { scale: [0.7, 1.8, 1] }
         : { scale: 0.7 }
     }
     transition={{
