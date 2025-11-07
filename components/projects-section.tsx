@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -34,7 +35,7 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[500vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
+      className="relative min-h-[250vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
       {/* Título */}
       <div className="sticky  z-30 text-center">
