@@ -23,10 +23,9 @@ return () => clearTimeout(bounceTimer)
 return (
   <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
     <div className="text-center z-20">
-       {/* PUNTO ROJO INICIAL QUE SALTA DOS VECES */}
-  <motion.div
-  className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-2.5 h-2.5 rounded-full bg-red-700 "
-  initial={{ y: 0, opacity: 0 }}
+      <motion.span
+        className="absolute text-[10vw] md:text-[7vw] lg:text-[5vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+        initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [1, 1, 1, 1, 1],
     y: [0, -120, 0, -100,0,-80 -800], // dos rebotes y luego se va hacia arriba
@@ -36,7 +35,10 @@ return (
     ease: [0.2, 0.2, 0.30, 0.2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
-/>
+      >
+        .
+      </motion.span>
+
   {/* CONTENEDOR PRINCIPAL QUE CRECE SUAVEMENTE */}
   <motion.div
     className="inline-block origin-center"
