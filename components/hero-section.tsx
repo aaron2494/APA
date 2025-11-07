@@ -28,12 +28,12 @@ return (
   className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-2.5 h-2.5 rounded-full bg-red-700 "
   initial={{ y: 0, opacity: 0 }}
   animate={{
-    opacity: [1, 1, 1, 1, 0],
-    y: [0, -120, 0, -60, -800], // dos rebotes y luego se va hacia arriba
+    opacity: [1, 1, 1, 1, 1],
+    y: [0, -120, 0, -100,0,-80 -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 2.4,
-    ease: [0.55, 0, 0.55, 0.2],
+    duration: 2.2,
+    ease: [0.2, 0.2, 0.30, 0.2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
 />
