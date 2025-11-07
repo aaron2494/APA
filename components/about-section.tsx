@@ -34,8 +34,8 @@ export function AboutSection() {
   return (
     <section id="proyectos" className="relative bg-white">
       {/* Title section */}
-      <div className="min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      <div className=" flex items-center justify-center px-4 py-20">
+        <div className="max-w-2xl mx-auto text-center space-y-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
