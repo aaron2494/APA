@@ -24,7 +24,7 @@ return (
   <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
     <div className="text-center z-20">
       <motion.span
-        className="absolute text-[10vw] md:text-[7vw] lg:text-[5vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+        className="absolute text-[80px] md:text-[100px] lg:text-[8vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
         initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [1, 1, 1, 1, 1],
@@ -127,7 +127,7 @@ return (
             },
           },
         }}
-        className="text-[10vw] md:text-[7vw] lg:text-[5vw] font-bold text-primary inline-block"
+        className="text-[80px] md:text-[100px] lg:text-[8vw] font-bold text-primary inline-block"
       >
         .
       </motion.span>

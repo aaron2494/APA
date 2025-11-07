@@ -12,50 +12,47 @@ const TESTIMONIALS = [
   { id: 6, text: "Resultados medibles y experiencias memorables.", author: "Julián — Cliente" },
 ]
 
-// 👇 Texto animado letra por letra (ahora con whileInView)
-function AnimatedText({
-  text,
-  delay = 0,
-  as = "h2",
-  className = "",
-}: {
-  text: string
-  delay?: number
-  as?: keyof JSX.IntrinsicElements
-  className?: string
-}) {
-  const Tag = as as any
+
+// 👇 NUEVO COMPONENTE PARA TEXTO DIVIDIDO CON ANIMACIÓN
+function SplitAnimatedText() {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.7 }} // 👈 solo cuando se ve 70% del elemento
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.03,
-            delayChildren: delay,
-          },
-        },
-      }}
-      className="inline-block"
+      viewport={{ once: true, amount: 0.7 }}
+      className="text-4xl md:text-5xl font-bold text-gray-900 text-center"
     >
-      <Tag className={className}>
-        {text.split("").map((char, i) => (
-          <motion.span
-            key={i}
-            variants={{
-              hidden: { opacity: 0, y: 20, scale: 0.95 },
-              visible: { opacity: 1, y: 0, scale: 1 },
-            }}
-            transition={{ duration: 0.04, ease: "easeOut" }}
-            className={char === " " ? "inline-block w-2" : "inline-block"}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </Tag>
+      {/* Primera parte - entra por izquierda */}
+      <motion.span
+        variants={{
+          hidden: { x: -100, opacity: 0 },
+          visible: { x: 0, opacity: 1 }
+        }}
+        transition={{ 
+          duration: 0.8, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.3
+        }}
+        className="inline-block"
+      >
+        Preferimos no contarte{" "}
+      </motion.span>
+      
+      {/* Segunda parte - entra por derecha en rojo */}
+      <motion.span
+        variants={{
+          hidden: { x: 100, opacity: 0 },
+          visible: { x: 0, opacity: 1 }
+        }}
+        transition={{ 
+          duration: 0.8, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.6
+        }}
+        className="inline-block text-red-600"
+      >
+        quiénes somos
+      </motion.span>
     </motion.div>
   )
 }
@@ -103,144 +100,178 @@ export function ApproachSection() {
     <section className="relative bg-white text-gray-900 ">
       {/* Intro hero */}
       <div className="h-screen flex flex-col items-center justify-center text-center px-6">
-        <AnimatedText
-          text="Preferimos no contarte quiénes somos"
-          className="text-4xl md:text-5xl font-bold text-gray-900"
-          delay={0.3}
-        />
+        {/* REEMPLAZADO: Ahora usa el componente SplitAnimatedText */}
+        <SplitAnimatedText />
+        
         <motion.p
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true }}
-    className="max-w-2xl mt-8 text-gray-500 text-lg leading-relaxed"
-  >
-     Y que lo hagan quienes ya confiaron en nosotros...
-  </motion.p>
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="max-w-2xl mt-8 text-gray-500 text-lg leading-relaxed"
+        >
+          Y que lo hagan quienes ya confiaron en nosotros...
+        </motion.p>
       </div>
 
-    {/* Horizontal scroll */}
-<div
-  ref={wrapperRef}
-  className="relative"
-  style={calculatedHeight ? { height: `${calculatedHeight}px` } : undefined}
->
-  {/* Fondo con slideshow de imágenes */}
-<div className="absolute inset-0 z-[0] overflow-hidden h-full">
-  {[
-    "/modern-marketing-agency-workspace-with-creative-te.jpg",
-    "/creative-marketing-strategy-session-with-team-coll.jpg",
-    "/creative-team-collaboration.png",
-    "/modern-marketing-agency-workspace-with-creative-te.jpg",
-    "/young-marketing-professionals-in-modern-workspace-.jpg",
-  ].map((img, i) => (
-    <motion.div
-      key={i}
-      className="absolute inset-0 bg-contain bg-center"
-      style={{
-        backgroundImage: `url(${img})`,
-        opacity: 0.20, // 👈 más sutil
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 1, 2, 0] }}
-      transition={{
-        delay: i * 3, // cada imagen entra secuencialmente
-        duration: 3,
-        repeat: Infinity, // 👈 rotación infinita
-        repeatDelay: 2,
-        ease: "easeInOut",
-      }}
-    />
-  ))}
-</div>
-  {/* Contenido sticky */}
-  <div
-    ref={stickyRef}
-    className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
-  >
-    <div className="w-full max-w-6xl px-6">
-      <motion.div
-        ref={trackRef}
-        style={{ x }}
-        className="flex gap-4 items-center will-change-transform pr-24"
+      {/* Horizontal scroll */}
+      <div
+        ref={wrapperRef}
+        className="relative"
+        style={calculatedHeight ? { height: `${calculatedHeight}px` } : undefined}
       >
- {TESTIMONIALS.map((t, i) => (
-  <motion.article
-    key={t.id}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: "easeOut",
-    }}
-    viewport={{ once: true }}
-    className="relative min-w-[260px] md:min-w-[340px] lg:min-w-[420px]
-               bg-gradient-to-br from-white/90 to-white/70 
-               backdrop-blur-xl rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]
-               border border-white/20 flex-shrink-0 overflow-hidden
-               hover:scale-[1.04] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
-  >
-    {/* Detalle superior APA (branding line) */}
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E63946] via-[#F1FAEE] to-[#000000]" />
-
-    <div className="relative z-10 p-8">
-      <blockquote className="text-lg md:text-xl italic text-gray-800 leading-relaxed">
-        “{t.text}”
-      </blockquote>
-
-      <div className="mt-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#E63946] flex items-center justify-center text-white font-bold shadow-md">
-          {t.author.charAt(0)}
+        {/* Fondo con slideshow de imágenes */}
+        <div className="absolute inset-0 z-[0] overflow-hidden h-full">
+          {[
+            "/modern-marketing-agency-workspace-with-creative-te.jpg",
+            "/creative-marketing-strategy-session-with-team-coll.jpg",
+            "/creative-team-collaboration.png",
+            "/modern-marketing-agency-workspace-with-creative-te.jpg",
+            "/young-marketing-professionals-in-modern-workspace-.jpg",
+          ].map((img, i) => (
+            <motion.div
+              key={i}
+              className="absolute inset-0 bg-contain bg-center"
+              style={{
+                backgroundImage: `url(${img})`,
+                opacity: 0.20,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 2, 0] }}
+              transition={{
+                delay: i * 3,
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 2,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
         </div>
-        <div className="text-sm font-semibold text-gray-700 tracking-wide">
-          {t.author}
+
+        {/* Contenido sticky */}
+        <div
+          ref={stickyRef}
+          className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
+        >
+          <div className="w-full max-w-6xl px-6">
+            <motion.div
+              ref={trackRef}
+              style={{ x }}
+              className="flex gap-4 items-center will-change-transform pr-24"
+            >
+              {TESTIMONIALS.map((t, i) => (
+                <motion.article
+                  key={t.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: i * 0.15,
+                    duration: 0.6,
+                    ease: "easeOut",
+                  }}
+                  viewport={{ once: true }}
+                  className="relative min-w-[260px] md:min-w-[340px] lg:min-w-[420px]
+                             bg-gradient-to-br from-white/90 to-white/70 
+                             backdrop-blur-xl rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+                             border border-white/20 flex-shrink-0 overflow-hidden
+                             hover:scale-[1.04] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                >
+                  {/* Detalle superior APA (branding line) */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E63946] via-[#F1FAEE] to-[#000000]" />
+
+                  <div className="relative z-10 p-8">
+                    <blockquote className="text-lg md:text-xl italic text-gray-800 leading-relaxed">
+                      "{t.text}"
+                    </blockquote>
+
+                    <div className="mt-6 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#E63946] flex items-center justify-center text-white font-bold shadow-md">
+                        {t.author.charAt(0)}
+                      </div>
+                      <div className="text-sm font-semibold text-gray-700 tracking-wide">
+                        {t.author}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Efecto de luz sutil al pasar el mouse */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700"
+                  />
+                </motion.article>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Efecto de luz sutil al pasar el mouse */}
+    {/* CTA final */}
+<div className="h-screen flex items-center justify-center px-6 bg-gradient-to-b from-white to-red-50">
+  <div className="max-w-3xl text-center">
+    {/* REEMPLAZADO: Texto dividido con animación */}
     <motion.div
-      className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700"
-    />
-  </motion.article>
-))}
-      </motion.div>
-    </div>
-  </div>
-</div>
-      {/* CTA final */}
-      <div className="h-screen flex items-center justify-center px-6 bg-gradient-to-b from-white to-red-50">
-        <div className="max-w-3xl text-center">
-          <AnimatedText
-            text="¿Querés que tu marca también hable por vos?"
-            as="h3"
-            className="text-2xl md:text-3xl font-bold mb-4 text-gray-900"
-            delay={0.1}
-          />
-          <motion.p
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.7 }}
+      className="text-2xl md:text-3xl font-bold mb-4 text-gray-900"
+    >
+      {/* Primera parte - entra por izquierda */}
+      <motion.span
+        variants={{
+          hidden: { x: -80, opacity: 0 },
+          visible: { x: 0, opacity: 1 }
+        }}
+        transition={{ 
+          duration: 0.7, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.1
+        }}
+        className="inline-block"
+      >
+        ¿Querés que tu marca{" "}
+      </motion.span>
+      <br />
+      {/* Segunda parte - entra por derecha */}
+      <motion.span
+        variants={{
+          hidden: { x: 80, opacity: 0 },
+          visible: { x: 0, opacity: 1 }
+        }}
+        transition={{ 
+          duration: 0.7, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.4
+        }}
+        className="inline-block text-red-600"
+      >
+       también hable por vos?
+      </motion.span>
+    </motion.div>
+
+    <motion.p
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       className="text-gray-600 mb-8"
     >
       Coordiná una videollamada y descubrí cómo podemos ayudarte a destacarte.
     </motion.p>
-          <motion.a
-           initial={{ opacity: 0 }}
+    <motion.a
+      initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
-            href="https://3260.agency/agenda-ok#calendly"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block bg-primary text-white px-8 py-3 rounded-full shadow-md hover:bg-primary/90 transition"
-          >
-            CONOCENOS
-          </motion.a>
-        </div>
-      </div>
+      href="https://3260.agency/agenda-ok#calendly"
+      target="_blank"
+      rel="noreferrer"
+      className="inline-block bg-primary text-white px-8 py-3 rounded-full shadow-md hover:bg-primary/90 transition"
+    >
+      CONOCENOS
+    </motion.a>
+  </div>
+</div>
     </section>
   )
 }
