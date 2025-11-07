@@ -164,27 +164,47 @@ export function ApproachSection() {
         style={{ x }}
         className="flex gap-4 items-center will-change-transform pr-24"
       >
-        {TESTIMONIALS.map((t, i) => (
-          <motion.article
-            key={t.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: i * 0.15,
-              duration: 0.6,
-              ease: "easeOut",
-            }}
-            viewport={{ once: true }}
-            className="min-w-[250px] md:min-w-[320px] lg:min-w-[400px] bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 flex-shrink-0 border border-gray-100 hover:scale-[1.03] hover:-translate-y-2 transition-transform duration-300"
-          >
-            <blockquote className="text-lg md:text-xl italic text-gray-700 leading-relaxed">
-              “{t.text}”
-            </blockquote>
-            <div className="mt-6 text-sm font-semibold text-primary tracking-wide">
-              {t.author}
-            </div>
-          </motion.article>
-        ))}
+ {TESTIMONIALS.map((t, i) => (
+  <motion.article
+    key={t.id}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: "easeOut",
+    }}
+    viewport={{ once: true }}
+    className="relative min-w-[260px] md:min-w-[340px] lg:min-w-[420px]
+               bg-gradient-to-br from-white/90 to-white/70 
+               backdrop-blur-xl rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+               border border-white/20 flex-shrink-0 overflow-hidden
+               hover:scale-[1.04] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+  >
+    {/* Detalle superior APA (branding line) */}
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E63946] via-[#F1FAEE] to-[#000000]" />
+
+    <div className="relative z-10 p-8">
+      <blockquote className="text-lg md:text-xl italic text-gray-800 leading-relaxed">
+        “{t.text}”
+      </blockquote>
+
+      <div className="mt-6 flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#E63946] flex items-center justify-center text-white font-bold shadow-md">
+          {t.author.charAt(0)}
+        </div>
+        <div className="text-sm font-semibold text-gray-700 tracking-wide">
+          {t.author}
+        </div>
+      </div>
+    </div>
+
+    {/* Efecto de luz sutil al pasar el mouse */}
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700"
+    />
+  </motion.article>
+))}
       </motion.div>
     </div>
   </div>
