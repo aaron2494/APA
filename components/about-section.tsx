@@ -59,9 +59,9 @@ export function AboutSection() {
             background: useTransform(
               gradientY,
               (y) => `linear-gradient(to bottom, 
-                rgba(229, 9, 20, 0.03) 0%, 
-                rgba(229, 9, 20, 0.08) ${y}, 
-                rgba(229, 9, 20, 0.03) 100%)`,
+                rgba(229, 9, 20, 0.02) 0%, 
+                rgba(229, 9, 20, 0.01) ${y}, 
+                rgba(229, 9, 20, 0.08) 100%)`,
             ),
           }}
         >
