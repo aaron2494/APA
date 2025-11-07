@@ -2,33 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
 
-const projects = [
-  {
-    client: "TST",
-    description:
-      "Posicionamos la marca como referente en electrodomésticos a través de una estrategia integral que combina contenido orgánico, campañas digitales e influencers.",
-    image: "/modern-appliance-store-branding-campaign.jpg",
-  },
-  {
-    client: "Lure",
-    description:
-      "Lanzamiento de nueva línea de productos con campaña 360° que generó un incremento del 150% en engagement.",
-    image: "/sports-brand-product-launch-campaign.jpg",
-  },
-  {
-    client: "Nativo",
-    description: "Estrategia de contenido y growth marketing que llevó a la startup de 0 a 50K seguidores en 6 meses.",
-    image: "/tech-startup-social-media-growth.jpg",
-  },
-  {
-    client: "Restaurante Premium",
-    description: "Rebranding completo y estrategia digital que triplicó las reservas online en el primer trimestre.",
-    image: "/premium-restaurant-branding-and-marketing.jpg",
-  },
-]
 
 const brandLogos = [
   { name: "Nike", image: "/nike-logo.jpg" },
@@ -69,10 +43,10 @@ export function AboutSection() {
             className="space-y-4"
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black">
-              Nuestros <span className="text-primary">Proyectos</span>
+              Impacto <span className="text-primary">Real</span>
             </h2>
             <p className="text-lg md:text-xl text-black/60 max-w-2xl mx-auto leading-relaxed">
-              Cada proyecto es una historia de transformación digital, creatividad y resultados medibles.
+              Historia de transformación digital, creatividad y resultados medibles.
             </p>
           </motion.div>
         </div>

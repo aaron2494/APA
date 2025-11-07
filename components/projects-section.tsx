@@ -35,12 +35,12 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[250vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
+      className="relative min-h-[300vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
       {/* Título */}
       <div className="sticky  z-30 text-center">
         <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-          Qué hacemos <br /> y cómo lo hacemos
+          <span className="text-primary">Qué </span>hacemos <br /> y <span className="text-primary">cómo </span>lo hacemos
         </h2>
       </div>
 
@@ -52,7 +52,7 @@ export function ProjectsSection() {
 
           const y = useTransform(scrollYProgress, [start, end], [100, -100]);
           const scale = useTransform(scrollYProgress, [start, end], [1, 0.96]);
-          const opacity = useTransform(scrollYProgress, [start, end], [1, 0.2]);
+          const opacity = useTransform(scrollYProgress, [start, end], [1, 0.9]);
 
           return (
             <motion.div
@@ -98,12 +98,12 @@ export function ProjectsSection() {
           opacity: useTransform(scrollYProgress, [0.85, 1], [0, 1]),
           y: useTransform(scrollYProgress, [0.85, 1], [50, 0]),
         }}
-        className="sticky bottom-[10vh] mt-32"
+        className="sticky bottom-[10vh] "
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="px-8 py-4 rounded-full bg-black text-white font-medium text-lg tracking-wide hover:bg-gray-900 transition-all"
+          className="px-8 py-4 rounded-full bg-primary text-white font-medium text-lg tracking-wide hover:bg-gray-900 transition-all"
         >
           HABLEMOS DE TU PROYECTO
         </motion.button>
