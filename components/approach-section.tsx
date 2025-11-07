@@ -111,7 +111,7 @@ export function ApproachSection() {
         <motion.p
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
-    transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
+    transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
     viewport={{ once: true }}
     className="max-w-2xl mt-8 text-gray-500 text-lg leading-relaxed"
   >
