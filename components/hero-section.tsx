@@ -25,7 +25,7 @@ return (
     <div className="text-center z-20">
        {/* PUNTO ROJO INICIAL QUE SALTA DOS VECES */}
   <motion.div
-  className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-3 h-3 rounded-full bg-red-700 "
+  className="absolute left-1/2 -translate-x-1/2 bottom-[45%] w-2 h-2 rounded-full bg-red-700 "
   initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [0, 1, 1, 1, 0],
