@@ -82,8 +82,8 @@ export function ProjectsSection() {
           const end = (i + 1.2) / services.length;
 
           const y = useTransform(scrollYProgress, [start, end], [100, -100]);
-          const scale = useTransform(scrollYProgress, [start, end], [1, 0.96]);
-          const opacity = useTransform(scrollYProgress, [start, end], [1, 1]);
+          const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
+          const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
           return (
             <motion.div
@@ -125,11 +125,8 @@ export function ProjectsSection() {
 
       {/* CTA final */}
       <motion.div
-        style={{
-          opacity: useTransform(scrollYProgress, [0.85, 1], [0, 1]),
-          y: useTransform(scrollYProgress, [0.85, 1], [50, 0]),
-        }}
-        className="sticky bottom-[10vh] "
+      
+        className="sticky "
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
