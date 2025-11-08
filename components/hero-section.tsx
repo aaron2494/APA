@@ -31,7 +31,7 @@ return (
     y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 2.2,
+    duration: 2,
     ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
@@ -64,7 +64,7 @@ return (
         visible: {
           transition: {
             staggerChildren: 0.07,
-            delayChildren: 1.8, // ⬅️ aparece después del punto rojo
+            delayChildren: 1.4, // ⬅️ aparece después del punto rojo
           },
         },
       }}
