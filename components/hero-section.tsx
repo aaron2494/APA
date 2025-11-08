@@ -28,11 +28,11 @@ return (
         initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [1, 1, 1, 1, 1],
-    y: [0, -120, 0, -100,0,-80 -800], // dos rebotes y luego se va hacia arriba
+    y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
     duration: 2.2,
-    ease: [0.2, 0.2, 0.30, 0.2],
+    ease: [0.8, 0.9, 0.2, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
       >
