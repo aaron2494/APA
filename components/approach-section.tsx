@@ -17,43 +17,44 @@ const TESTIMONIALS = [
 function SplitAnimatedText() {
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.7 }}
-      className="text-4xl md:text-5xl font-bold text-gray-900 text-center"
-    >
-      {/* Primera parte - entra por izquierda */}
-      <motion.span
-        variants={{
-          hidden: { x: -100, opacity: 0 },
-          visible: { x: 0, opacity: 1 }
-        }}
-        transition={{ 
-          duration: 0.8, 
-          ease: [0.25, 0.1, 0.25, 1],
-          delay: 0.3
-        }}
-        className="inline-block"
-      >
-        Preferimos no contarte{" "}
-      </motion.span>
-      <br />
-      {/* Segunda parte - entra por derecha en rojo */}
-      <motion.span
-        variants={{
-          hidden: { x: 100, opacity: 0 },
-          visible: { x: 0, opacity: 1 }
-        }}
-        transition={{ 
-          duration: 0.8, 
-          ease: [0.25, 0.1, 0.25, 1],
-          delay: 0.6
-        }}
-        className="inline-block text-primary"
-      >
-        quiénes somos
-      </motion.span>
-    </motion.div>
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+>
+  {/* Primera línea */}
+  <motion.div
+    variants={{
+      hidden: { x: -30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.2
+    }}
+    className="overflow-hidden"
+  >
+    Preferimos no contarte{" "}
+  </motion.div>
+  
+  {/* Segunda línea */}
+  <motion.div
+    variants={{
+      hidden: { x: 30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.4
+    }}
+    className="overflow-hidden text-primary"
+  >
+    quiénes somos
+  </motion.div>
+</motion.div>
+   
   )
 }
 
@@ -211,44 +212,43 @@ export function ApproachSection() {
   <div className="max-w-3xl text-center">
     {/* REEMPLAZADO: Texto dividido con animación */}
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.7 }}
-      className="text-2xl md:text-3xl font-bold mb-4 text-gray-900"
-    >
-      {/* Primera parte - entra por izquierda */}
-      <motion.span
-        variants={{
-          hidden: { x: -80, opacity: 0 },
-          visible: { x: 0, opacity: 1 }
-        }}
-        transition={{ 
-          duration: 0.7, 
-          ease: [0.25, 0.1, 0.25, 1],
-          delay: 0.1
-        }}
-        className="inline-block"
-      >
-        ¿Querés que tu marca{" "}
-      </motion.span>
-      <br />
-      {/* Segunda parte - entra por derecha */}
-      <motion.span
-        variants={{
-          hidden: { x: 80, opacity: 0 },
-          visible: { x: 0, opacity: 1 }
-        }}
-        transition={{ 
-          duration: 0.7, 
-          ease: [0.25, 0.1, 0.25, 1],
-          delay: 0.4
-        }}
-        className="inline-block text-primary"
-      >
-       también hable por vos?
-      </motion.span>
-    </motion.div>
-
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+>
+  {/* Primera línea */}
+  <motion.div
+    variants={{
+      hidden: { x: -30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.2
+    }}
+    className="overflow-hidden"
+  >
+    Queres que tu marca{" "}
+  </motion.div>
+  
+  {/* Segunda línea */}
+  <motion.div
+    variants={{
+      hidden: { x: 30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.4
+    }}
+    className="overflow-hidden text-primary"
+  >
+    También hable por vos?
+  </motion.div>
+</motion.div>
     <motion.p
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

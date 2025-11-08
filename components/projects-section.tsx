@@ -37,43 +37,42 @@ export function ProjectsSection() {
       ref={ref}
       className="relative min-h-[300vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
-       <motion.div
+ <motion.div
   initial="hidden"
   whileInView="visible"
-  viewport={{ once: true, amount: 0.7 }}
-  className="sticky pt-10 pb-5 text-4xl md:text-5xl font-bold text-gray-900 text-center"
+  viewport={{ once: true, amount: 0.3 }}
+  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
-  {/* Primera línea - entra por izquierda */}
+  {/* Primera línea */}
   <motion.div
     variants={{
-      hidden: { x: -100, opacity: 0 },
+      hidden: { x: -30, opacity: 0 },
       visible: { x: 0, opacity: 1 }
     }}
     transition={{ 
-      duration: 0.8, 
-      ease: [0.25, 0.1, 0.25, 1],
-      delay: 0.3
-      
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.2
     }}
-      className="inline-block"
+    className="overflow-hidden"
   >
-    <span className="text-red-700">Que</span> hacemos
+    <span className="text-primary">Que</span> hacemos
   </motion.div>
-  <br />
-  {/* Segunda línea - entra por derecha */}
+  
+  {/* Segunda línea */}
   <motion.div
     variants={{
-      hidden: { x: 100, opacity: 0 },
+      hidden: { x: 30, opacity: 0 },
       visible: { x: 0, opacity: 1 }
     }}
     transition={{ 
-      duration: 0.8, 
-      ease: [0.25, 0.1, 0.25, 1],
-      delay: 0.6
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.4
     }}
-    className="inline-block"
+    className="overflow-hidden"
   >
-    y <span className="text-red-700">Como</span> lo hacemos
+    y <span className="text-primary">como</span> lo hacemos
   </motion.div>
 </motion.div>
       {/* Cards */}
