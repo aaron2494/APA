@@ -41,7 +41,7 @@ export function ProjectsSection() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-3xl mt-20 md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div
@@ -92,7 +92,7 @@ export function ProjectsSection() {
               className="sticky top-1/2 -translate-y-1/2 bg-white rounded-[30px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-12 md:p-16 flex items-center justify-between gap-12"
             >
               <div>
-                <p className="uppercase text-sm text-gray-400 font-medium mb-3">
+                <p className="uppercase text-sm text-primary font-medium mb-3">
                   Nuestros servicios
                 </p>
                 <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">

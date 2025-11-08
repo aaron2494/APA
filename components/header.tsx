@@ -35,7 +35,6 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <div className="text-2xl font-bold tracking-tight">
            <span className={isScrolled ? "text-primary" : "text-white"}>APA</span>
-               <span className={isScrolled ? "text-foreground" : "text-white"}> Marketing</span>
             </div>
           </Link>
 

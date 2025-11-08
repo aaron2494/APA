@@ -20,7 +20,7 @@ function SplitAnimatedText() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div
@@ -132,7 +132,7 @@ export function ApproachSection() {
           ].map((img, i) => (
             <motion.div
               key={i}
-              className="absolute inset-0 bg-contain bg-center"
+              className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: `url(${img})`,
                 opacity: 0.20,
@@ -167,8 +167,8 @@ export function ApproachSection() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{
-                    delay: i * 0.15,
-                    duration: 0.6,
+                    delay: i * 0.10,
+                    duration: 0.4,
                     ease: "easeOut",
                   }}
                   viewport={{ once: true }}
@@ -215,7 +215,7 @@ export function ApproachSection() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-4xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div
