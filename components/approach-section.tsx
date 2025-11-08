@@ -37,7 +37,7 @@ function SplitAnimatedText() {
       >
         Preferimos no contarte{" "}
       </motion.span>
-      
+      <br />
       {/* Segunda parte - entra por derecha en rojo */}
       <motion.span
         variants={{
@@ -49,7 +49,7 @@ function SplitAnimatedText() {
           ease: [0.25, 0.1, 0.25, 1],
           delay: 0.6
         }}
-        className="inline-block text-red-600"
+        className="inline-block text-primary"
       >
         quiénes somos
       </motion.span>
@@ -137,9 +137,9 @@ export function ApproachSection() {
                 opacity: 0.20,
               }}
               initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1, 2, 0] }}
+              animate={{ opacity: [0, 1,1,0] }}
               transition={{
-                delay: i * 3,
+                delay: i * 4,
                 duration: 3,
                 repeat: Infinity,
                 repeatDelay: 2,
@@ -178,7 +178,7 @@ export function ApproachSection() {
                              hover:scale-[1.04] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
                 >
                   {/* Detalle superior APA (branding line) */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E63946] via-[#F1FAEE] to-[#000000]" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#b40f1d] via-[#F1FAEE] to-[#000000]" />
 
                   <div className="relative z-10 p-8">
                     <blockquote className="text-lg md:text-xl italic text-gray-800 leading-relaxed">
@@ -186,7 +186,7 @@ export function ApproachSection() {
                     </blockquote>
 
                     <div className="mt-6 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#E63946] flex items-center justify-center text-white font-bold shadow-md">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#b40f1d] flex items-center justify-center text-white font-bold shadow-md">
                         {t.author.charAt(0)}
                       </div>
                       <div className="text-sm font-semibold text-gray-700 tracking-wide">
@@ -243,7 +243,7 @@ export function ApproachSection() {
           ease: [0.25, 0.1, 0.25, 1],
           delay: 0.4
         }}
-        className="inline-block text-red-600"
+        className="inline-block text-primary"
       >
        también hable por vos?
       </motion.span>

@@ -126,7 +126,7 @@ export function ProjectsSection() {
       {/* CTA final */}
       <motion.div
       
-        className="sticky "
+        className="sticky mb-20 "
       >
         <motion.button
           whileHover={{ scale: 1.05 }}

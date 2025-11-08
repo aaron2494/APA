@@ -52,16 +52,16 @@ export function AboutSection() {
         </div>
       </div>
 
-      <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
+      <div ref={containerRef} className="relative" style={{ height: "200vh" }}>
         <motion.div
           className="sticky top-0 h-screen overflow-hidden flex items-center justify-center"
           style={{
             background: useTransform(
               gradientY,
               (y) => `linear-gradient(to bottom, 
-                rgba(229, 9, 20, 0.02) 0%, 
-                rgba(229, 9, 20, 0.01) ${y}, 
-                rgba(229, 9, 20, 0.08) 100%)`,
+                rgba(186, 0, 07, 0.01) 0%, 
+                rgba(186, 0, 07, 0.01) ${y}, 
+                rgba(186, 0, 07, 0.09) 100%)`,
             ),
           }}
         >
