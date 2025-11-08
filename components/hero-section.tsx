@@ -32,7 +32,7 @@ return (
   }}
   transition={{
     duration: 2.2,
-    ease: [0.8, 0.9, 0.2, 2],
+    ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
       >
