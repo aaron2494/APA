@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const brandLogos = [
   { name: "Nike", image: "/nike-logo.jpg" },
@@ -13,80 +12,84 @@ const brandLogos = [
   { name: "Amazon", image: "/amazon-logo.jpg" },
   { name: "Microsoft", image: "/microsoft-logo.jpg" },
   { name: "Samsung", image: "/samsung-logo.jpg" },
-]
+];
 
 export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
-  })
+  });
 
-  const teamScale = useTransform(scrollYProgress, [0, 0.3, 0.5], [1.5, 1, 0.8])
-  const teamOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [1, 1, 1, 1])
-  const teamBorderRadius = useTransform(scrollYProgress, [0, 0.3], [0, 24])
+  const teamScale = useTransform(scrollYProgress, [0, 0.3, 0.5], [1.5, 1, 0.8]);
+  const teamOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.4, 1],
+    [1, 1, 1, 1]
+  );
+  const teamBorderRadius = useTransform(scrollYProgress, [0, 0.3], [0, 24]);
 
-  const brandOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1])
-  const brandScale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1])
+  const brandOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const brandScale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1]);
 
-  const gradientY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+  const gradientY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="proyectos" className="relative bg-white">
+    <section id="proyectos" className="relative  bg-white">
       {/* Title section */}
- <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
->
-  {/* Impacto */}
-  <motion.span
-    variants={{
-      hidden: { x: -30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.2
-    }}
-    className="inline-block overflow-hidden"
-  >
-    Impacto
-  </motion.span>
-  
-  {/* Espacio */}
-  <span className="inline-block">&nbsp;</span>
-  
-  {/* Real */}
-  <motion.span
-    variants={{
-      hidden: { x: 30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.4
-    }}
-    className="inline-block overflow-hidden text-primary"
-  >
-    Real
-  </motion.span>
-</motion.div>
-      <div className=" flex items-center justify-center px-4 py-20">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+      >
+        {/* Impacto */}
+        <motion.span
+          variants={{
+            hidden: { x: -30, opacity: 0 },
+            visible: { x: 0, opacity: 1 },
+          }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+            delay: 0.2,
+          }}
+          className="inline-block overflow-hidden"
+        >
+          Impacto
+        </motion.span>
+
+        {/* Espacio */}
+        <span className="inline-block">&nbsp;</span>
+
+        {/* Real */}
+        <motion.span
+          variants={{
+            hidden: { x: 30, opacity: 0 },
+            visible: { x: 0, opacity: 1 },
+          }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+            delay: 0.4,
+          }}
+          className="inline-block overflow-hidden text-primary"
+        >
+          Real
+        </motion.span>
+      </motion.div>
+      <div className=" flex items-center justify-center px-2 py-5">
         <div className="max-w-2xl mx-auto text-center space-y-2">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="space-y-4"
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-gray-600 "
           >
-            <p className="text-lg md:text-xl text-black/60 max-w-2xl mx-auto leading-relaxed">
-              Historia de transformación digital, creatividad y resultados medibles.
-            </p>
-          </motion.div>
+            Historia de transformación digital, creatividad y resultados
+            medibles.
+          </motion.p>
         </div>
       </div>
 
@@ -99,7 +102,7 @@ export function AboutSection() {
               (y) => `linear-gradient(to bottom, 
                 rgba(186, 0, 07, 0.01) 0%, 
                 rgba(186, 0, 07, 0.01) ${y}, 
-                rgba(186, 0, 07, 0.09) 100%)`,
+                rgba(186, 0, 07, 0.09) 100%)`
             ),
           }}
         >
@@ -114,7 +117,10 @@ export function AboutSection() {
                   className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
                 >
                   <img
-                    src={brandLogos[index]?.image || "/placeholder.svg?height=200&width=200"}
+                    src={
+                      brandLogos[index]?.image ||
+                      "/placeholder.svg?height=200&width=200"
+                    }
                     alt={brandLogos[index]?.name || `Brand ${index + 1}`}
                     className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                   />
@@ -127,7 +133,10 @@ export function AboutSection() {
                 className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
               >
                 <img
-                  src={brandLogos[3]?.image || "/placeholder.svg?height=200&width=200"}
+                  src={
+                    brandLogos[3]?.image ||
+                    "/placeholder.svg?height=200&width=200"
+                  }
                   alt={brandLogos[3]?.name || "Brand 4"}
                   className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                 />
@@ -142,7 +151,11 @@ export function AboutSection() {
                 }}
                 className="relative aspect-square overflow-hidden shadow-2xl ring-4 ring-primary ring-offset-4"
               >
-                <img src="/apa-team-photo.jpg" alt="APA Marketing Team" className="w-full h-full object-cover" />
+                <img
+                  src="/apa-team-photo.jpg"
+                  alt="APA Marketing Team"
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -157,7 +170,10 @@ export function AboutSection() {
                 className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
               >
                 <img
-                  src={brandLogos[4]?.image || "/placeholder.svg?height=200&width=200"}
+                  src={
+                    brandLogos[4]?.image ||
+                    "/placeholder.svg?height=200&width=200"
+                  }
                   alt={brandLogos[4]?.name || "Brand 5"}
                   className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                 />
@@ -171,7 +187,10 @@ export function AboutSection() {
                   className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-2 md:p-5"
                 >
                   <img
-                    src={brandLogos[index]?.image || "/placeholder.svg?height=200&width=200"}
+                    src={
+                      brandLogos[index]?.image ||
+                      "/placeholder.svg?height=200&width=200"
+                    }
                     alt={brandLogos[index]?.name || `Brand ${index + 1}`}
                     className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                   />
@@ -181,7 +200,6 @@ export function AboutSection() {
           </div>
         </motion.div>
       </div>
-
-  </section>
-  )
+    </section>
+  );
 }

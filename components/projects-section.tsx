@@ -35,7 +35,7 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[300vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
+      className="relative min-h-[250vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
  <motion.div
   initial="hidden"
