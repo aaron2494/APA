@@ -34,17 +34,55 @@ export function AboutSection() {
   return (
     <section id="proyectos" className="relative bg-white">
       {/* Title section */}
+ <motion.div
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+>
+  {/* Impacto */}
+  <motion.span
+    variants={{
+      hidden: { x: -30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.2
+    }}
+    className="inline-block overflow-hidden"
+  >
+    Impacto
+  </motion.span>
+  
+  {/* Espacio */}
+  <span className="inline-block">&nbsp;</span>
+  
+  {/* Real */}
+  <motion.span
+    variants={{
+      hidden: { x: 30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.4
+    }}
+    className="inline-block overflow-hidden text-primary"
+  >
+    Real
+  </motion.span>
+</motion.div>
       <div className=" flex items-center justify-center px-4 py-20">
         <div className="max-w-2xl mx-auto text-center space-y-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
             className="space-y-4"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black">
-              Impacto <span className="text-primary">Real</span>
-            </h2>
             <p className="text-lg md:text-xl text-black/60 max-w-2xl mx-auto leading-relaxed">
               Historia de transformación digital, creatividad y resultados medibles.
             </p>
