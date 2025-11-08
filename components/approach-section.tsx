@@ -281,7 +281,7 @@ export function ApproachSection() {
       whileInView={{ opacity: 1 }}
       transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="text-gray-600 mb-8"
+      className="text-gray-600 mb-8 py-5"
     >
       Coordiná una videollamada y descubrí cómo podemos ayudarte a destacarte.
     </motion.p>
