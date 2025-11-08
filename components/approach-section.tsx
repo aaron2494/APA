@@ -172,7 +172,7 @@ export function ApproachSection() {
             ease: "easeOut",
           }}
           viewport={{ once: true }}
-          className="relative min-w-[250px] md:min-w-[360px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px] /* Altura aumentada */
+          className="relative min-w-[220px] md:min-w-[32  0px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px] /* Altura aumentada */
                      bg-gradient-to-br from-white/95 to-white/85 
                      backdrop-blur-2xl rounded-3xl shadow-2xl
                      border border-white/40 border-b-white/20 border-r-white/20
