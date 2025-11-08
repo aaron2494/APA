@@ -53,12 +53,13 @@ export function ProjectsSection() {
       duration: 0.8, 
       ease: [0.25, 0.1, 0.25, 1],
       delay: 0.3
+      
     }}
-    className="block"
+      className="inline-block"
   >
     <span className="text-red-700">Que</span> hacemos
   </motion.div>
-  
+  <br />
   {/* Segunda línea - entra por derecha */}
   <motion.div
     variants={{
@@ -70,7 +71,7 @@ export function ProjectsSection() {
       ease: [0.25, 0.1, 0.25, 1],
       delay: 0.6
     }}
-    className="block"
+    className="inline-block"
   >
     y <span className="text-red-700">Como</span> lo hacemos
   </motion.div>
