@@ -150,61 +150,88 @@ export function ApproachSection() {
           ))}
         </div>
 
-        {/* Contenido sticky */}
-        <div
-          ref={stickyRef}
-          className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
+       {/* Contenido sticky */}
+<div
+  ref={stickyRef}
+  className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
+>
+  <div className="w-full max-w-6xl px-6">
+    <motion.div
+      ref={trackRef}
+      style={{ x }}
+      className="flex gap-6 items-center will-change-transform pr-24" 
+    >
+      {TESTIMONIALS.map((t, i) => (
+        <motion.article
+          key={t.id}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: i * 0.10,
+            duration: 0.4,
+            ease: "easeOut",
+          }}
+          viewport={{ once: true }}
+          className="relative min-w-[250px] md:min-w-[360px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px] /* Altura aumentada */
+                     bg-gradient-to-br from-white/95 to-white/85 
+                     backdrop-blur-2xl rounded-3xl shadow-2xl
+                     border border-white/40 border-b-white/20 border-r-white/20
+                     flex flex-col justify-between flex-shrink-0 overflow-hidden
+                     group hover:scale-[1.02] hover:shadow-3xl transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
         >
-          <div className="w-full max-w-6xl px-6">
-            <motion.div
-              ref={trackRef}
-              style={{ x }}
-              className="flex gap-4 items-center will-change-transform pr-24"
-            >
-              {TESTIMONIALS.map((t, i) => (
-                <motion.article
-                  key={t.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: i * 0.10,
-                    duration: 0.4,
-                    ease: "easeOut",
-                  }}
-                  viewport={{ once: true }}
-                  className="relative min-w-[260px] md:min-w-[340px] lg:min-w-[420px]
-                             bg-gradient-to-br from-white/90 to-white/70 
-                             backdrop-blur-xl rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]
-                             border border-white/20 flex-shrink-0 overflow-hidden
-                             hover:scale-[1.04] hover:-translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                >
-                  {/* Detalle superior APA (branding line) */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#b40f1d] via-[#F1FAEE] to-[#000000]" />
+          {/* Detalle superior APA mejorado */}
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#b40f1d] via-[#e53e3e] to-[#b40f1d] shadow-lg" />
+          
+          {/* Patrón de fondo sutil */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-white/5 to-transparent opacity-50" />
+          
+          {/* Elemento decorativo de esquina */}
+          <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-[#b40f1d]/10 to-transparent rounded-full blur-sm" />
 
-                  <div className="relative z-10 p-8">
-                    <blockquote className="text-lg md:text-xl italic text-gray-800 leading-relaxed">
-                      "{t.text}"
-                    </blockquote>
+          <div className="relative z-10 p-8 flex-1 flex flex-col">
+            {/* Icono de comillas decorativo */}
+            <div className="mb-4 text-4xl text-[#b40f1d]/20 font-serif">"</div>
+            
+            <blockquote className="text-lg md:text-xl lg:text-[1.25rem] text-gray-800 leading-relaxed flex-1 font-medium">
+              {t.text}
+            </blockquote>
 
-                    <div className="mt-6 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ffffff] to-[#b40f1d] flex items-center justify-center text-white font-bold shadow-md">
-                        {t.author.charAt(0)}
-                      </div>
-                      <div className="text-sm font-semibold text-gray-700 tracking-wide">
-                        {t.author}
-                      </div>
-                    </div>
+            <div className="mt-8 pt-6 border-t border-gray-200/50">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#b40f1d] to-[#e53e3e] flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    {t.author.charAt(0)}
                   </div>
-
-                  {/* Efecto de luz sutil al pasar el mouse */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700"
-                  />
-                </motion.article>
-              ))}
-            </motion.div>
+                  {/* Anillo decorativo alrededor del avatar */}
+                  <div className="absolute inset-0 rounded-full border-2 border-[#b40f1d]/20 animate-pulse" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-gray-800 tracking-wide">
+                    {t.author}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1 font-medium">
+                    Cliente Satisfecho
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+
+          {/* Efectos de hover mejorados */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-transparent via-[#b40f1d]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          />
+          
+          {/* Brillo en hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+          
+          {/* Borde sutil en hover */}
+          <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-[#b40f1d]/10 transition-all duration-300" />
+        </motion.article>
+      ))}
+    </motion.div>
+  </div>
+</div>
       </div>
 
     {/* CTA final */}
