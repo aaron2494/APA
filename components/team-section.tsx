@@ -38,37 +38,12 @@ export function TeamSection() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   return (
+    
     <section
       ref={ref}
-      className="relative min-h-[250vh] bg-white text-gray-900 flex flex-col items-center py-32 overflow-hidden"
-    >
-       <motion.div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 40%, rgba(180,15,29,0.05), transparent 70%), radial-gradient(circle at 70% 60%, rgba(180,15,29,0.05), transparent 70%)",
-          y: bgY,
-          backgroundSize: "200% 200%",
-          animation: "energyFlow 12s ease-in-out infinite alternate",
-        }}
-      />
-      <div className="absolute inset-0 z-[0] overflow-hidden h-full">
-          {[
-            "/modern-marketing-agency-workspace-with-creative-te.jpg",
-         
-          ].map((img, i) => (
-            <motion.div
-              key={i}
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${img})`,
-                opacity:0.2
-              }}
-            />
-          ))}
-        </div>
-   
-  <motion.div
+      className="relative min-h-[250vh]  text-gray-900 flex flex-col items-center py-32 overflow-hidden"
+    > 
+      <motion.div
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
@@ -106,6 +81,23 @@ export function TeamSection() {
   <span className="text-primary thick-text-sub-red">Tú equipo</span>
   </motion.div>
 </motion.div>
+      <div className="absolute inset-0  overflow-hidden h-full">
+          {[
+            "/modern-marketing-agency-workspace-with-creative-te.jpg",
+         
+          ].map((img, i) => (
+            <motion.div
+              key={i}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${img})`,
+                opacity:0.2
+              }}
+            />
+          ))}
+        </div>
+   
+
       {/* Cards animadas */}
       <div className="sticky top-1/2 -translate-y-1/4 w-full max-w-4xl">
         {teamData.map((section, i) => {
