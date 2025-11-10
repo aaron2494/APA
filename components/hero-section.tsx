@@ -80,8 +80,8 @@ return (
               hidden: {},
               visible: {
                 transition: {
-                  staggerChildren: 0.03,
-                  delayChildren: 0.5,
+                  staggerChildren: 0.02,
+                  delayChildren: 0.7,
                 },
               },
             }}
