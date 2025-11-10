@@ -15,7 +15,7 @@ export function HeroSection() {
    // Activar el crecimiento después de que termine la animación letra por letra
 const bounceTimer = setTimeout(() => {
   setShowBounce(true)
-}, titleText.length * 70 + 800)
+}, titleText.length * 70 + 600)
 
 return () => clearTimeout(bounceTimer)
 }, [])
@@ -31,7 +31,7 @@ return (
     y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 2,
+    duration: 1.7,
     ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
@@ -45,11 +45,11 @@ return (
     initial={{ scale: 0.2 }}
     animate={
       showBounce
-        ? { scale: [0.7, 1.8, 1] }
+        ? { scale: [0.7, 1.7, 1] }
         : { scale: 0.7 }
     }
     transition={{
-      duration: 1.8,
+      duration: 1.2,
       ease: [0.25, 1, 0.5, 1],
       times: [0, 0.6, 1],
     }}
@@ -64,7 +64,7 @@ return (
         visible: {
           transition: {
             staggerChildren: 0.07,
-            delayChildren: 1.4, // ⬅️ aparece después del punto rojo
+            delayChildren: 1.3, // ⬅️ aparece después del punto rojo
           },
         },
       }}

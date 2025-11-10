@@ -167,7 +167,7 @@ export function ApproachSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            delay: i * 0.10,
+            delay: i * 0.05,
             duration: 0.4,
             ease: "easeOut",
           }}
