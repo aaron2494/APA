@@ -33,7 +33,7 @@ function SplitAnimatedText() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden"
+    className="overflow-hidden thick-text-sub-black "
   >
     Preferimos no contarte{" "}
   </motion.div>
@@ -49,7 +49,7 @@ function SplitAnimatedText() {
       ease: "easeOut",
       delay: 0.4
     }}
-    className="overflow-hidden text-primary"
+    className="overflow-hidden text-primary thick-text-sub-red"
   >
     quiénes somos
   </motion.div>
@@ -255,7 +255,7 @@ export function ApproachSection() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden"
+    className="overflow-hidden thick-text-sub-black"
   >
     Queres que tu marca{" "}
   </motion.div>
@@ -271,7 +271,7 @@ export function ApproachSection() {
       ease: "easeOut",
       delay: 0.4
     }}
-    className="overflow-hidden text-primary"
+    className="overflow-hidden text- thick-text-sub-red"
   >
     También hable por vos?
   </motion.div>

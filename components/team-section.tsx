@@ -85,7 +85,7 @@ export function TeamSection() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden"
+    className="overflow-hidden thick-text-sub-black"
   >
     <span>Nuestro Equipo,</span>
   </motion.div>
@@ -103,7 +103,7 @@ export function TeamSection() {
     }}
     className="overflow-hidden"
   >
-  <span className="text-primary">Tú equipo</span>
+  <span className="text-primary thick-text-sub-red">Tú equipo</span>
   </motion.div>
 </motion.div>
       {/* Cards animadas */}

@@ -54,7 +54,7 @@ export function AboutSection() {
             ease: "easeOut",
             delay: 0.2,
           }}
-          className="inline-block overflow-hidden"
+          className="inline-block overflow-hidden thick-text-sub-black"
         >
           Impacto
         </motion.span>
@@ -73,7 +73,7 @@ export function AboutSection() {
             ease: "easeOut",
             delay: 0.4,
           }}
-          className="inline-block overflow-hidden text-primary"
+          className="inline-block overflow-hidden text-primary thick-text-sub-red"
         >
           Real
         </motion.span>

@@ -54,9 +54,9 @@ export function ProjectsSection() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden"
+    className="overflow-hidden thick-text-sub-black"
   >
-    <span className="text-primary">Que</span> hacemos
+    <span className="text-primary thick-text-sub-red">Que</span> hacemos
   </motion.div>
   
   {/* Segunda línea */}
@@ -70,9 +70,9 @@ export function ProjectsSection() {
       ease: "easeOut",
       delay: 0.4
     }}
-    className="overflow-hidden"
+    className="overflow- thick-text-sub-black"
   >
-    y <span className="text-primary">como</span> lo hacemos
+    y <span className="text-primary thick-text-sub-red">como</span> lo hacemos
   </motion.div>
 </motion.div>
       {/* Cards */}
