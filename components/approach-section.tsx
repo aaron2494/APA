@@ -164,11 +164,11 @@ export function ApproachSection() {
       {TESTIMONIALS.map((t, i) => (
         <motion.article
           key={t.id}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            delay: i * 0.02,
-            duration: 0.2,
+            delay: i * 0.1,
+            duration: 0.1,
             ease: "easeOut",
           }}
           viewport={{ once: true }}
