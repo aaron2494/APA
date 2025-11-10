@@ -31,7 +31,7 @@ return (
     y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 1.7,
+    duration: 1.5,
     ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
@@ -49,7 +49,7 @@ return (
       : { scale: 0.8 }
   }
   transition={{
-    duration: 1.4,
+    duration: 1.2,
     ease: [0.1, 0.25, 0.50, 2], // curva natural tipo “ease in-out”
     times: [0, 0.5, 1],
   }}
@@ -64,7 +64,7 @@ return (
         visible: {
           transition: {
             staggerChildren: 0.02,
-            delayChildren: 1.3, // ⬅️ aparece después del punto rojo
+            delayChildren: 1.1, // ⬅️ aparece después del punto rojo
           },
         },
       }}
@@ -75,7 +75,7 @@ return (
         animate={isVisible ? { scale: 1 } : {}}
         transition={{
           duration: 0.9,
-          delay: titleText.length * 0.07 + 2.3, // ajustado por el nuevo delay
+          delay: titleText.length * 0.07 + 2, // ajustado por el nuevo delay
           ease: "easeOut",
         }}
       >
@@ -121,7 +121,7 @@ return (
               type: "spring",
               stiffness: 200,
               damping: 15,  
-              delay: titleText.length * 0.3 + 0.2,
+              delay: titleText.length * 0.2 + 0.8,
               duration: 1.4,
                ease: [0.34, 1.56, 0.64, 1],
             },
