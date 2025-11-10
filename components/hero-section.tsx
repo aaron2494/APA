@@ -40,7 +40,7 @@ return (
   <div className="relative z-10 text-center"></div> 
     <div className="text-center z-20">
       <motion.span
-        className="absolute text-[80px] md:text-[100px] lg:text-[8vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+        className="absolute text-[80px] md:text-[110px] lg:text-[10vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
         initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [1, 1, 1, 1, 1],
@@ -87,7 +87,7 @@ return (
             }}
           >
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
-            <motion.span className="inline-block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold text-primary leading-none">
+            <motion.span className="inline-block thick-text text-[10vw] md:text-[9vw] lg:text-[7vw] font-bold text-primary leading-none">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}

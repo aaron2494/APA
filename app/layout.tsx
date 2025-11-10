@@ -21,6 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      
       <body className={`font-sans ${inter.variable} antialiased`}>{children}</body>
     </html>
   )

@@ -154,3 +154,9 @@
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
+
+.thick-text {
+  -webkit-text-stroke: 1.6px var(--primary); /* Borde negro alrededor */
+  color: var(--color-primary);
+  font-weight: 900; /* Refuerza el grosor interno */
+}
