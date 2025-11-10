@@ -113,7 +113,7 @@ export function TeamSection() {
                 const end = (i + 1) / teamData.length;
       
                 const y = useTransform(scrollYProgress, [start, end], [300, 100]);
-                const scale = useTransform(scrollYProgress, [start, end], [0, 1.4]);
+                const scale = useTransform(scrollYProgress, [start, end], [0, 1.2]);
                 const opacity = useTransform(scrollYProgress, [start, end], [1, 1]);
 
           return (
