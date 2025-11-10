@@ -41,7 +41,7 @@ export function AboutSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+        className="text-3xl md:text-4xl mt-10 font-bold text-gray-900 text-center overflow-hidden px-4"
       >
         {/* Impacto */}
         <motion.span
@@ -78,7 +78,7 @@ export function AboutSection() {
           Real
         </motion.span>
       </motion.div>
-      <div className=" flex items-center justify-center px-2 py-5">
+      <div className=" flex mb-10 items-center justify-center px-2 py-5">
         <div className="max-w-2xl mx-auto text-center space-y-2">
           <motion.p
             initial={{ opacity: 0 }}

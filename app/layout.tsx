@@ -11,8 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "APA Marketing | Agencia de Marketing Digital",
-  description: "Creamos impacto real. Estrategia, contenido y creatividad para marcas que quieren destacar.",
-  generator: "v0.app",
+  description: "Creamos impacto real. Estrategia, contenido y creatividad para marcas que quieren destacar."
 }
 
 export default function RootLayout({
