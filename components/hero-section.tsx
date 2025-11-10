@@ -15,7 +15,7 @@ export function HeroSection() {
    // Activar el crecimiento después de que termine la animación letra por letra
 const bounceTimer = setTimeout(() => {
   setShowBounce(true)
-}, titleText.length * 70 + 800)
+}, titleText.length * 70 + 500)
 
 return () => clearTimeout(bounceTimer)
 }, [])
@@ -47,85 +47,77 @@ return (
     y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 1.3,
+    duration: 1,
     ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
       >
         .
       </motion.span>
-
-  {/* CONTENEDOR PRINCIPAL QUE CRECE SUAVEMENTE */}
  <motion.div
-  className="inline-block origin-center"
-  initial={{ scale: 0.8 }}
-  animate={
-    showBounce
-      ? { scale: [0.8, 1.5, 1] } // se agranda y vuelve suavemente
-      : { scale: 0.8 }
-  }
-  transition={{
-    duration: 1,
-    ease: [0.1, 0.25, 0.50, 2], // curva natural tipo “ease in-out”
-    times: [0, 0.5, 1],
-  }}
->
-    {/* ANIMACIÓN LETRA POR LETRA DEL TÍTULO */}
-    <motion.div
-      className="inline-block"
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.02,
-            delayChildren: 1.1, // ⬅️ aparece después del punto rojo
-          },
-        },
-      }}
-    >
-      <motion.span
-        className="inline-block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold text-primary leading-none"
-        initial={{ scale: 0.3 }}
-        animate={isVisible ? { scale: 1 } : {}}
-        transition={{
-          duration: 0.9,
-          delay: titleText.length * 0.07 + 2, // ajustado por el nuevo delay
-          ease: "easeOut",
-        }}
-      >
-        {titleText.split("").map((char, i) => (
-          <motion.span
-            key={i}
+          className="inline-block origin-center"
+          initial={{ scale: 1 }}
+          animate={
+            isVisible
+              ? {
+                  scale: [0.8,  1.5, 1], // Aumentados valores para más impacto visual
+                }
+              : {}
+          }
+          transition={{
+            duration: 1.2, // Reducido de 1.6 para que sea más rápido
+            delay: titleText.length * 0.06 + 0.2, // Reducido delay para acelerar la secuencia
+            ease: [0.25, 1.35, 0.6, 1], // Ajustado easing para más elasticidad
+            times: [0, 0.25, 0.5, 0.75, 1],
+          }}
+        >
+          {/* CONTENEDOR PRINCIPAL - Similar a Monks */}
+          <motion.div
+            className="inline-block"
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
             variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.6,
-                y: 25,
-                filter: "blur(6px)",
-              },
+              hidden: {},
               visible: {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                filter: "blur(0px)",
                 transition: {
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 25,
-                  duration: 0.7,
+                  staggerChildren: 0.03,
+                  delayChildren: 0.5,
                 },
               },
             }}
-            className="inline-block origin-center"
           >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-      </motion.span>
-
-      {/* PUNTO FINAL */}
+            {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
+            <motion.span className="inline-block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold text-primary leading-none">
+              {titleText.split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      scale: 0.20, // Reducido de 0.1 para empezar más pequeño
+                      y: 50, // Aumentado de 40 para efecto más dramático
+                      filter: "blur(12px)", // Aumentado blur
+                    },
+                    visible: {
+                      opacity: 1,
+                      scale: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                      transition: {
+                        type: "spring",
+                        stiffness: 300, // Aumentado de 350 para más elasticidad
+                        damping: 12, // Reducido de 30 para más rebote
+                        duration: 0.6, // Reducido de 0.8
+                      },
+                    },
+                  }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.span>
+             {/* PUNTO FINAL */}
       <motion.span
         variants={{
           hidden: { scale: 0, opacity: 0 },
@@ -137,7 +129,7 @@ return (
               type: "spring",
               stiffness: 200,
               damping: 15,  
-              delay: titleText.length * 0.2 + 0.8,
+              delay: titleText.length * 0.1 + 0.7,
               duration: 1.4,
                ease: [0.34, 1.56, 0.64, 1],
             },
@@ -147,16 +139,17 @@ return (
       >
         .
       </motion.span>
-    </motion.div>
-    
-  </motion.div>
+          </motion.div>
+        </motion.div>
+
+
 
   {/* SUBTÍTULO - aparece después del texto */}
   <motion.p
     initial={{ opacity: 0, y: 30 }}
     animate={isVisible ? { opacity: 1, y: 0 } : {}}
     transition={{
-      delay: titleText.length * 0.07 + 3.2, // ⬅️ ajustado para aparecer luego del punto rojo + texto
+      delay: titleText.length * 0.07 + 2.2, // ⬅️ ajustado para aparecer luego del punto rojo + texto
       duration: 0.6,
       ease: "easeOut",
     }}
