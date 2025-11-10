@@ -62,7 +62,7 @@ export function TeamSection() {
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: `url(${img})`,
-                opacity: 0.20,
+                opacity:0.2
               }}
             />
           ))}
@@ -120,7 +120,7 @@ export function TeamSection() {
             <motion.div
               key={section.area}
               style={{ y,scale, opacity }}
-              className=" bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100 p-10 mx-6 md:mx-0"
+              className=" bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100 p-10 mx-6 md:mx-0"
             >
               <h3 className="text-2xl font-semibold mb-6 text-[#b40f1d]">
                 {section.area}
