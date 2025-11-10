@@ -156,17 +156,17 @@
 }
 
 .thick-text {
-  -webkit-text-stroke: 2.2px var(--sidebar-primary); /* Borde negro alrededor */
+  -webkit-text-stroke: 2.3px var(--sidebar-primary); /* Borde negro alrededor */
   color: var(--color-primary);
   font-weight: 900; /* Refuerza el grosor interno */
 }
 .thick-text-sub-black {
-  -webkit-text-stroke: 1.5px black; /* Borde negro alrededor */
+  -webkit-text-stroke: 1.8px black; /* Borde negro alrededor */
   color: var(--color-black);
   font-weight: 700; /* Refuerza el grosor interno */
 }
 .thick-text-sub-red {
-  -webkit-text-stroke: 1.5px var(--sidebar-primary); /* Borde negro alrededor */
+  -webkit-text-stroke: 1.8px var(--sidebar-primary); /* Borde negro alrededor */
   color: var(--color-primary);
   font-weight: 700; /* Refuerza el grosor interno */
 }
