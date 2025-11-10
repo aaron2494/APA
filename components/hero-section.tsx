@@ -22,6 +22,22 @@ return () => clearTimeout(bounceTimer)
 
 return (
   <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
+  {/* VIDEO DE FONDO */}
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute top-0 left-0 w-full h-full object-cover"
+  >
+    <source src="/fondo-hero.mp4" type="video/mp4" />
+  </video>
+
+  {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
+  <div className="absolute inset-0 bg-black/30"></div>
+
+  {/* CONTENIDO ENCIMA DEL VIDEO */}
+  <div className="relative z-10 text-center"></div> 
     <div className="text-center z-20">
       <motion.span
         className="absolute text-[80px] md:text-[100px] lg:text-[8vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
@@ -31,7 +47,7 @@ return (
     y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
   }}
   transition={{
-    duration: 1.5,
+    duration: 1.3,
     ease: [0.1, 0.2, 0.3, 2],
     times: [0, 0.25, 0.45, 0.6, 1],
   }}
@@ -49,7 +65,7 @@ return (
       : { scale: 0.8 }
   }
   transition={{
-    duration: 1.2,
+    duration: 1,
     ease: [0.1, 0.25, 0.50, 2], // curva natural tipo “ease in-out”
     times: [0, 0.5, 1],
   }}
