@@ -15,7 +15,7 @@ export function HeroSection() {
    // Activar el crecimiento después de que termine la animación letra por letra
 const bounceTimer = setTimeout(() => {
   setShowBounce(true)
-}, titleText.length * 70 + 600)
+}, titleText.length * 70 + 800)
 
 return () => clearTimeout(bounceTimer)
 }, [])
@@ -40,20 +40,20 @@ return (
       </motion.span>
 
   {/* CONTENEDOR PRINCIPAL QUE CRECE SUAVEMENTE */}
-  <motion.div
-    className="inline-block origin-center"
-    initial={{ scale: 0.2 }}
-    animate={
-      showBounce
-        ? { scale: [0.7, 1.7, 1] }
-        : { scale: 0.7 }
-    }
-    transition={{
-      duration: 1.2,
-      ease: [0.25, 1, 0.5, 1],
-      times: [0, 0.6, 1],
-    }}
-  >
+ <motion.div
+  className="inline-block origin-center"
+  initial={{ scale: 0.8 }}
+  animate={
+    showBounce
+      ? { scale: [0.8, 1.5, 1] } // se agranda y vuelve suavemente
+      : { scale: 0.8 }
+  }
+  transition={{
+    duration: 1.4,
+    ease: [0.1, 0.25, 0.50, 2], // curva natural tipo “ease in-out”
+    times: [0, 0.5, 1],
+  }}
+>
     {/* ANIMACIÓN LETRA POR LETRA DEL TÍTULO */}
     <motion.div
       className="inline-block"
@@ -63,7 +63,7 @@ return (
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.07,
+            staggerChildren: 0.02,
             delayChildren: 1.3, // ⬅️ aparece después del punto rojo
           },
         },
