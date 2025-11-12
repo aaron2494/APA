@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react"
 
 const titleText = "Hacelo Distinto"
@@ -8,7 +8,8 @@ const titleText = "Hacelo Distinto"
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [showBounce, setShowBounce] = useState(false)
-
+   const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 600], [0, 300]) // efecto parallax sutil
   useEffect(() => {
     setIsVisible(true)
     
@@ -23,15 +24,16 @@ return () => clearTimeout(bounceTimer)
 return (
   <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
   {/* VIDEO DE FONDO */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute top-0 left-0 w-full h-full object-cover"
-  >
-    <source src="/fondo-hero.mp4" type="video/mp4" />
-  </video>
+  <motion.video
+        style={{ y }}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
+      >
+        <source src="/fondo-hero.mp4" type="video/mp4" />
+      </motion.video>
 
   {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
   <div className="absolute inset-0 bg-black/30"></div>
