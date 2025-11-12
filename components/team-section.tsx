@@ -153,7 +153,7 @@ const hue = (h: number) => `hsl(${h}, 90%, 45%)`;
 
 const container: React.CSSProperties = {
   margin: "100px auto",
-  maxWidth: 600,
+  maxWidth: 500,
   paddingBottom: 100,
   width: "100%",
 };
@@ -186,7 +186,7 @@ const card: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: 24,
-  background: "rgba(255,255,255,0.9)",
+  background: "rgba(255,255,255)",
   boxShadow:
     "0 0 1px rgba(0,0,0,0.08), 0 0 8px rgba(0,0,0,0.08), 0 0 16px rgba(0,0,0,0.1)",
   transformOrigin: "10% 60%",
