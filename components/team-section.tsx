@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
-
 const teamData = [
   {
     area: "Comunicación & PR",
@@ -12,8 +11,17 @@ const teamData = [
     ],
   },
   {
+    area: "Comunasdas",
+    members: [
+      { name: "Laura Martínez", role: "Directora de Comunicación" },
+      { name: "Diego Torres", role: "PR & Media Strategist" },
+    ],
+  },
+  {
     area: "Creatividad & Contenido",
     members: [
+      { name: "María Gómez", role: "Directora Creativa" },
+      { name: "Sofía Herrera", role: "Diseñadora Gráfica" },
       { name: "María Gómez", role: "Directora Creativa" },
       { name: "Sofía Herrera", role: "Diseñadora Gráfica" },
     ],
@@ -25,25 +33,13 @@ const teamData = [
       { name: "Nicolás Soto", role: "Performance Analyst" },
     ],
   },
-
 ];
 
-export function TeamSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-
+export  function TeamSection() {
   return (
     
-    <section
-      ref={ref}
-      className="relative min-h-[250vh]  text-gray-900 flex flex-col items-center py-32 overflow-hidden"
-    > 
-      <motion.div
+    <div style={container}>
+            <motion.div
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
@@ -81,67 +77,154 @@ export function TeamSection() {
   <span className="text-primary thick-text-sub-red">Tú equipo</span>
   </motion.div>
 </motion.div>
-      <div className="absolute inset-0  overflow-hidden h-full">
-          {[
-            "/modern-marketing-agency-workspace-with-creative-te.jpg",
-         
-          ].map((img, i) => (
-            <motion.div
-              key={i}
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${img})`,
-                opacity:0.2
-              }}
-            />
-          ))}
-        </div>
-   
-
-      {/* Cards animadas */}
-      <div className="sticky top-1/2 -translate-y-1/4 w-full max-w-4xl">
-        {teamData.map((section, i) => {
-        const start = i / teamData.length;
-                const end = (i + 1) / teamData.length;
-      
-                const y = useTransform(scrollYProgress, [start, end], [300, 100]);
-                const scale = useTransform(scrollYProgress, [start, end], [0, 1.2]);
-                const opacity = useTransform(scrollYProgress, [start, end], [1, 1]);
-
-          return (
-            <motion.div
-              key={section.area}
-              style={{ y,scale, opacity }}
-              className=" bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100 p-10 mx-6 md:mx-0"
-            >
-              <h3 className="text-2xl font-semibold mb-6 text-[#b40f1d]">
-                {section.area}
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {section.members.map((m, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{
-                      scale: 1.05,
-                      rotate: 0.5,
-                      backgroundColor: "rgba(180,15,29,0.06)",
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 15,
-                    }}
-                    className="p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all text-center"
-                  >
-                    <h4 className="font-bold text-lg">{m.name}</h4>
-                    <p className="text-gray-600">{m.role}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-    </section>
+      {teamData.map((section, i) => (
+        <Card
+          i={i}
+          key={section.area}
+          area={section.area}
+          members={section.members}
+        />
+      ))}
+    </div>
   );
 }
+
+interface CardProps {
+  area: string;
+  members: { name: string; role: string }[];
+  i: number;
+}
+
+function Card({ area, members, i }: CardProps) {
+  const background = `linear-gradient(306deg, ${hue(350)}, ${hue(0)})`; // Rojo APA degradado
+
+  return (
+    
+    <motion.div
+      className={`card-container-${i}`}
+      style={cardContainer}
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ amount: 0.8 }}
+    >
+      <div style={{ ...splash, background }} />
+      <motion.div
+        style={card}
+        variants={cardVariants}
+        className="card "
+      >
+        <h3 style={areaTitle}>{area}</h3>
+        <div style={membersGrid}>
+          {members.map((m, idx) => (
+            <div key={idx} style={memberBox}>
+              <p style={memberName}>{m.name}</p>
+              <p style={memberRole}>{m.role}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const cardVariants: Variants = {
+  offscreen: {
+    y: 300,
+    rotate: -10,
+    opacity: 1,
+  },
+  onscreen: {
+    y: 50,
+    rotate: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
+
+const hue = (h: number) => `hsl(${h}, 90%, 45%)`;
+
+/* ==============================
+   STYLES (idénticos al ejemplo)
+   ============================== */
+
+const container: React.CSSProperties = {
+  margin: "100px auto",
+  maxWidth: 600,
+  paddingBottom: 100,
+  width: "100%",
+};
+
+const cardContainer: React.CSSProperties = {
+  overflow: "hidden",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+  paddingTop: 20,
+  marginBottom: -120,
+};
+
+const splash: React.CSSProperties = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  clipPath: `path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z")`,
+ 
+};
+
+const card: React.CSSProperties = {
+  width: 340,
+  minHeight: 460,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 24,
+  background: "rgba(255,255,255,0.9)",
+  boxShadow:
+    "0 0 1px rgba(0,0,0,0.08), 0 0 8px rgba(0,0,0,0.08), 0 0 16px rgba(0,0,0,0.1)",
+  transformOrigin: "10% 60%",
+  padding: "30px 20px",
+  backdropFilter: "blur(8px)",
+};
+
+const areaTitle: React.CSSProperties = {
+  fontSize: "1.5rem",
+  color: "#b40f1d",
+  textAlign: "center",
+  marginBottom: 20,
+  fontWeight: 700,
+  letterSpacing: "0.5px",
+};
+
+const membersGrid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: 12,
+  width: "100%",
+};
+
+const memberBox: React.CSSProperties = {
+  background: "rgba(180,15,29,0.05)",
+  borderRadius: 12,
+  padding: "12px 10px",
+  textAlign: "center",
+};
+
+const memberName: React.CSSProperties = {
+  fontWeight: 600,
+  fontSize: "1rem",
+  color: "#111",
+  marginBottom: 4,
+};
+
+const memberRole: React.CSSProperties = {
+  fontSize: "0.9rem",
+  color: "#555",
+};
