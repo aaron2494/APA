@@ -31,49 +31,12 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-18">
-          {/* Logo con animación 3D */}
-          <Link href="/" className="flex items-center space-x-2 relative perspective-[1000px]">
-            <motion.div
-              className="relative pl-12 pb-10 text-4xl font-extrabold tracking-tight select-none"
-              animate={{
-                rotateY: [0, 360],
-                rotateX: [0, 15, 15, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                repeatType: "mirror",
-                duration: 5,
-                ease: "easeInOut",
-              }}
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-            >
-              {/* Capa principal */}
-              <motion.span
-                className={`absolute inset-0 ${
-                  isScrolled ? "text-primary" : "text-white"
-                }`}
-                style={{
-                  transform: "translateZ(20px)",
-                }}
-              >
-                APA
-              </motion.span>
-
-              {/* Capa media (sombra en profundidad) */}
-              <motion.span
-                className="absolute inset-0 text-primary/50 blur-[1px]"
-                style={{
-                  transform: "translateZ(10px)",
-                }}
-              >
-                APA
-              </motion.span>
-
-           
-            </motion.div>
+         <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="text-2xl font-bold tracking-tight">
+           <span className={isScrolled ? "text-primary" : "text-white"}>APA</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
