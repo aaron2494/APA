@@ -35,12 +35,12 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[250vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
+      className="relative min-h-[200vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
  <motion.div
   initial="hidden"
   whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
+  viewport={{ once: true, amount: 0.6 }}
   className="text-3xl mt-20 md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
