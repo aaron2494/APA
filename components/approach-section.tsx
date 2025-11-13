@@ -288,7 +288,7 @@ export function ApproachSection() {
     <motion.a
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       href="https://3260.agency/agenda-ok#calendly"
       target="_blank"
