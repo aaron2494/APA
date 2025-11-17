@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react"
 
-const titleText = "HACELO DISTINTO."
+const titleText = "HACELO DISTINTO"
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -105,7 +105,7 @@ export function HeroSection() {
             }}
           >
             {/* Texto Principal - Animación Monks */}
-            <motion.span className="inline-block text-[21vw] md:text-[12vw] lg:text-[12vw] font-black text-white leading-none tracking-tight relative">
+            <motion.span className="inline-block text-[19vw] md:text-[12vw] lg:text-[12vw] font-black text-white leading-none tracking-tight relative">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}
