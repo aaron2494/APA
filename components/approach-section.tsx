@@ -351,15 +351,15 @@ const rotateY = useTransform(mouseX, [-300,300], [-15, 15])
     }}
     animate={{
       boxShadow: isHovered
-        ? `0 0 40px rgba(255, 0, 40, 0.1)`
+        ? `0 0 40px rgba(255, 0, 40, 0.5)`
         : "0 0 0px rgba(0,0,0,0)",
     }}
   >
     {/* Background Gradient */}
     <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-red-500 to-pink-600 "
+      className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-800 "
       animate={{
-        opacity: isHovered ? 0.9 : 0.2,
+        opacity: isHovered ? 0.8 : 0.6,
         scale: isHovered ? 1.1 : 1,
       }}
       transition={{ duration: 0.4 }}

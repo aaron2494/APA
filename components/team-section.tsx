@@ -71,7 +71,7 @@ export function TeamSection() {
 
       {/* Floating Orbs */}
       <motion.div
-        className="absolute top-20 left-10 w-64 h-64 bg-red-600 rounded-full blur-3xl opacity-30"
+        className="absolute top-20 left-10 w-64 h-64 bg-red-600/10 rounded-full blur-3xl opacity-30"
         animate={{
           x: [0, 100, 0],
           y: [0, -50, 0],
