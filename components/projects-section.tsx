@@ -173,24 +173,16 @@ useEffect(() => {
 <div className="relative w-full max-w-4xl mt-[25vh]">
   {services.map((service, i) => {
     const start = i / services.length;
-    const end = (i + 1.2) / services.length;
+    const end = (i + 1) / services.length;
 
     const y = useTransform(scrollYProgress, [start, end], [100, -100]);
-    const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
+    const scale = useTransform(scrollYProgress, [start, end], [1, 0.7]);
     const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
     // HOVER EFFECTS
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
-    const rotateY = useTransform(mouseX, [-300, 300], [-15, 15]);
-
-    const onMove = (e: any) => {
-      const r = e.currentTarget.getBoundingClientRect();
-      mouseX.set(e.clientX - (r.left + r.width / 2));
-      mouseY.set(e.clientY - (r.top + r.height / 2));
-    };
-
+  
     return (
       <motion.div
         key={i}
@@ -198,14 +190,9 @@ useEffect(() => {
         className="sticky top-1/2 -translate-y-1/2 overflow-hidden "
       >
         <motion.div
-          onMouseMove={onMove}
-          onMouseLeave={() => {
-            mouseX.set(0);
-            mouseY.set(0);
-          }}
+          
           style={{
-            rotateX,
-            rotateY,
+            
             transformStyle: "preserve-3d",
           }}
           initial={{ opacity: 0, scale: 0.8, rotateZ: -10 }}
