@@ -105,7 +105,7 @@ export function HeroSection() {
             }}
           >
             {/* Texto Principal - Animación Monks */}
-            <motion.span className="inline-block text-[20vw] md:text-[12vw] lg:text-[9vw] font-black text-white leading-none tracking-tight relative">
+            <motion.span className="inline-block text-[22vw] md:text-[12vw] lg:text-[12vw] font-black text-white leading-none tracking-tight relative">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}
