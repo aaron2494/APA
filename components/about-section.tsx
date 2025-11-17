@@ -35,49 +35,7 @@ export function AboutSection() {
   const gradientY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-<<<<<<< HEAD
-    <section id="proyectos" className="relative  bg-black">
-         <div className="absolute inset-0 opacity-20 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0" style={{
-     backgroundImage: `
-  linear-gradient(to right, rgba(255,0,0,0.5) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(255,0,0,0.5) 1px, transparent 1px)
-`,
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
-
-      {/* Floating Orbs */}
-      <motion.div
-        className="absolute top-20 left-10 w-64 h-64 bg-red-600 rounded-full blur-3xl opacity-30"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-red-800 rounded-full blur-3xl opacity-20"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 80, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-=======
     <section id="proyectos" className="relative  bg-white">
->>>>>>> parent of 456f85d (rework complete)
       {/* Title section */}
       <motion.div
         initial="hidden"

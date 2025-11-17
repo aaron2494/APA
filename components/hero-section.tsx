@@ -3,48 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react"
 
-<<<<<<< HEAD
-const titleText = "HACELO DISTINTO"
-
-
-export function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [glitchActive, setGlitchActive] = useState(false)
-  
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 600], [0, 300])
-  const renderAnimatedText = (text: string) =>
-  text.split("").map((char, i) => (
-    <motion.span
-      key={i}
-      variants={{
-        hidden: { opacity: 0, scale: 0.3, y: 150, filter: "blur(20px)" },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: {
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
-            mass: 3,
-          },
-        },
-      }}
-      className="inline-block"
-      style={{
-        willChange: "transform, opacity",
-        textShadow: glitchActive
-          ? "2px 2px 0 rgba(220, 38, 38, 0.8), -2px -2px 0 rgba(255, 255, 255, 0.4)"
-          : "3px 3px 0 rgba(0,0,0,0.3)",
-      }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  ));
-
-=======
 const titleText = "Hacelo Distinto"
 
 export function HeroSection() {
@@ -52,7 +10,6 @@ export function HeroSection() {
   const [showBounce, setShowBounce] = useState(false)
    const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, 300]) // efecto parallax sutil
->>>>>>> parent of 456f85d (rework complete)
   useEffect(() => {
     setIsVisible(true)
     
@@ -81,44 +38,6 @@ return (
   {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
   <div className="absolute inset-0 bg-black/30"></div>
 
-<<<<<<< HEAD
-      {/* FLOATING ORBS - Solo rojo */}
-      <motion.div
-        className="absolute top-1/4 left-20 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-20"
-        animate={{
-          x: [0, 80, 0],
-          y: [0, -60, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-20 w-96 h-96 bg-red-500 rounded-full blur-3xl opacity-15"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 60, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-
-      {/* CAPA OVERLAY GRADIENTE */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
-
-      {/* CONTENIDO PRINCIPAL */}
-      <div className="relative z-20 text-center px-4">
-        
-        {/* TÍTULO PRINCIPAL - ESTILO MONKS */}
-        <div className="relative mt-10">
-=======
   {/* CONTENIDO ENCIMA DEL VIDEO */}
   <div className="relative z-10 text-center"></div> 
     <div className="text-center z-20">
@@ -155,7 +74,6 @@ return (
           }}
         >
           {/* CONTENEDOR PRINCIPAL - Similar a Monks */}
->>>>>>> parent of 456f85d (rework complete)
           <motion.div
             className="inline-block"
             initial="hidden"
@@ -170,77 +88,6 @@ return (
               },
             }}
           >
-<<<<<<< HEAD
-
-            {/* MOBILE: siempre 2 líneas */}
-<div className="block md:hidden leading-none">
-  <motion.span className="block text-[15vw] font-black text-white">
-    {renderAnimatedText("HACELO")}
-  </motion.span>
-
-  <motion.span className="block text-[15vw] font-black text-white">
-    {renderAnimatedText("DISTINTO.")}
-  </motion.span>
-</div>
-            {/* Texto Principal - Animación Monks */}
-            <motion.span className="hidden md:inline-block text-[9vw] font-black text-white leading-none tracking-tight relative">
-  {titleText.split("").map((char, i) => (
-    <motion.span
-      key={i}
-      variants={{
-        hidden: { opacity: 0, scale: 0.3, y: 80, filter: "blur(20px)" },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: {
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
-            mass: 3,
-          },
-        },
-      }}
-      className="inline-block"
-      style={{
-        willChange: "transform, opacity",
-        textShadow: glitchActive
-          ? "2px 2px 0 rgba(220, 38, 38, 0.8), -2px -2px 0 rgba(255, 255, 255, 0.4)"
-          : "3px 3px 0 rgba(0,0,0,0.3)",
-      }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  ))}
-</motion.span>
-
-            {/* PUNTO FINAL - Rebote Monks con color rojo */}
-            <motion.span
-              variants={{
-                hidden: { scale: 0, opacity: 0, y: 100 },
-                visible: {
-                 
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 15,
-                    mass: 1,
-                    delay: 0.1,
-                  },
-                },
-              }}
-              className="inline-block text-[15vw] md:text-[12vw] lg:text-[9vw] font-black text-red-600"
-              style={{
-                willChange: 'transform',
-                filter: 'drop-shadow(0 0 30px rgba(220, 38, 38, 0.6))',
-              }}
-            >
-              .
-            </motion.span>
-=======
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
             <motion.span className="inline-block thick-text text-[10vw] md:text-[9vw] lg:text-[7vw] font-bold text-primary leading-none">
               {titleText.split("").map((char, i) => (
@@ -294,7 +141,6 @@ return (
       >
         .
       </motion.span>
->>>>>>> parent of 456f85d (rework complete)
           </motion.div>
         </motion.div>
 

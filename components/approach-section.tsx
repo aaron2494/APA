@@ -98,20 +98,6 @@ export function ApproachSection() {
   const x = useTransform(scrollYProgress, [0, 1], [`0px`, `${-horizontalToScroll}px`])
 
   return (
-<<<<<<< HEAD
-    <section className="relative bg-black  ">
-      <div className="absolute inset-0 opacity-20 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-  linear-gradient(to right, rgba(255,0,0,0.5) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(255,0,0,0.5) 1px, transparent 1px)
-`,
-            backgroundSize: "50px 50px",
-          }}
-        />
-=======
     <section className="relative bg-white text-gray-900 ">
       {/* Intro hero */}
       <div className="h-screen flex flex-col items-center justify-center text-center px-6">
@@ -127,7 +113,6 @@ export function ApproachSection() {
         >
           Y que lo hagan quienes ya confiaron en nosotros...
         </motion.p>
->>>>>>> parent of 456f85d (rework complete)
       </div>
 
       {/* Horizontal scroll */}
@@ -144,48 +129,7 @@ export function ApproachSection() {
             "/creative-team-collaboration.png",
             "/modern-marketing-agency-workspace-with-creative-te.jpg",
             "/young-marketing-professionals-in-modern-workspace-.jpg",
-<<<<<<< HEAD
-          ].map((img, i) => {
-            // Movimiento opuesto al de las cards
-            const direction = i % 2 === 0 ? 1 : -1;
-
-            // Transform: imágenes se mueven más lento para efecto parallax
-            const parallaxX = useTransform(
-              scrollYProgress,
-              [0, 1],
-              [0, direction * 200] // +200 o -200 px
-            );
-
-            return (
-              <motion.div
-                key={i}
-                className="absolute inset-0 bg-contain bg-repeat bg-center"
-                style={{
-                  backgroundImage: `url(${img})`,
-                  x: parallaxX,
-                }}
-                initial={{ opacity: 1 }}
-                animate={{ opacity: [1, 1, 1, 1] }}
-                transition={{
-                  delay: i * 2,
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 5,
-                  ease: "easeInOut",
-                }}
-              />
-            );
-          })}
-        </div>
-        {/* Contenido sticky */}
-        <div
-          ref={stickyRef}
-          className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
-        >
-          <div className="w-full max-w-6xl px-6">
-=======
           ].map((img, i) => (
->>>>>>> parent of 456f85d (rework complete)
             <motion.div
               key={i}
               className="absolute inset-0 bg-contain  bg-center"
@@ -211,222 +155,6 @@ export function ApproachSection() {
   ref={stickyRef}
   className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10"
 >
-<<<<<<< HEAD
-  <motion.div
-    className="relative h-full rounded-3xl overflow-hidden border border-gray-800"
-    whileHover={{
-      scale: 1.02,
-      transition: { duration: 0.3 },
-    }}
-    animate={{
-      boxShadow: isHovered
-        ? `0 0 40px rgba(255, 0, 40, 0.5)`
-        : "0 0 0px rgba(0,0,0,0)",
-    }}
-  >
-    {/* Background Gradient */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-800 "
-      animate={{
-        opacity: isHovered ? 0.8 : 0.6,
-        scale: isHovered ? 1.1 : 1,
-      }}
-      transition={{ duration: 0.4 }}
-    />
-
-    {/* Noise */}
-    <div
-      className="absolute inset-0  mix-blend-overlay"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E")`,
-        backgroundSize: "200px",
-      }}
-    />
-
-    {/* Scanline */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-b from-transparent via-white to-transparent opacity-1"
-      animate={{
-        y: isHovered ? ["-100%", "200%"] : "-100%",
-        opacity: isHovered ? [0, 0.1, 0] : 0,
-      }}
-      transition={{
-        duration: 1.5,
-        repeat: isHovered ? Infinity : 0,
-        ease: "linear",
-      }}
-    />
-
-    {/* Content */}
-    <div className="relative h-full p-8 flex flex-col justify-between z-10">
-      <div>
-        {/* Icon or letter */}
-        <motion.div
-          className="inline-block px-4 py-2 bg-red-600 rounded-full mb-4"
-          animate={{
-            rotate: isHovered ? [0, -5, 5, 0] : 0,
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-white text-sm font-bold">{t.author[0]}</span>
-        </motion.div>
-
-        <motion.h3
-          className="text-white text-2xl font-black mb-4"
-          animate={{
-            x: isHovered ? [0, -5, 5, 0] : 0,
-            textShadow: isHovered
-              ? "2px 2px 0px rgba(255,0,128)"
-              : "0px 0px 0px rgba(0,0,0)",
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {t.author}
-        </motion.h3>
-
-        <p className="text-gray-200 text-base leading-relaxed">
-          {t.text}
-        </p>
-      </div>
-
-   
-    </div>
-
-    {/* Corner Accent */}
-    <motion.div
-      className="absolute top-0 right-0 w-32 h-32 bg-red-600 opacity-20"
-      style={{
-        clipPath: "polygon(100% 0, 0 0, 100% 100%)",
-        filter: "blur(20px)",
-      }}
-      animate={{
-        scale: isHovered ? 1.5 : 1,
-        opacity: isHovered ? 0.4 : 0.2,
-      }}
-    />
-  </motion.div>
-</motion.article>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA final */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="pb-120 pt-40 text-center relative"
-      >
-        {/* Glitch Title */}
-        <div className="relative ">
-          <motion.h2
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { duration: 0.5 },
-              },
-            }}
-            className={`text-4xl md:text-6xl lg:text-8xl font-black text-white mb-4 tracking-tighter relative ${
-              glitchActive ? "glitch" : ""
-            }`}
-            style={{
-              textShadow: glitchActive
-                ? "0.05em 0 0 #ff0033, -0.05em 0 0 #ffffff"
-                : "none",
-            }}
-          >
-            Queres que tu marca
-          </motion.h2>
-
-          {/* Glitch layers */}
-          {glitchActive && (
-            <>
-              <motion.h2
-                className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter"
-                style={{
-                  color: "#ff0033",
-                  left: "4px",
-                  textShadow: "-2px 0 #ff0080",
-                  clipPath: "polygon(0 0, 100% 0, 100% 45%, 0 45%)",
-                }}
-                animate={{
-                  left: ["4px", "-2px", "3px"],
-                }}
-                transition={{ duration: 0.1, repeat: Infinity }}
-              >
-                Queres que tu marca
-              </motion.h2>
-              <motion.h2
-                className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter"
-                style={{
-                  color: "#ffffff",
-                  left: "-4px",
-                  textShadow: "2px 0 #00ffff",
-                  clipPath: "polygon(0 55%, 100% 55%, 100% 100%, 0 100%)",
-                }}
-                animate={{
-                  left: ["-4px", "2px", "-3px"],
-                }}
-                transition={{ duration: 0.1, repeat: Infinity }}
-              >
-                Queres que tu marca
-              </motion.h2>
-            </>
-          )}
-        </div>
-
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, rotateX: 90 },
-            visible: {
-              opacity: 1,
-              rotateX: 0,
-              transition: { delay: 0.3, duration: 0.8 },
-            },
-          }}
-          className="relative inline-block"
-        >
-          <h3 className="text-4xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-red-500 via-rose-500 to-red-800 bg-clip-text text-transparent tracking-tighter">
-            También hable por vos?
-          </h3>
-
-          {/* Animated underline */}
-          <motion.div
-            className="h-2 bg-gradient-to-r from-red-500 via-rose-500 to-red-800 mt-2"
-            initial={{ width: 0, x: 0 }}
-            whileInView={{
-              width: "100%",
-              x: [0, 10, -10, 0],
-            }}
-            transition={{
-              width: { duration: 1, ease: "easeOut" },
-              x: { duration: 0.5, delay: 1, ease: "easeInOut" },
-            }}
-          />
-        </motion.div>
-
-        <motion.p
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { delay: 0.5, duration: 0.6 },
-            },
-          }}
-          className="text-gray-400 mb-2 text-xl md:text-2xl mt-8 max-w-3xl mx-auto font-light"
-        >
-          Coordiná una videollamada y descubrí cómo podemos ayudarte a
-          destacarte.
-        </motion.p>
-        <motion.a
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-=======
   <div className="w-full max-w-6xl px-6">
     <motion.div
       ref={trackRef}
@@ -443,7 +171,6 @@ export function ApproachSection() {
             duration: 0.1,
             ease: "easeOut",
           }}
->>>>>>> parent of 456f85d (rework complete)
           viewport={{ once: true }}
           className="relative min-w-[220px] md:min-w-[32  0px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px] /* Altura aumentada */
                      bg-gradient-to-br from-white/95 to-white/85 
