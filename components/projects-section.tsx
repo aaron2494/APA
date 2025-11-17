@@ -180,17 +180,7 @@ useEffect(() => {
     const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
     // HOVER EFFECTS
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-    const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
-    const rotateY = useTransform(mouseX, [-300, 300], [-15, 15]);
-
-    const onMove = (e: any) => {
-      const r = e.currentTarget.getBoundingClientRect();
-      mouseX.set(e.clientX - (r.left + r.width / 2));
-      mouseY.set(e.clientY - (r.top + r.height / 2));
-    };
-
+   
     return (
       <motion.div
         key={i}
@@ -198,17 +188,10 @@ useEffect(() => {
         className="sticky top-1/2 -translate-y-1/2 overflow-hidden "
       >
         <motion.div
-          onMouseMove={onMove}
-          onMouseLeave={() => {
-            mouseX.set(0);
-            mouseY.set(0);
-          }}
           style={{
-            rotateX,
-            rotateY,
             transformStyle: "preserve-3d",
           }}
-          initial={{ opacity: 0, scale: 0.8, rotateZ: -10 }}
+          initial={{ opacity: 0, scale: 0.8}}
           whileInView={{
             opacity: 1,
             scale: 1,
