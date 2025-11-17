@@ -1,7 +1,8 @@
-"use client";
+"use client"
 
-import { motion, useScroll, useTransform, Variants } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { useState } from "react"
+
 const teamData = [
   {
     area: "Comunicación & PR",
@@ -11,7 +12,7 @@ const teamData = [
     ],
   },
   {
-    area: "Comunasdas",
+    area: "Estrategia Digital",
     members: [
       { name: "Laura Martínez", role: "Directora de Comunicación" },
       { name: "Diego Torres", role: "PR & Media Strategist" },
@@ -22,8 +23,8 @@ const teamData = [
     members: [
       { name: "María Gómez", role: "Directora Creativa" },
       { name: "Sofía Herrera", role: "Diseñadora Gráfica" },
-      { name: "María Gómez", role: "Directora Creativa" },
-      { name: "Sofía Herrera", role: "Diseñadora Gráfica" },
+      { name: "Carlos Vera", role: "Content Strategist" },
+      { name: "Ana López", role: "Copywriter Senior" },
     ],
   },
   {
@@ -33,198 +34,328 @@ const teamData = [
       { name: "Nicolás Soto", role: "Performance Analyst" },
     ],
   },
-];
+]
 
-export  function TeamSection() {
+export function TeamSection() {
   return (
-    
-    <div style={container}>
-            <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  className="text-3xl mt-20 md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
->
-  {/* Primera línea */}
-  <motion.div
-    variants={{
-      hidden: { x: -30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.2
-    }}
-    className="overflow-hidden thick-text-sub-black"
-  >
-    <span>Nuestro Equipo,</span>
-  </motion.div>
-  
-  {/* Segunda línea */}
-  <motion.div
-    variants={{
-      hidden: { x: 30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.4
-    }}
-    className="overflow-hidden"
-  >
-  <span className="text-primary thick-text-sub-red">Tú equipo</span>
-  </motion.div>
-</motion.div>
-      {teamData.map((section, i) => (
-        <Card
-          i={i}
-          key={section.area}
-          area={section.area}
-          members={section.members}
-        />
-      ))}
-    </div>
-  );
-}
+    <section className="relative  py-24 px-4 md:px-8 overflow-hidden">
+    {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, #ff0080 1px, transparent 1px),
+            linear-gradient(to bottom, #ff0080 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
 
-interface CardProps {
-  area: string;
-  members: { name: string; role: string }[];
-  i: number;
-}
-
-function Card({ area, members, i }: CardProps) {
-  const background = `linear-gradient(306deg, ${hue(350)}, ${hue(0)})`; // Rojo APA degradado
-
-  return (
-    
-    <motion.div
-      className={`card-container-${i}`}
-      style={cardContainer}
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ amount: 0.8 }}
-    >
-      <div style={{ ...splash, background }} />
+      {/* Floating Orbs */}
       <motion.div
-        style={card}
-        variants={cardVariants}
-        className="card "
-      >
-        <h3 style={areaTitle}>{area}</h3>
-        <div style={membersGrid}>
-          {members.map((m, idx) => (
-            <div key={idx} style={memberBox}>
-              <p style={memberName}>{m.name}</p>
-              <p style={memberRole}>{m.role}</p>
-            </div>
+        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-30"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20"
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 80, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header con animación */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-20 text-center"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                  duration: 0.8,
+                  ease: [0.25, 0.4, 0.25, 1]
+                }
+              }
+            }}
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 mb-4 tracking-tight">
+              Nuestro Equipo,
+            </h2>
+            <h3 className="text-5xl md:text-7xl lg:text-8xl font-black text-red-600 tracking-tight">
+              Tu Equipo
+            </h3>
+          </motion.div>
+          
+          <motion.p
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1,
+                transition: { delay: 0.3, duration: 0.6 }
+              }
+            }}
+            className="text-gray-600 text-lg md:text-xl mt-8 max-w-2xl mx-auto font-light"
+          >
+            Profesionales apasionados que transforman ideas en experiencias memorables
+          </motion.p>
+        </motion.div>
+
+        {/* Grid de áreas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {teamData.map((section, i) => (
+            <TeamCard
+              key={section.area}
+              area={section.area}
+              members={section.members}
+              index={i}
+            />
           ))}
         </div>
-      </motion.div>
-    </motion.div>
-  );
+      </div>
+    </section>
+  )
 }
 
-const cardVariants: Variants = {
-  offscreen: {
-    y: 300,
-    rotate: -10,
-    opacity: 1,
-  },
-  onscreen: {
-    y: 50,
-    rotate: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      bounce: 0.4,
-      duration: 0.8,
-    },
-  },
-};
+interface TeamCardProps {
+  area: string
+  members: { name: string; role: string }[]
+  index: number
+}
 
-const hue = (h: number) => `hsl(${h}, 90%, 45%)`;
+function TeamCard({ area, members, index }: TeamCardProps) {
+  const [isHovered, setIsHovered] = useState(false)
 
-/* ==============================
-   STYLES (idénticos al ejemplo)
-   ============================== */
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{
+        hidden: { opacity: 0, y: 60 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.7,
+            delay: index * 0.15,
+            ease: [0.25, 0.4, 0.25, 1]
+          }
+        }
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative group"
+    >
+      {/* Card Container */}
+      <motion.div
+        className="relative bg-white rounded-2xl p-8 md:p-10 border border-gray-200 overflow-hidden"
+        whileHover={{ 
+          y: -8,
+          transition: { duration: 0.3, ease: "easeOut" }
+        }}
+      >
+        {/* Hover Gradient Effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-red-50 to-transparent opacity-0"
+          animate={{
+            opacity: isHovered ? 1 : 0
+          }}
+          transition={{ duration: 0.4 }}
+        />
 
-const container: React.CSSProperties = {
-  margin: "100px auto",
-  maxWidth: 500,
-  paddingBottom: 100,
-  width: "100%",
-};
+        {/* Animated Border */}
+        <motion.div
+          className="absolute inset-0 border-2 border-red-600 rounded-2xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1 : 0.95
+          }}
+          transition={{ duration: 0.3 }}
+        />
 
-const cardContainer: React.CSSProperties = {
-  overflow: "hidden",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-  paddingTop: 20,
-  marginBottom: -120,
-};
+        {/* Content */}
+        <div className="relative z-10">
+          {/* Área Title */}
+          <motion.div
+            className="mb-8 pb-6 border-b border-gray-200"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              {area}
+            </h3>
+            <motion.div
+              className="h-1 bg-red-600 rounded-full"
+              initial={{ width: 0 }}
+              animate={{
+                width: isHovered ? "100%" : "40px"
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+          </motion.div>
 
-const splash: React.CSSProperties = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  clipPath: `path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z")`,
- opacity: 0.6,
-};
+          {/* Members Grid */}
+          <div className="space-y-4">
+            {members.map((member, idx) => (
+              <MemberCard
+                key={idx}
+                member={member}
+                index={idx}
+                isParentHovered={isHovered}
+              />
+            ))}
+          </div>
+        </div>
 
-const card: React.CSSProperties = {
-  width: 340,
-  minHeight: 460,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: 24,
-  background: "rgba(255,255,255)",
-  boxShadow:
-    "0 0 1px rgba(0,0,0,0.08), 0 0 8px rgba(0,0,0,0.08), 0 0 16px rgba(0,0,0,0.1)",
-  transformOrigin: "10% 60%",
-  padding: "30px 20px",
-  backdropFilter: "blur(8px)",
-};
+        {/* Decorative Element */}
+        <motion.div
+          className="absolute -bottom-10 -right-10 w-32 h-32 bg-red-100 rounded-full blur-3xl opacity-0"
+          animate={{
+            opacity: isHovered ? 0.5 : 0
+          }}
+          transition={{ duration: 0.5 }}
+        />
+      </motion.div>
+    </motion.div>
+  )
+}
 
-const areaTitle: React.CSSProperties = {
-  fontSize: "1.5rem",
-  color: "#b40f1d",
-  textAlign: "center",
-  marginBottom: 20,
-  fontWeight: 700,
-  letterSpacing: "0.5px",
-};
+interface MemberCardProps {
+  member: { name: string; role: string }
+  index: number
+  isParentHovered: boolean
+}
 
-const membersGrid: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "1fr",
-  gap: 12,
-  width: "100%",
-};
+function MemberCard({ member, index, isParentHovered }: MemberCardProps) {
+  const [isHovered, setIsHovered] = useState(false)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
 
-const memberBox: React.CSSProperties = {
-  background: "rgba(180,15,29,0.05)",
-  borderRadius: 12,
-  padding: "12px 10px",
-  textAlign: "center",
-};
+  const rotateX = useSpring(useTransform(mouseY, [-100, 100], [5, -5]), {
+    stiffness: 300,
+    damping: 30
+  })
+  const rotateY = useSpring(useTransform(mouseX, [-100, 100], [-5, 5]), {
+    stiffness: 300,
+    damping: 30
+  })
 
-const memberName: React.CSSProperties = {
-  fontWeight: 600,
-  fontSize: "1rem",
-  color: "#111",
-  marginBottom: 4,
-};
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    mouseX.set(e.clientX - centerX)
+    mouseY.set(e.clientY - centerY)
+  }
 
-const memberRole: React.CSSProperties = {
-  fontSize: "0.9rem",
-  color: "#555",
-};
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ 
+        opacity: 1, 
+        x: 0,
+        transition: {
+          delay: index * 0.1,
+          duration: 0.5,
+          ease: "easeOut"
+        }
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX: isHovered ? rotateX : 0,
+        rotateY: isHovered ? rotateY : 0,
+        transformStyle: "preserve-3d"
+      }}
+      className="relative group/member"
+    >
+      <motion.div
+        className="relative bg-gray-50 rounded-xl p-5 cursor-pointer overflow-hidden"
+        whileHover={{ 
+          backgroundColor: "#ffffff",
+          transition: { duration: 0.2 }
+        }}
+      >
+        {/* Hover Highlight */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 opacity-0"
+          animate={{
+            opacity: isHovered ? 0.05 : 0
+          }}
+          transition={{ duration: 0.3 }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10">
+          <motion.p
+            className="text-gray-900 font-semibold text-lg mb-1"
+            animate={{
+              x: isHovered ? 4 : 0
+            }}
+            transition={{ duration: 0.2 }}
+          >
+            {member.name}
+          </motion.p>
+          <motion.p
+            className="text-gray-600 text-sm font-light"
+            animate={{
+              x: isHovered ? 4 : 0
+            }}
+            transition={{ duration: 0.2, delay: 0.05 }}
+          >
+            {member.role}
+          </motion.p>
+        </div>
+
+        {/* Decorative Corner */}
+        <motion.div
+          className="absolute top-0 right-0 w-16 h-16 bg-red-600 opacity-0"
+          style={{
+            clipPath: "polygon(100% 0, 0 0, 100% 100%)"
+          }}
+          animate={{
+            opacity: isHovered ? 0.1 : 0
+          }}
+          transition={{ duration: 0.3 }}
+        />
+
+        {/* Bottom Line Indicator */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-red-600"
+          initial={{ width: 0 }}
+          animate={{
+            width: isHovered ? "100%" : "0%"
+          }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.div>
+    </motion.div>
+  )
+}

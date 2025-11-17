@@ -35,8 +35,46 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[200vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
+      className="relative min-h-[200vh]  text-gray-900 flex flex-col items-center justify-start"
     >
+          {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, #ff0080 1px, transparent 1px),
+            linear-gradient(to bottom, #ff0080 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      {/* Floating Orbs */}
+      <motion.div
+        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-30"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20"
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 80, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
  <motion.div
   initial="hidden"
   whileInView="visible"

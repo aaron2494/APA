@@ -35,7 +35,45 @@ export function AboutSection() {
   const gradientY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="proyectos" className="relative  bg-white">
+    <section id="proyectos" className="relative ">
+          {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute bg-black inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, #ff0080 1px, transparent 1px),
+            linear-gradient(to bottom, #ff0080 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      {/* Floating Orbs */}
+      <motion.div
+        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-30"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20"
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 80, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
       {/* Title section */}
       <motion.div
         initial="hidden"
@@ -96,15 +134,7 @@ export function AboutSection() {
       <div ref={containerRef} className="relative" style={{ height: "200vh" }}>
         <motion.div
           className="sticky top-0 h-screen overflow-hidden flex items-center justify-center"
-          style={{
-            background: useTransform(
-              gradientY,
-              (y) => `linear-gradient(to bottom, 
-                rgba(186, 0, 07, 0.01) 0%, 
-                rgba(186, 0, 07, 0.01) ${y}, 
-                rgba(186, 0, 07, 0.09) 100%)`
-            ),
-          }}
+          
         >
           <div className="relative w-full max-w-2xl mx-auto px-4">
             {/* Grid container */}
