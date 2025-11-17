@@ -42,7 +42,7 @@ useEffect(() => {
   return (
     <section
       ref={ref}
-      className="relative  min-h-[220vh] text-white flex flex-col items-center justify-start "
+      className="relative  min-h-[230vh] text-white flex flex-col items-center justify-start "
     >
       {/* 🔥 Fondo animado APA */}
       <div className="absolute inset-0 bg-black -z-20" />
