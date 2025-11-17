@@ -269,7 +269,7 @@ const rotateY = useTransform(mouseX, [-300,300], [-15, 15])
             const parallaxX = useTransform(
               scrollYProgress,
               [0, 1],
-              [0, direction * 500] // +200 o -200 px
+              [0, direction * 200] // +200 o -200 px
             );
 
             return (
@@ -444,12 +444,11 @@ const rotateY = useTransform(mouseX, [-300,300], [-15, 15])
       </div>
 
       {/* CTA final */}
-      {/* Title section */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="pb-20 pt-20 text-center relative"
+        className="pb-100 pt-20 text-center relative"
       >
         {/* Glitch Title */}
         <div className="relative ">
