@@ -5,13 +5,44 @@ import { useState, useEffect } from "react"
 
 const titleText = "HACELO DISTINTO"
 
+
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [glitchActive, setGlitchActive] = useState(false)
   
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, 300])
-  
+  const renderAnimatedText = (text: string) =>
+  text.split("").map((char, i) => (
+    <motion.span
+      key={i}
+      variants={{
+        hidden: { opacity: 0, scale: 0.3, y: 150, filter: "blur(20px)" },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: {
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+            mass: 3,
+          },
+        },
+      }}
+      className="inline-block"
+      style={{
+        willChange: "transform, opacity",
+        textShadow: glitchActive
+          ? "2px 2px 0 rgba(220, 38, 38, 0.8), -2px -2px 0 rgba(255, 255, 255, 0.4)"
+          : "3px 3px 0 rgba(0,0,0,0.3)",
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ));
+
   useEffect(() => {
     setIsVisible(true)
     
@@ -89,7 +120,7 @@ export function HeroSection() {
       <div className="relative z-20 text-center px-4">
         
         {/* TÍTULO PRINCIPAL - ESTILO MONKS */}
-        <div className="relative mt-10 mb-8">
+        <div className="relative mt-10">
           <motion.div
             className="inline-block"
             initial="hidden"
@@ -104,43 +135,49 @@ export function HeroSection() {
               },
             }}
           >
+
+            {/* MOBILE: siempre 2 líneas */}
+<div className="block md:hidden leading-none">
+  <motion.span className="block text-[15vw] font-black text-white">
+    {renderAnimatedText("HACELO")}
+  </motion.span>
+
+  <motion.span className="block text-[15vw] font-black text-white">
+    {renderAnimatedText("DISTINTO.")}
+  </motion.span>
+</div>
             {/* Texto Principal - Animación Monks */}
-            <motion.span className="inline-block text-[19vw] md:text-[12vw] lg:text-[12vw] font-black text-white leading-none tracking-tight relative">
-              {titleText.split("").map((char, i) => (
-                <motion.span
-                  key={i}
-                  variants={{
-                    hidden: {
-                      opacity: 0,
-                      scale: 0.3,
-                      y: 80,
-                      filter: "blur(20px)",
-                    },
-                    visible: {
-                      opacity: 1,
-                      scale: 1,
-                      y: 0,
-                      filter: "blur(0px)",
-                      transition: {
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                        mass: 3,
-                      },
-                    },
-                  }}
-                  className="inline-block"
-                  style={{
-                    willChange: 'transform, opacity',
-                    textShadow: glitchActive 
-                      ? '2px 2px 0 rgba(220, 38, 38, 0.8), -2px -2px 0 rgba(255, 255, 255, 0.4)'
-                      : '3px 3px 0 rgba(0,0,0,0.3)',
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
-            </motion.span>
+            <motion.span className="hidden md:inline-block text-[9vw] font-black text-white leading-none tracking-tight relative">
+  {titleText.split("").map((char, i) => (
+    <motion.span
+      key={i}
+      variants={{
+        hidden: { opacity: 0, scale: 0.3, y: 80, filter: "blur(20px)" },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: {
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+            mass: 3,
+          },
+        },
+      }}
+      className="inline-block"
+      style={{
+        willChange: "transform, opacity",
+        textShadow: glitchActive
+          ? "2px 2px 0 rgba(220, 38, 38, 0.8), -2px -2px 0 rgba(255, 255, 255, 0.4)"
+          : "3px 3px 0 rgba(0,0,0,0.3)",
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+</motion.span>
 
             {/* PUNTO FINAL - Rebote Monks con color rojo */}
             <motion.span
