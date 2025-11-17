@@ -1,8 +1,8 @@
 
 "use client";
 
-import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const services = [
   {
@@ -31,17 +31,11 @@ export function ProjectsSection() {
     target: ref,
     offset: ["start start", "end end"],
   });
-const [glitchActive, setGlitchActive] = useState(true);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setGlitchActive(prev => !prev);
-  }, 3000);
-  return () => clearInterval(interval);
-}, []);
   return (
     <section
       ref={ref}
+<<<<<<< HEAD
       className="relative  min-h-[230vh] text-white flex flex-col items-center justify-start "
     >
       {/* 🔥 Fondo animado APA */}
@@ -70,105 +64,55 @@ useEffect(() => {
         animate={{ y: [0, -40, 0], x: [0, -20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.3 }}
-    className="mb-20 mt-10 text-center relative"
-  >
-    {/* Glitch Title */}
-    <div className="relative">
-      <motion.h2
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { 
-            opacity: 1,
-            transition: { duration: 0.1 }
-          }
-        }}
-        className={`text-6xl md:text-8xl lg:text-9xl font-black text-white mb-4 tracking-tighter relative ${glitchActive ? 'glitch' : ''}`}
-        style={{
-          textShadow: glitchActive
-            ? '0.05em 0 0 #ff0033, -0.05em 0 0 #ffffff'
-            : 'none'
-        }}
-      >
-        QUE HACEMOS
-      </motion.h2>
-
-      {/* Glitch layers */}
-      {glitchActive && (
-        <>
-          {/* TOP LAYER */}
-          <motion.h2
-            className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter"
-            style={{
-              color: '#ff0033',
-              left: '1px',
-              textShadow: '-2px 0 #ff0080',
-              clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 10%)'
-            }}
-            animate={{
-              left: ['1px', '-1px', '1px']
-            }}
-            transition={{ duration: 0.1, repeat: Infinity }}
-          >
-            QUE HACEMOS
-          </motion.h2>
-
-          {/* BOTTOM LAYER */}
-          <motion.h2
-            className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter"
-            style={{
-              color: '#ffffff',
-              left: '-1px',
-              textShadow: '2px 0 #00ffff',
-              clipPath: 'polygon(0 55%, 100% 55%, 100% 100%, 0 100%)'
-            }}
-            animate={{
-              left: ['-1px', '1px', '-1px']
-            }}
-            transition={{ duration: 0.1, repeat: Infinity }}
-          >
-            QUE HACEMOS
-          </motion.h2>
-        </>
-      )}
-    </div>
-
-    {/* SECOND TITLE (GRADIENT) */}
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, rotateX: 90 },
-        visible: { 
-          opacity: 1,
-          rotateX: 0,
-          transition: { delay: 0.3, duration: 0.8 }
-        }
-      }}
-      className="relative inline-block"
+=======
+      className="relative min-h-[200vh] bg-[#fafafa] text-gray-900 flex flex-col items-center justify-start"
     >
-      <h3 className="text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-red-500 via-rose-500 to-red-800 bg-clip-text text-transparent tracking-tighter">
-        Y COMO LO HACEMOS
-      </h3>
-
-      {/* underline animation */}
-      <motion.div
-        className="h-2 bg-gradient-to-r from-red-500 via-rose-500 to-red-800 mt-2"
-        initial={{ width: 0, x: 0 }}
-        whileInView={{
-          width: "100%",
-          x: [0, 10, -10, 0]
-        }}
-        transition={{
-          width: { duration: 1, ease: "easeOut" },
-          x: { duration: 0.5, delay: 1, ease: "easeInOut" }
-        }}
-      />
-    </motion.div>
-
+ <motion.div
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.6 }}
+  className="text-3xl mt-20 md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+>
+  {/* Primera línea */}
+>>>>>>> parent of 456f85d (rework complete)
+  <motion.div
+    variants={{
+      hidden: { x: -30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.2
+    }}
+    className="overflow-hidden thick-text-sub-black"
+  >
+    <span className="text-primary thick-text-sub-red">Que</span> hacemos
   </motion.div>
+  
+  {/* Segunda línea */}
+  <motion.div
+    variants={{
+      hidden: { x: 30, opacity: 0 },
+      visible: { x: 0, opacity: 1 }
+    }}
+    transition={{ 
+      duration: 0.6, 
+      ease: "easeOut",
+      delay: 0.4
+    }}
+    className="overflow- thick-text-sub-black"
+  >
+    y <span className="text-primary thick-text-sub-red">como</span> lo hacemos
+  </motion.div>
+</motion.div>
+      {/* Cards */}
+      <div className="relative w-full max-w-4xl mt-[25vh]">
+        {services.map((service, i) => {
+          const start = i / services.length;
+          const end = (i + 1.2) / services.length;
 
+<<<<<<< HEAD
   {/* Cards */}
 <div className="relative w-full max-w-4xl mt-[25vh]">
   {services.map((service, i) => {
@@ -262,16 +206,49 @@ useEffect(() => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-3 border-2 border-white rounded-full text-white flex items-center gap-2 hover:bg-white hover:text-black transition-all"
-            >
-              Descubrí más ↗
-            </motion.button>
-          </div>
-        </motion.div>
-      </motion.div>
-    );
-  })}
-</div>
+=======
+          const y = useTransform(scrollYProgress, [start, end], [100, -100]);
+          const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
+          const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
+          return (
+            <motion.div
+              key={i}
+              style={{ y, scale, opacity }}
+              className="sticky top-1/2 -translate-y-1/2 bg-white rounded-[30px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-12 md:p-16 flex items-center justify-between gap-12"
+>>>>>>> parent of 456f85d (rework complete)
+            >
+              <div>
+                <p className="uppercase text-sm text-primary font-medium mb-3">
+                  Nuestros servicios
+                </p>
+                <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  {service.description}
+                </p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="mt-10 px-6 py-3 border-2 border-black rounded-full text-black text-base font-medium flex items-center gap-2 hover:bg-black hover:text-white transition-all"
+                >
+                  Descubrí más{" "}
+                  <span className="text-lg leading-none">↗</span>
+                </motion.button>
+              </div>
+
+              {/* Placeholder “imagen / mockup” a la derecha */}
+              <div className="hidden md:flex flex-1 justify-center">
+                <div className="w-[280px] h-[180px] bg-gray-100 border border-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
+                  mockup
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
 
       {/* CTA final */}
       <motion.div

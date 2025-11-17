@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react"
 
+<<<<<<< HEAD
 const titleText = "HACELO DISTINTO"
 
 
@@ -43,48 +44,44 @@ export function HeroSection() {
     </motion.span>
   ));
 
+=======
+const titleText = "Hacelo Distinto"
+
+export function HeroSection() {
+  const [isVisible, setIsVisible] = useState(false)
+  const [showBounce, setShowBounce] = useState(false)
+   const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 600], [0, 300]) // efecto parallax sutil
+>>>>>>> parent of 456f85d (rework complete)
   useEffect(() => {
     setIsVisible(true)
     
-    // Glitch effect random - más sutil
-    const glitchInterval = setInterval(() => {
-      setGlitchActive(true)
-      setTimeout(() => setGlitchActive(false), 150)
-    }, 8000)
+   // Activar el crecimiento después de que termine la animación letra por letra
+const bounceTimer = setTimeout(() => {
+  setShowBounce(true)
+}, titleText.length * 70 + 500)
 
-    return () => {
-      clearInterval(glitchInterval)
-    }
-  }, [])
+return () => clearTimeout(bounceTimer)
+}, [])
 
-  return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* VIDEO DE FONDO */}
-      <motion.video
+return (
+  <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
+  {/* VIDEO DE FONDO */}
+  <motion.video
         style={{ y }}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover will-change-transform opacity-30"
+        className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
       >
         <source src="/fondo-hero.mp4" type="video/mp4" />
       </motion.video>
 
-      {/* GRID BACKGROUND - Rojo sutil */}
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(220, 38, 38, 0.4) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(220, 38, 38, 0.4) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
-          }} 
-        />
-      </div>
+  {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
+  <div className="absolute inset-0 bg-black/30"></div>
 
+<<<<<<< HEAD
       {/* FLOATING ORBS - Solo rojo */}
       <motion.div
         className="absolute top-1/4 left-20 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-20"
@@ -121,6 +118,44 @@ export function HeroSection() {
         
         {/* TÍTULO PRINCIPAL - ESTILO MONKS */}
         <div className="relative mt-10">
+=======
+  {/* CONTENIDO ENCIMA DEL VIDEO */}
+  <div className="relative z-10 text-center"></div> 
+    <div className="text-center z-20">
+      <motion.span
+        className="absolute text-[80px] md:text-[110px] lg:text-[10vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+        initial={{ y: 0, opacity: 0 }}
+  animate={{
+    opacity: [1, 1, 1, 1, 1],
+    y: [0, -120, 0,  -800], // dos rebotes y luego se va hacia arriba
+  }}
+  transition={{
+    duration: 1,
+    ease: [0.1, 0.2, 0.3, 2],
+    times: [0, 0.25, 0.45, 0.6, 1],
+  }}
+      >
+        .
+      </motion.span>
+ <motion.div
+          className="inline-block origin-center"
+          initial={{ scale: 1 }}
+          animate={
+            isVisible
+              ? {
+                  scale: [0.8,  1.5, 1], // Aumentados valores para más impacto visual
+                }
+              : {}
+          }
+          transition={{
+            duration: 1.2, // Reducido de 1.6 para que sea más rápido
+            delay: titleText.length * 0.06 + 0.2, // Reducido delay para acelerar la secuencia
+            ease: [0.25, 1.35, 0.6, 1], // Ajustado easing para más elasticidad
+            times: [0, 0.25, 0.5, 0.75, 1],
+          }}
+        >
+          {/* CONTENEDOR PRINCIPAL - Similar a Monks */}
+>>>>>>> parent of 456f85d (rework complete)
           <motion.div
             className="inline-block"
             initial="hidden"
@@ -129,12 +164,13 @@ export function HeroSection() {
               hidden: {},
               visible: {
                 transition: {
-                  staggerChildren: 0.05,
-                  delayChildren: 0.3,
+                  staggerChildren: 0.02,
+                  delayChildren: 0.7,
                 },
               },
             }}
           >
+<<<<<<< HEAD
 
             {/* MOBILE: siempre 2 líneas */}
 <div className="block md:hidden leading-none">
@@ -204,121 +240,111 @@ export function HeroSection() {
             >
               .
             </motion.span>
+=======
+            {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
+            <motion.span className="inline-block thick-text text-[10vw] md:text-[9vw] lg:text-[7vw] font-bold text-primary leading-none">
+              {titleText.split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      scale: 0.20, // Reducido de 0.1 para empezar más pequeño
+                      y: 50, // Aumentado de 40 para efecto más dramático
+                      filter: "blur(12px)", // Aumentado blur
+                    },
+                    visible: {
+                      opacity: 1,
+                      scale: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                      transition: {
+                        type: "spring",
+                        stiffness: 300, // Aumentado de 350 para más elasticidad
+                        damping: 12, // Reducido de 30 para más rebote
+                        duration: 0.6, // Reducido de 0.8
+                      },
+                    },
+                  }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.span>
+             {/* PUNTO FINAL */}
+      <motion.span
+        variants={{
+          hidden: { scale: 0, opacity: 0 },
+          visible: {
+            scale: 1,
+            opacity: 1,
+             y: [ -400, 0 ],
+            transition: {
+              type: "spring",
+              stiffness: 200,
+              damping: 15,  
+              delay: titleText.length * 0.1 + 0.7,
+              duration: 1.4,
+               ease: [0.34, 1.56, 0.64, 1],
+            },
+          },
+        }}
+        className="text-[80px] md:text-[100px] lg:text-[8vw] font-bold text-primary inline-block"
+      >
+        .
+      </motion.span>
+>>>>>>> parent of 456f85d (rework complete)
           </motion.div>
-
-          {/* Glitch Layers - Rojo y Blanco */}
-          {glitchActive && (
-            <>
-              <motion.div
-                className="absolute inset-0 text-[15vw] md:text-[12vw] lg:text-[9vw] font-black tracking-tight pointer-events-none"
-                style={{
-                  color: '#dc2626',
-                  left: '3px',
-                  top: '2px',
-                  clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
-                  mixBlendMode: 'screen'
-                }}
-                animate={{
-                  left: ['3px', '-2px', '2px'],
-                  opacity: [0.7, 1, 0.7]
-                }}
-                transition={{ duration: 0.7, repeat: 1 }}
-              >
-                {titleText}.
-              </motion.div>
-              <motion.div
-                className="absolute inset-0 text-[15vw] md:text-[12vw] lg:text-[9vw] font-black tracking-tight pointer-events-none"
-                style={{
-                  color: '#ffffff',
-                  left: '-3px',
-                  top: '-2px',
-                  clipPath: 'polygon(0 60%, 100% 60%, 100% 100%, 0 100%)',
-                  mixBlendMode: 'screen'
-                }}
-                animate={{
-                  left: ['-3px', '2px', '-2px'],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{ duration: 0.1, repeat: 1 }}
-              >
-                {titleText}.
-              </motion.div>
-            </>
-          )}
-        </div>
-
-        {/* LÍNEA DECORATIVA ROJA */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={isVisible ? { scaleX: 1 } : {}}
-          transition={{
-            delay: titleText.length * 0.05 + 1,
-            duration: 1,
-            ease: "easeOut"
-          }}
-          className="h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mb-8 mx-auto"
-          style={{ width: '80%', maxWidth: '600px' }}
-        />
-
-        {/* SUBTÍTULO */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            delay: titleText.length * 0.05 + 1.3,
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-          className="relative"
-        >
-          <p className="text-lg md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto">
-            Paliza hace crecer tu marca con estrategias{" "}
-            <span className="font-bold text-primary">
-              creativas, inspiradoras y desafiantes
-            </span>
-            .
-          </p>
         </motion.div>
 
-        {/* BADGES FLOTANTES - Rojo y Blanco */}
-       <motion.a
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          href="https://3260.agency/agenda-ok#calendly"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block mt-10 bg-primary text-white px-8 py-3 rounded-full shadow-md hover:bg-primary/90 transition"
-        >
-          DA EL PRIMER PASO
-        </motion.a>
-      </div>
 
-      {/* SCAN LINES - Más sutil */}
+
+  {/* SUBTÍTULO - aparece después del texto */}
+  <motion.p
+    initial={{ opacity: 0, y: 30 }}
+    animate={isVisible ? { opacity: 1, y: 0 } : {}}
+    transition={{
+      delay: titleText.length * 0.07 + 2.2, // ⬅️ ajustado para aparecer luego del punto rojo + texto
+      duration: 0.6,
+      ease: "easeOut",
+    }}
+    className="text-lg md:text-xl text-foreground/60 mt-8"
+  >
+    Paliza hace crecer tu marca con estrategias creativas, inspiradoras y desafiantes.
+  </motion.p>
+</div>
+
+      {/* INDICADOR DE SCROLL */}
       <motion.div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0px, transparent 2px)',
-        }}
-        animate={{
-          y: ['0%', '100%']
-        }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 1 } : {}}
         transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear"
+          delay: titleText.length * 0.07 + 2.5,
+          duration: 0.5,
         }}
-      />
-
-      {/* NOISE TEXTURE OVERLAY */}
-      <div 
-        className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E")`,
-          backgroundSize: '200px'
-        }}
-      />
+      >
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2"
+        >
+          <motion.div
+            animate={{ scaleY: [1, 0.3, 1] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="w-1 h-3 bg-foreground/30 rounded-full"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
