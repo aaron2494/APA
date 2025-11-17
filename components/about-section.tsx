@@ -46,7 +46,7 @@ export function AboutSection() {
 
   return (
     <section id="proyectos" className="relative  bg-black">
-         <div className="absolute inset-0 opacity-20">
+         <div className="absolute inset-0 opacity-20 overflow-hidden pointer-events-none">
         <div className="absolute inset-0" style={{
      backgroundImage: `
   linear-gradient(to right, rgba(255,0,0,0.5) 1px, transparent 1px),

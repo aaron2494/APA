@@ -93,8 +93,8 @@ const rotateY = useTransform(mouseX, [-300,300], [-15, 15])
   );
 
   return (
-    <section className="relative bg-black ">
-      <div className="absolute inset-0 opacity-20">
+    <section className="relative bg-black  ">
+      <div className="absolute inset-0 opacity-20 overflow-hidden pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -448,7 +448,7 @@ const rotateY = useTransform(mouseX, [-300,300], [-15, 15])
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="pb-100 pt-20 text-center relative"
+        className="pb-120 pt-40 text-center relative"
       >
         {/* Glitch Title */}
         <div className="relative ">

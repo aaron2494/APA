@@ -46,7 +46,7 @@ useEffect(() => {
     >
       {/* 🔥 Fondo animado APA */}
       <div className="absolute inset-0 bg-black -z-20" />
-
+ 
       {/* 🔥 Grilla roja */}
       <div
         className="absolute inset-0 opacity-[0.18] -z-10"
@@ -195,7 +195,7 @@ useEffect(() => {
       <motion.div
         key={i}
         style={{ y, scale, opacity }}
-        className="sticky top-1/2 -translate-y-1/2"
+        className="sticky top-1/2 -translate-y-1/2 overflow-hidden "
       >
         <motion.div
           onMouseMove={onMove}
