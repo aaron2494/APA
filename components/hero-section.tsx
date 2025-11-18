@@ -27,7 +27,7 @@ export function HeroSection() {
       {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
 
         <motion.div
-          className="absolute top-0 left-0 w-46 h-46 bg-primary rounded-full blur-xl opacity-50 z-10"
+          className="absolute top-0 left-0 w-46 h-46 bg-primary rounded-full blur-xl opacity-30 z-10"
           animate={{
            
             scale: [1, 1.2, 1],
