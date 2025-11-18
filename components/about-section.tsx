@@ -84,7 +84,7 @@ const backgroundColor = useTransform(
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="text-4xl md:text-8xl pt-20 font-bold text-white text-center overflow-hidden px-4"
+      className="text-5xl md:text-8xl pt-20 font-bold text-white text-center overflow-hidden px-4"
     >
       {/* Impacto */}
       <motion.span

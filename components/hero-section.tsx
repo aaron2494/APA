@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const titleText = "Hacelo Distinto";
+const titleText = "HACELO DISTINTO";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
