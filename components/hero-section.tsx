@@ -43,7 +43,7 @@ return (
         {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
 
   <motion.div
-    className="absolute bottom-45 w-56 h-46 bg-primary rounded-full blur-2xl opacity-40 z-10"
+    className="absolute bottom-45 w-46 h-66 bg-primary rounded-full blur-xl opacity-50 z-10"
     animate={{
       x: [0, -50, 0],
       y: [0, 10, 0],
