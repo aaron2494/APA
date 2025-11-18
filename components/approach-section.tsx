@@ -136,12 +136,12 @@ export function ApproachSection() {
               className="absolute inset-0 bg-contain  bg-center"
               style={{
                 backgroundImage: `url(${img})`,
-                opacity: 0.20,
+                opacity: 0.9,
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1,1,0] }}
               transition={{
-                delay: i * 4,
+                delay: i * 1,
                 duration: 3,
                 repeat: Infinity,
                 repeatDelay: 2,
