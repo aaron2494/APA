@@ -102,6 +102,19 @@ export function ApproachSection() {
     >
       {/* Intro hero */}
       <div className="h-screen bg-black  flex flex-col items-center justify-center text-center px-6">
+       <motion.div
+    className="absolute top-0 w-36 h-46 bg-primary rounded-full blur-3xl opacity-20 "
+    animate={{
+      x: [0, -20, 0],
+      y: [0, 20, 0],
+      scale: [1, 1.3, 1],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
         {/* REEMPLAZADO: Ahora usa el componente SplitAnimatedText */}
         <SplitAnimatedText />
         
