@@ -104,9 +104,17 @@ export function HeroSection() {
                 },
               },
             }}
+            style={{
+    // Glow exterior suave
+    textShadow: `
+      0px 0px 2px rgba(255,255,255,0.35),
+      0px 0px 1px rgba(255,255,255,0.15)
+    `,
+  }}
+            
           >
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
-            <motion.span className="inline-block  text-[12vw] md:text-[9vw] lg:text-[12vw] font-bold text-white leading-none">
+            <motion.span className="inline-block  text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}
@@ -133,6 +141,20 @@ export function HeroSection() {
                     },
                   }}
                   className="inline-block"
+   
+      animate={{
+        // sombras vivas mientras cada letra aparece
+        textShadow: [
+          "4px 4px 0px rgba(0,0,0,0.8)",
+          "6px 6px 0px rgba(0,0,0,0.9), 10px 10px 0px rgba(255,20,60,0.45)",
+          "4px 4px 0px rgba(0,0,0,0.8)",
+        ],
+      }}
+      transition={{
+        duration: 0.45,
+        ease: "easeInOut",
+      }}
+    
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
