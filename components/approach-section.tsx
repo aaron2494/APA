@@ -20,7 +20,7 @@ function SplitAnimatedText() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-8xl md:text-8xl font-bold  text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div
@@ -33,7 +33,7 @@ function SplitAnimatedText() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden thick-text-sub-black "
+    className="overflow-hidden text-white  "
   >
     Preferimos no contarte{" "}
   </motion.div>
@@ -98,9 +98,10 @@ export function ApproachSection() {
   const x = useTransform(scrollYProgress, [0, 1], [`0px`, `${-horizontalToScroll}px`])
 
   return (
-    <section className="relative bg-white text-gray-900 ">
+    <section className="relative  text-gray-900 "
+    >
       {/* Intro hero */}
-      <div className="h-screen flex flex-col items-center justify-center text-center px-6">
+      <div className="h-screen bg-black  flex flex-col items-center justify-center text-center px-6">
         {/* REEMPLAZADO: Ahora usa el componente SplitAnimatedText */}
         <SplitAnimatedText />
         
@@ -235,14 +236,14 @@ export function ApproachSection() {
       </div>
 
     {/* CTA final */}
-<div className="h-screen flex items-center justify-center px-6 bg-gradient-to-b from-white to-red-50">
+<div className="h-screen flex items-center justify-center px-6 bg-white">
   <div className="max-w-3xl text-center">
     {/* REEMPLAZADO: Texto dividido con animación */}
     <motion.div
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-3xl md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-5xl md:text-5xl font-bold text-gray-900 text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div

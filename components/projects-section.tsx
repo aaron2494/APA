@@ -31,55 +31,59 @@ export function ProjectsSection() {
     target: ref,
     offset: ["start start", "end end"],
   });
+const backgroundColor = useTransform(
+  scrollYProgress,
+  [0, 0.5, 1], // Ajusta estos valores según cuando quieras que cambie
+  [ "#ffffff","#000000", "#000000",] // Negro al inicio, blanco al final
+);
+
 
   return (
     <section
       ref={ref}
       className="relative min-h-[200vh]  text-gray-900 flex flex-col items-center justify-start"
-    >
-          {/* Animated Background Grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, #ff0080 1px, transparent 1px),
-            linear-gradient(to bottom, #ff0080 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
+   
+  >
+      <motion.div
+        className="absolute inset-0 "
+       style={{
+    backgroundColor: backgroundColor
+  }}
+      />
 
-      {/* Floating Orbs */}
-      <motion.div
-        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-30"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 80, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+    {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
+  <motion.div
+    className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-60 "
+    animate={{
+      x: [0, 100, 0],
+      y: [0, -50, 0],
+      scale: [1, 1.2, 1],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+  <motion.div
+    className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-60"
+    animate={{
+      x: [0, -80, 0],
+      y: [0, 80, 0],
+      scale: [1, 1.3, 1],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+
  <motion.div
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.6 }}
-  className="text-3xl mt-20 md:text-4xl font-bold text-gray-900 text-center overflow-hidden px-4"
+  className="text-5xl mt-10 mb-20 md:text-6xl z-10 font-bold  text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div
@@ -92,7 +96,7 @@ export function ProjectsSection() {
       ease: "easeOut",
       delay: 0.2
     }}
-    className="overflow-hidden thick-text-sub-black"
+    className="overflow-hidden text-black"
   >
     <span className="text-primary thick-text-sub-red">Que</span> hacemos
   </motion.div>
@@ -108,7 +112,7 @@ export function ProjectsSection() {
       ease: "easeOut",
       delay: 0.4
     }}
-    className="overflow- thick-text-sub-black"
+    className="overflow-hideen text-black"
   >
     y <span className="text-primary thick-text-sub-red">como</span> lo hacemos
   </motion.div>
@@ -121,7 +125,7 @@ export function ProjectsSection() {
 
           const y = useTransform(scrollYProgress, [start, end], [100, -100]);
           const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
-          const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
+          const opacity = useTransform(scrollYProgress, [start, end], [1, 0.8]);
 
           return (
             <motion.div
@@ -164,7 +168,7 @@ export function ProjectsSection() {
       {/* CTA final */}
       <motion.div
       
-        className="sticky mb-20 "
+        className="sticky pb-20"
       >
         <motion.button
           whileHover={{ scale: 1.05 }}

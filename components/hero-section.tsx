@@ -39,10 +39,37 @@ return (
   <div className="absolute inset-0 bg-black/30"></div>
 
   {/* CONTENIDO ENCIMA DEL VIDEO */}
-  <div className="relative z-10 text-center"></div> 
+  <div className="relative z-10 text-center">
+        {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
+  <motion.div
+    className="absolute top-20 left-110 w-80 h-64 bg-primary rounded-full blur-2xl opacity-50 z-10"
+    animate={{
+      x: [0, 100, 0],
+      y: [0, -50, 0],
+      scale: [1, 1.9, 1],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+  <motion.div
+    className="absolute bottom-20 right-7 w-96 h-96 bg-primary rounded-full blur-2xl opacity-50 z-10"
+    animate={{
+      x: [0, -80, 0],
+      y: [0, 80, 0],
+      scale: [1, 1.5, 1],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  /></div> 
     <div className="text-center z-20">
       <motion.span
-        className="absolute text-[80px] md:text-[110px] lg:text-[10vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+        className="absolute text-[100px] md:text-[110px] lg:text-[12vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
         initial={{ y: 0, opacity: 0 }}
   animate={{
     opacity: [1, 1, 1, 1, 1],
@@ -89,7 +116,7 @@ return (
             }}
           >
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
-            <motion.span className="inline-block thick-text text-[10vw] md:text-[9vw] lg:text-[7vw] font-bold text-primary leading-none">
+            <motion.span className="inline-block thick-text text-[10vw] md:text-[9vw] lg:text-[9vw] font-bold text-primary leading-none">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}
@@ -157,7 +184,7 @@ return (
     }}
     className="text-lg md:text-xl text-foreground/60 mt-8"
   >
-    Paliza hace crecer tu marca con estrategias creativas, inspiradoras y desafiantes.
+    Paliza hace crecer tu marca con estrategias <span className="font-bold text-white">creativas, inspiradoras y desafiantes.</span>
   </motion.p>
 </div>
 

@@ -1,7 +1,7 @@
 "use client"
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useState } from "react"
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
+import { useRef, useState } from "react"
 
 const teamData = [
   {
@@ -37,54 +37,61 @@ const teamData = [
 ]
 
 export function TeamSection() {
+ const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+// Tra
+const backgroundColor = useTransform(
+  scrollYProgress,
+  [0, 0.5, 1], // Ajusta estos valores según cuando quieras que cambie
+  [ "#ffffff","#000000", "#000000",] // Negro al inicio, blanco al final
+);
   return (
-    <section className="relative  py-24 px-4 md:px-8 overflow-hidden">
-    {/* Animated Background Grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, #ff0080 1px, transparent 1px),
-            linear-gradient(to bottom, #ff0080 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
-
-      {/* Floating Orbs */}
-      <motion.div
-        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-30"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 80, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+    <section ref={containerRef} className="relative  py-24 px-4 md:px-8 overflow-hidden">
+     {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
+  <motion.div
+     className="absolute inset-0 z-0"
+ style={{
+    backgroundColor: backgroundColor
+  }}
+  />
+  <motion.div
+    className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl opacity-60 "
+    animate={{
+      x: [0, 100, 0],
+      y: [0, -50, 0],
+      scale: [1, 1.7, 1],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+  <motion.div
+    className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-60 "
+    animate={{
+      x: [0, -80, 0],
+      y: [0, 80, 0],
+      scale: [1, 1.3, 1],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
       
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-5xl mx-auto">
         {/* Header con animación */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           className="mb-20 text-center"
+ 
         >
           <motion.div
             variants={{
@@ -99,10 +106,10 @@ export function TeamSection() {
               }
             }}
           >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 tracking-tight">
               Nuestro Equipo,
             </h2>
-            <h3 className="text-5xl md:text-7xl lg:text-8xl font-black text-red-600 tracking-tight">
+            <h3 className="text-5xl md:text-6xl lg:text-7xl font-black text-red-600 tracking-tight">
               Tu Equipo
             </h3>
           </motion.div>
@@ -135,7 +142,7 @@ export function TeamSection() {
       </div>
     </section>
   )
-}
+
 
 interface TeamCardProps {
   area: string
@@ -358,4 +365,5 @@ function MemberCard({ member, index, isParentHovered }: MemberCardProps) {
       </motion.div>
     </motion.div>
   )
+}
 }
