@@ -36,18 +36,18 @@ return (
       </motion.video>
 
   {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
-  <div className="absolute inset-0 bg-black/30"></div>
+  <div className="absolute inset-0 bg-black/50"></div>
 
   {/* CONTENIDO ENCIMA DEL VIDEO */}
   <div className="relative z-10 text-center">
         {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
 
   <motion.div
-    className="absolute bottom-45 w-66 h-46 bg-primary rounded-full blur-2xl opacity-50 z-20"
+    className="absolute bottom-45 w-56 h-46 bg-primary rounded-full blur-2xl opacity-40 z-10"
     animate={{
-      x: [0, -20, 0],
-      y: [0, 20, 0],
-      scale: [1, 1.2, 1],
+      x: [0, -50, 0],
+      y: [0, 10, 0],
+      scale: [1, 1.4, 1],
     }}
     transition={{
       duration: 10,

@@ -109,9 +109,9 @@ const backgroundColor = useTransform(
           const start = i / services.length;
           const end = (i + 1.2) / services.length;
 
-          const y = useTransform(scrollYProgress, [start, end], [100, -100]);
+          const y = useTransform(scrollYProgress, [start, end], [100, -150]);
           const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
-          const opacity = useTransform(scrollYProgress, [start, end], [1, 0.8]);
+          const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
           return (
             <motion.div
