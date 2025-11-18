@@ -51,7 +51,7 @@ const backgroundColor = useTransform(
   }}
       />
   <motion.div
-    className="absolute top-20 left-1 w-64 h-64 bg-primary rounded-full blur-2xl opacity-30 "
+    className="absolute top-60 left-1 w-64 h-64 bg-primary rounded-full blur-2xl opacity-30 "
     animate={{
       x: [0, -20, 0],
       y: [0, 20, 0],

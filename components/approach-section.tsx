@@ -20,7 +20,7 @@ function SplitAnimatedText() {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  className="text-4xl md:text-5xl font-bold  text-center overflow-hidden px-4"
+  className="text-5xl md:text-6xl font-bold  text-center overflow-hidden px-4"
 >
   {/* Primera línea */}
   <motion.div

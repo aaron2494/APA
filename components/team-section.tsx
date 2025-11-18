@@ -59,7 +59,7 @@ const backgroundColor = useTransform(
   />
    {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
   <motion.div
-    className="absolute top-40 w-54 h-64 bg-primary rounded-full blur-3xl opacity-30 "
+    className="absolute top-80 w-54 h-64 bg-primary rounded-full blur-3xl opacity-30 "
     animate={{
       x: [0, 10, 0],
       y: [0, -30, 0],
