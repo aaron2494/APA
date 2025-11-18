@@ -22,7 +22,22 @@ export function HeroSection() {
   }, []);
 
   return (
+    
     <section className="relative h-screen flex items-center justify-center overflow-hidden ">
+      {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
+
+        <motion.div
+          className="absolute top-0 left-0 w-46 h-46 bg-primary rounded-full blur-xl opacity-50 z-10"
+          animate={{
+           
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       {/* VIDEO DE FONDO */}
       <motion.video
         style={{ y }}
@@ -40,21 +55,7 @@ export function HeroSection() {
 
       {/* CONTENIDO ENCIMA DEL VIDEO */}
       <div className="relative z-10 text-center">
-        {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
-
-        <motion.div
-          className="absolute bottom-45 w-46 h-66 bg-primary rounded-full blur-xl opacity-40 z-10"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 10, 0],
-            scale: [1, 1.4, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        
       </div>
       <div className="text-center z-20">
         <motion.span
@@ -179,8 +180,6 @@ export function HeroSection() {
           </span>
         </motion.p>
       </div>
-
-  
     </section>
   );
 }
