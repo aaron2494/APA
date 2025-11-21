@@ -121,7 +121,7 @@ export function ApproachSection() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.4, ease: "easeOut" }}
+          transition={{ delay: 0.6, duration: 0.4, ease: "easeOut" }}
           viewport={{ once: true }}
           className="max-w-2xl mt-8 text-gray-500 text-lg leading-relaxed"
         >
@@ -293,7 +293,7 @@ export function ApproachSection() {
     <motion.p
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       className="text-gray-600 mb-8 py-5"
     >
@@ -302,7 +302,7 @@ export function ApproachSection() {
     <motion.a
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       href="https://3260.agency/agenda-ok#calendly"
       target="_blank"
