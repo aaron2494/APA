@@ -145,9 +145,7 @@ export function HeroSection() {
       animate={{
         // sombras vivas mientras cada letra aparece
         textShadow: [
-          "4px 4px 0px rgba(0,0,0,0.8)",
-          "6px 6px 0px rgba(0,0,0,0.9), 10px 10px 0px rgba(255,20,60,0.45)",
-          "4px 4px 0px rgba(0,0,0,0.8)",
+          "1px 1px 0px rgba(0,0,0,0.9), 2px 2px 0px rgba(255,20,60,0.45)",
         ],
       }}
       transition={{
