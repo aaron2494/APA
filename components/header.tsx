@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,11 +31,11 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-         <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="text-2xl font-bold tracking-tight">
-           <span className={isScrolled ? "text-primary" : "text-white"}>APA</span>
+              <span className={isScrolled ? "text-primary" : "text-white"}>APA</span>
             </div>
           </Link>
 
@@ -60,31 +60,65 @@ export function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
-            ) : (
-              <Menu className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
-            )}
+            <AnimatePresence mode="wait" initial={false}>
+              {isMobileMenuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="open"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden border-t border-white/20"
+            >
+              <nav className="flex flex-col space-y-4 py-4">
+                {navItems.map((item, i) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ x: -16, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.06, duration: 0.25, ease: "easeOut" }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors hover:text-primary block ${
+                        isScrolled ? "text-foreground" : "text-white"
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   )

@@ -171,7 +171,6 @@ const backgroundColor = useTransform(
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 400px"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
               <motion.div

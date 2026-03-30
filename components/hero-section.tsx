@@ -114,7 +114,7 @@ export function HeroSection() {
      
           >
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
-            <motion.span className="inline-block  text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
+            <motion.h1 className="inline-block text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
               {titleText.split("").map((char, i) => (
                 <motion.span
                   key={i}
@@ -150,7 +150,7 @@ export function HeroSection() {
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
               ))}
-            </motion.span>
+            </motion.h1>
             {/* PUNTO FINAL */}
             <motion.span
               variants={{

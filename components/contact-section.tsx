@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -25,60 +26,84 @@ export function ContactSection() {
       <div className="relative px-6 md:px-12 pt-10 md:pt-14 pb-20">
 
         {/* Título */}
-        <h2 className="text-5xl md:text-7xl text-white leading-tight mb-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-5xl md:text-7xl text-white leading-tight mb-8"
+        >
           HAGAMOSLO POSIBLE
           <br />
-          <span className="font-black">JUNTOS.</span>
-        </h2>
+          <motion.span
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="font-black"
+          >
+            JUNTOS.
+          </motion.span>
+        </motion.h2>
 
         {/* Card negra con el formulario */}
-        <div className="bg-black rounded-3xl p-8 md:p-10 w-full max-w-[520px]">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="bg-black rounded-3xl p-8 md:p-10 w-full max-w-[520px]"
+        >
           <form onSubmit={handleSubmit} className="space-y-4">
 
-            <input
-              type="text"
-              placeholder="Nombre"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              required
-              className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors"
-            />
+            {[
+              { type: "text", placeholder: "Nombre", key: "name", required: true },
+              { type: "text", placeholder: "Empresa", key: "company", required: false },
+              { type: "email", placeholder: "Email", key: "email", required: true },
+            ].map((field, i) => (
+              <motion.input
+                key={field.key}
+                type={field.type}
+                placeholder={field.placeholder}
+                value={formData[field.key as keyof typeof formData]}
+                onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                required={field.required}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 + i * 0.08, duration: 0.35, ease: "easeOut" }}
+                className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors"
+              />
+            ))}
 
-            <input
-              type="text"
-              placeholder="Empresa"
-              value={formData.company}
-              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors"
-            />
-
-            <input
-              type="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
-              className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors"
-            />
-
-            <textarea
+            <motion.textarea
               placeholder="Mensaje"
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.59, duration: 0.35, ease: "easeOut" }}
               className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-2xl px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors resize-none"
             />
 
-            <button
+            <motion.button
               type="submit"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7, duration: 0.35, ease: "easeOut" }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               className="bg-[#c0001a] hover:bg-[#a0001a] text-white rounded-full px-8 py-3 text-sm font-semibold tracking-widest uppercase transition-colors"
             >
               ENVIAR
-            </button>
+            </motion.button>
 
           </form>
-        </div>
+        </motion.div>
 
       </div>
     </section>

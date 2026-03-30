@@ -121,8 +121,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    cursor: none;
+  }
   body {
     @apply bg-background text-foreground overflow-x-hidden;
+    cursor: none;
+  }
+  a, button, [role="button"] {
+    cursor: none;
   }
 }
 
