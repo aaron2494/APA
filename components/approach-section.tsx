@@ -59,7 +59,7 @@ export function ApproachSection() {
     <section id="nosotros">
 
       {/* ── PARTE SUPERIOR: fondo negro ─────────────────────────── */}
-      <div className="bg-black px-6 md:px-16 py-14 md:py-20">
+      <div className="bg-black px-6 md:px-8 py-14 md:py-20">
         <div className="max-w-6xl mx-auto">
 
           <motion.h2
@@ -67,7 +67,7 @@ export function ApproachSection() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none mb-8 md:mb-12"
+            className="text-5xl md:text-7xl lg:text-7xl  text-white leading-none mb-8 md:mb-12"
           >
             ¿QUIÉNES<br />SOMOS?
           </motion.h2>
@@ -77,7 +77,7 @@ export function ApproachSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="text-gray-300 text-base md:text-lg leading-relaxed md:ml-[45%]"
+            className="text-gray-300 text-base md:text-lg leading-relaxed md:ml-[25%]"
           >
             Podríamos presentarnos y contarte nuestra historia en un breve
             párrafo, pero nos pareció una buena idea que nuestros clientes les

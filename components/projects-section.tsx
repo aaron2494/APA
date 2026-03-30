@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -31,139 +30,93 @@ export function ProjectsSection() {
     target: ref,
     offset: ["start start", "end end"],
   });
-const backgroundColor = useTransform(
-  scrollYProgress,
-  [0, 0.5, 1], // Ajusta estos valores según cuando quieras que cambie
-  [ "#ffffff","#000000", "#000000",] // Negro al inicio, blanco al final
-);
-
 
   return (
     <section
       ref={ref}
-      className="relative min-h-[200vh]  text-gray-900 flex flex-col items-center justify-start"
-   
-  >
-      <motion.div
-        className="absolute inset-0 "
-       style={{
-    backgroundColor: backgroundColor
-  }}
-      />
-  <motion.div
-    className="absolute top-60 left-1 w-64 h-64 bg-primary rounded-full blur-2xl opacity-30 "
-    animate={{
-      x: [0, -20, 0],
-      y: [0, 20, 0],
-      scale: [1, 1.1, 1],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-  />
-  
+      className="relative min-h-[200vh] flex flex-col items-center justify-start bg-white"
+    >
 
- <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.6 }}
-  className="text-5xl mt-10 mb-20 md:text-6xl z-10 font-bold  text-center overflow-hidden px-4"
->
-  {/* Primera línea */}
-  <motion.div
-    variants={{
-      hidden: { x: -30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.2
-    }}
-    className="overflow-hidden text-black"
-  >
-    <span className="text-primary thick-text-sub-red">Que</span> hacemos
-  </motion.div>
-  
-  {/* Segunda línea */}
-  <motion.div
-    variants={{
-      hidden: { x: 30, opacity: 0 },
-      visible: { x: 0, opacity: 1 }
-    }}
-    transition={{ 
-      duration: 0.6, 
-      ease: "easeOut",
-      delay: 0.4
-    }}
-    className="overflow-hideen text-black"
-  >
-    y <span className="text-primary thick-text-sub-red">como</span> lo hacemos
-  </motion.div>
-</motion.div>
-      {/* Cards */}
-      <div className="relative w-full max-w-4xl mt-[25vh]">
+      {/* ── HEADER: fondo rojo, dos títulos ───────────────────────── */}
+      <div className="w-full bg-[#c0001a] px-6 md:px-8 py-10 md:py-24 mt-5">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6">
+
+          <motion.h2
+            initial={{ x: -30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-4xl md:text-4xl lg:text-7xl text-white leading-none"
+          >
+            ¿QUÉ<br />HACEMOS?
+          </motion.h2>
+
+          <motion.h2
+            initial={{ x: 30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-4xl md:text-6xl lg:text-7xl text-white leading-none text-right"
+          >
+            ¿CÓMO LO<br />HACEMOS?
+          </motion.h2>
+
+        </div>
+      </div>
+
+      {/* ── SCROLL AREA: fondo blanco + cards negras ─────────────── */}
+      <div className="w-full relative max-w-4xl mt-[10vh]">
         {services.map((service, i) => {
           const start = i / services.length;
           const end = (i + 1.2) / services.length;
 
-          const y = useTransform(scrollYProgress, [start, end], [100, -150]);
-          const scale = useTransform(scrollYProgress, [start, end], [1, 0.5]);
+          const y       = useTransform(scrollYProgress, [start, end], [100, -150]);
+          const scale   = useTransform(scrollYProgress, [start, end], [1, 0.5]);
           const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
           return (
             <motion.div
               key={i}
               style={{ y, scale, opacity }}
-              className="sticky top-1/2 -translate-y-1/2 bg-white rounded-[30px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-12 md:p-16 flex items-center justify-between gap-12"
+              className="sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-16 flex items-center justify-between gap-12"
             >
               <div>
-                <p className="uppercase text-sm text-primary font-medium mb-3">
+                <p className="uppercase text-sm text-white/50 font-medium mb-3 tracking-widest">
                   Nuestros servicios
                 </p>
-                <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-white/70 text-lg leading-relaxed">
                   {service.description}
                 </p>
 
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="mt-10 px-6 py-3 border-2 border-black rounded-full text-black text-base font-medium flex items-center gap-2 hover:bg-black hover:text-white transition-all"
+                  className="mt-10 px-6 py-3 border-2 border-white rounded-full text-white text-base font-medium flex items-center gap-2 hover:bg-white hover:text-black transition-all"
                 >
-                  Descubrí más{" "}
-                  <span className="text-lg leading-none">↗</span>
+                  Descubrí más <span className="text-lg leading-none">↗</span>
                 </motion.button>
               </div>
 
-              {/* Placeholder “imagen / mockup” a la derecha */}
-              <div className="hidden md:flex flex-1 justify-center">
-                <div className="w-[280px] h-[180px] bg-gray-100 border border-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
-                  mockup
-                </div>
-              </div>
+            
             </motion.div>
           );
         })}
       </div>
 
       {/* CTA final */}
-      <motion.div
-      
-        className="sticky pb-20"
-      >
+      <div className="sticky pb-20 bg-white w-full flex justify-center pt-10">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="px-8 py-4 rounded-full bg-primary text-white font-medium text-lg tracking-wide hover:bg-gray-900 transition-all"
+          className="px-8 py-4 rounded-full bg-[#c0001a] text-white font-medium text-lg tracking-wide hover:bg-[#a0001a] transition-all"
         >
           HABLEMOS DE TU PROYECTO
         </motion.button>
-      </motion.div>
+      </div>
+
     </section>
   );
 }

@@ -63,7 +63,7 @@ export function TeamSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="relative z-10">
         {/* Título — chico, arriba a la izquierda */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export function TeamSection() {
         </motion.h2>
 
         {/* Two columns */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start">
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg">
           {/* Left — texto blanco, arriba */}
           <motion.div
             variants={container}

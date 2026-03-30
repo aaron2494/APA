@@ -50,33 +50,7 @@ const backgroundColor = useTransform(
     backgroundColor: backgroundColor
   }}
   />
-   {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
-  <motion.div
-    className="absolute top-60 w-54 h-64 bg-primary rounded-full blur-3xl opacity-30 "
-    animate={{
-      x: [0, 10, 0],
-      y: [0, -30, 0],
-      scale: [1, 1.2, 1],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-  />
-  <motion.div
-    className="absolute bottom-40 w-56 h-96 bg-primary rounded-full blur-3xl opacity-20 "
-    animate={{
-      x: [0, -20, 0],
-      y: [0, 20, 0],
-      scale: [1, 1.3, 1],
-    }}
-    transition={{
-      duration: 10,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-  />
+
 
   {/* Contenido principal con z-index más alto */}
   <div className="relative z-10">
