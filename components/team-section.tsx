@@ -78,7 +78,7 @@ export function TeamSection() {
         </motion.h2>
 
         {/* Two columns */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg ml-[20%]">
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg ml-[20%]  ">
           {/* Left — texto blanco, arriba */}
           <motion.div
             variants={container}
@@ -89,10 +89,10 @@ export function TeamSection() {
           >
             {teamLeft.map((member) => (
               <motion.div key={member.name} variants={item}>
-                <p className="text-white text-sm md:text-base font-semibold leading-snug">
+                <p className="text-white text-base md:text-base font-semibold leading-snug">
                   {member.name}
                 </p>
-                <p className="text-white text-sm md:text-base mt-0.5">
+                <p className="text-white text-base md:text-base mt-0.5">
                   {member.role}
                 </p>
               </motion.div>
@@ -109,10 +109,10 @@ export function TeamSection() {
           >
             {teamRight.map((member) => (
               <motion.div key={member.name} variants={item}>
-                <p className="text-black text-sm md:text-base font-semibold leading-snug">
+                <p className="text-black text-base md:text-base font-semibold leading-snug">
                   {member.name}
                 </p>
-                <p className="text-black text-sm md:text-base mt-0.5">
+                <p className="text-black text-base md:text-base mt-0.5">
                   {member.role}
                 </p>
               </motion.div>
