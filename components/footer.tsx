@@ -13,7 +13,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="text-2xl font-bold">
-              <span className="text-primary">APA</span> Marketing
+              <span className="text-primary">APA</span> 
             </div>
             <p className="text-sm text-accent-foreground/80 text-pretty">
               Creamos impacto real para marcas que quieren destacar.
@@ -84,7 +84,7 @@ export function Footer() {
         <div className="pt-8 border-t border-accent-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-accent-foreground/60">
-              © {currentYear} APA Marketing. Todos los derechos reservados.
+              © {currentYear} APA . Todos los derechos reservados.
             </p>
             <div className="flex space-x-6">
               <Link href="#" className="text-sm text-accent-foreground/60 hover:text-primary transition-colors">

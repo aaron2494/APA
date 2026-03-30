@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const titleText = "HACELO DISTINTO";
+const titleText = "Hacelo distinto";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -66,7 +66,7 @@ export function HeroSection() {
       </div>
       <div className="text-center z-20 px-4 w-full">
         <motion.span
-          className="absolute text-[100px] md:text-[110px] lg:text-[12vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
+          className="absolute text-[100px] md:text-[110px] lg:text-[12vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-white inline-block"
           initial={{ y: 0, opacity: 0 }}
           animate={{
             opacity: [1, 1, 1, 1, 1],
@@ -111,14 +111,7 @@ export function HeroSection() {
                 },
               },
             }}
-            style={{
-    // Glow exterior suave
-    textShadow: `
-      0px 0px 2px rgba(255,255,255,0.35),
-      0px 0px 1px rgba(255,255,255,0.15)
-    `,
-  }}
-            
+     
           >
             {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
             <motion.span className="inline-block  text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
@@ -148,13 +141,6 @@ export function HeroSection() {
                     },
                   }}
                   className="inline-block"
-   
-      animate={{
-        // sombras vivas mientras cada letra aparece
-        textShadow: [
-          "1px 1px 0px rgba(0,0,0,0.9), 2px 2px 0px rgba(255,20,60,0.45)",
-        ],
-      }}
       transition={{
         duration: 0.45,
         ease: "easeInOut",
@@ -199,7 +185,7 @@ export function HeroSection() {
             duration: 0.6,
             ease: "easeOut",
           }}
-          className="text-base md:text-xl text-foreground/60 mt-8 max-w-xs md:max-w-lg mx-auto"
+          className="text-base md:text-xl text-white/80 mt-8 max-w-xs md:max-w-lg mx-auto"
         >
           Paliza hace crecer tu marca con estrategias{" "}
           <span className="font-bold text-white">
