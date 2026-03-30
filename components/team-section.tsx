@@ -35,12 +35,12 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" as const } },
 }
 
 export function TeamSection() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 px-6 md:px-16">
+    <section className="relative overflow-hidden mb-5 py-20 md:py-28 px-6 md:px-16">
       {/* Background: negro arriba-izq, blanco arriba-der, rojo el resto */}
       <div
         className="absolute inset-0 z-0"
@@ -63,7 +63,7 @@ export function TeamSection() {
         }}
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Título — chico, arriba a la izquierda */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export function TeamSection() {
         </motion.h2>
 
         {/* Two columns */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg">
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg ml-[20%]">
           {/* Left — texto blanco, arriba */}
           <motion.div
             variants={container}
@@ -105,7 +105,7 @@ export function TeamSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="space-y-7 mt-7 md:mt-[72px]"
+            className="space-y-7 mt-7 md:mt-[120px]"
           >
             {teamRight.map((member) => (
               <motion.div key={member.name} variants={item}>
