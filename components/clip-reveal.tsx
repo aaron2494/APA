@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 interface ClipRevealProps {
   children: React.ReactNode
@@ -9,12 +10,14 @@ interface ClipRevealProps {
 }
 
 export function ClipReveal({ children, delay = 0, className }: ClipRevealProps) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" })
+
   return (
-    <span style={{ display: "block", overflow: "hidden" }}>
+    <span ref={ref} style={{ display: "block", overflow: "hidden" }}>
       <motion.span
         initial={{ y: "105%" }}
-        whileInView={{ y: "0%" }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={isInView ? { y: "0%" } : { y: "105%" }}
         transition={{
           duration: 0.9,
           delay,
