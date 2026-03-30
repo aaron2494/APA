@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { Cursor } from "@/components/cursor"
+import { Preloader } from "@/components/preloader"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={GeistSans.variable}>
       <body className="font-sans antialiased">
+        <Preloader />
         <Cursor />
         {children}
       </body>

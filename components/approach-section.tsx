@@ -3,6 +3,8 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
+import { MagneticButton } from "@/components/magnetic-button"
+import { ClipReveal } from "@/components/clip-reveal"
 
 const TESTIMONIALS = [
   {
@@ -62,15 +64,10 @@ export function ApproachSection() {
       <div className="bg-black px-6 md:px-8 py-14 md:py-20">
         <div className="max-w-6xl mx-auto">
 
-          <motion.h2
-            initial={{ x: -40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-7xl  text-white leading-none mb-8 md:mb-12"
-          >
-            ¿QUIÉNES<br />SOMOS?
-          </motion.h2>
+          <h2 className="text-5xl md:text-7xl lg:text-7xl text-white leading-none mb-8 md:mb-12">
+            <ClipReveal>¿QUIÉNES</ClipReveal>
+            <ClipReveal delay={0.1}>SOMOS?</ClipReveal>
+          </h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -128,13 +125,16 @@ export function ApproachSection() {
             </div>
 
             {/* Botón CONOCENOS */}
-            <motion.a
-              href="#contacto"
-              style={{ opacity: btnOpacity, y: btnY }}
-              className="bg-primary text-white px-14 py-3 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-primary/90 transition-colors"
-            >
-              CONOCENOS
-            </motion.a>
+            <motion.div style={{ opacity: btnOpacity, y: btnY }}>
+              <MagneticButton>
+                <a
+                  href="#contacto"
+                  className="inline-block bg-primary text-white px-14 py-3 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-primary/90 transition-colors"
+                >
+                  CONOCENOS
+                </a>
+              </MagneticButton>
+            </motion.div>
 
           </div>
         </div>

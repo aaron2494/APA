@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { ClipReveal } from "@/components/clip-reveal"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -26,25 +27,10 @@ export function ContactSection() {
       <div className="relative px-6 md:px-12 pt-10 md:pt-14 pb-20">
 
         {/* Título */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-5xl md:text-7xl text-white leading-tight mb-8"
-        >
-          HAGAMOSLO POSIBLE
-          <br />
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="font-black"
-          >
-            JUNTOS.
-          </motion.span>
-        </motion.h2>
+        <h2 className="text-5xl md:text-7xl text-white leading-tight mb-8">
+          <ClipReveal>HAGAMOSLO POSIBLE</ClipReveal>
+          <ClipReveal delay={0.12}><span className="font-black">JUNTOS.</span></ClipReveal>
+        </h2>
 
         {/* Card negra con el formulario */}
         <motion.div

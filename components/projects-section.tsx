@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
+import { MagneticButton } from "@/components/magnetic-button";
 
 const services = [
   {
@@ -122,13 +123,15 @@ export function ProjectsSection() {
 
       {/* CTA final */}
       <div className="sticky pb-20 bg-white w-full flex justify-center pt-10">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="px-8 py-4 rounded-full bg-[#c0001a] text-white font-medium text-lg tracking-wide hover:bg-[#a0001a] transition-all"
-        >
-          HABLEMOS DE TU PROYECTO
-        </motion.button>
+        <MagneticButton>
+          <motion.a
+            href="#contacto"
+            whileTap={{ scale: 0.97 }}
+            className="inline-block px-8 py-4 rounded-full bg-[#c0001a] text-white font-medium text-lg tracking-wide hover:bg-[#a0001a] transition-all"
+          >
+            HABLEMOS DE TU PROYECTO
+          </motion.a>
+        </MagneticButton>
       </div>
 
     </section>

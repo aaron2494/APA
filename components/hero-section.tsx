@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { MagneticButton } from "@/components/magnetic-button";
 
 const titleText = "Hacelo distinto";
 
@@ -169,7 +170,7 @@ export function HeroSection() {
                   },
                 },
               }}
-              className="text-[80px] md:text-[100px] lg:text-[8vw] font-bold text-primary inline-block"
+              className="text-[80px] md:text-[100px] lg:text-[8vw] font-bold text-white inline-block"
             >
               .
             </motion.span>
@@ -194,8 +195,7 @@ export function HeroSection() {
         </motion.p>
 
         {/* CTA BUTTON */}
-        <motion.a
-          href="#contacto"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{
@@ -203,10 +203,17 @@ export function HeroSection() {
             duration: 0.5,
             ease: "easeOut",
           }}
-          className="inline-block mt-10 px-8 py-3 border border-white/60 text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300"
+          className="mt-10 inline-block"
         >
-          DA EL PRIMER PASO
-        </motion.a>
+          <MagneticButton>
+            <a
+              href="#contacto"
+              className="inline-block px-8 py-3 border border-white/60 text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300"
+            >
+              DA EL PRIMER PASO
+            </a>
+          </MagneticButton>
+        </motion.div>
       </div>
     </section>
   );

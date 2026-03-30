@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { ClipReveal } from "@/components/clip-reveal"
 
 const teamLeft = [
   {
@@ -65,17 +66,10 @@ export function TeamSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Título — chico, arriba a la izquierda */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-          className="text-2xl md:text-6xl font-black text-white leading-tight tracking-tight mb-14"
-        >
-          NUESTRO EQUIPO,
-          <br />
-          TU EQUIPO.
-        </motion.h2>
+        <h2 className="text-2xl md:text-6xl font-black text-white leading-tight tracking-tight mb-14">
+          <ClipReveal>NUESTRO EQUIPO,</ClipReveal>
+          <ClipReveal delay={0.12}>TU EQUIPO.</ClipReveal>
+        </h2>
 
         {/* Two columns */}
         <div className="grid grid-cols-2 gap-x-6 md:gap-x-16 gap-y-0 items-start md:max-w-lg md:ml-[20%]">
