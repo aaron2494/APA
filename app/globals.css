@@ -11,7 +11,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.48 0.22 25); /* Red #E50914 */
+  --primary: oklch(0.40 0.20 22); /* Cherry red #b40f1d */
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.145 0 0);
@@ -60,7 +60,7 @@
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.25 0 0);
   --input: oklch(0.25 0 0);
-  --ring: lab(45.8% 71.64 52.23);
+  --ring: oklch(0.45 0.20 22);
   --chart-1: oklch(0.55 0.24 25);
   --chart-2: oklch(0.985 0 0);
   --chart-3: oklch(0.5 0 0);

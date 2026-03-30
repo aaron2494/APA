@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const titleText = "HACELO DISTINTO";
 
@@ -38,27 +39,32 @@ export function HeroSection() {
             ease: "easeInOut",
           }}
         />
-      {/* VIDEO DE FONDO */}
-      <motion.video
+      {/* IMAGEN DE FONDO CON PARALLAX */}
+      <motion.div
         style={{ y }}
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/fondo-hero-poster.jpg"
-        className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
+        className="absolute inset-0 will-change-transform"
       >
-        <source src="/fondo-hero.mp4" type="video/mp4" />
-      </motion.video>
+        <Image
+          src="/banner.jpg.jpeg"
+          alt="APA Agency Banner"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </motion.div>
 
-      {/* CAPA SEMITRANSPARENTE PARA CONTRASTE */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      {/* OVERLAY OSCURO - legibilidad del texto */}
+      <div className="absolute inset-0 bg-black/55" />
+
+      {/* TINTE CHERRY RED - identidad de marca */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#b40f1d]/30 via-transparent to-transparent" />
 
       {/* CONTENIDO ENCIMA DEL VIDEO */}
       <div className="relative z-10 text-center">
         
       </div>
-      <div className="text-center z-20">
+      <div className="text-center z-20 px-4 w-full">
         <motion.span
           className="absolute text-[100px] md:text-[110px] lg:text-[12vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-primary inline-block"
           initial={{ y: 0, opacity: 0 }}
@@ -193,13 +199,28 @@ export function HeroSection() {
             duration: 0.6,
             ease: "easeOut",
           }}
-          className="text-lg md:text-xl text-foreground/60 mt-8"
+          className="text-base md:text-xl text-foreground/60 mt-8 max-w-xs md:max-w-lg mx-auto"
         >
           Paliza hace crecer tu marca con estrategias{" "}
           <span className="font-bold text-white">
             creativas, inspiradoras y desafiantes.
           </span>
         </motion.p>
+
+        {/* CTA BUTTON */}
+        <motion.a
+          href="#contacto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{
+            delay: titleText.length * 0.07 + 2.8,
+            duration: 0.5,
+            ease: "easeOut",
+          }}
+          className="inline-block mt-10 px-8 py-3 border border-white/60 text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300"
+        >
+          DA EL PRIMER PASO
+        </motion.a>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import Image from "next/image"
 
 const TESTIMONIALS = [
   { id: 1, text: "APA nos llevó al siguiente nivel.", author: "Marcos — Cliente" },
@@ -135,33 +136,16 @@ export function ApproachSection() {
         className="relative"
         style={calculatedHeight ? { height: `${calculatedHeight}px` } : undefined}
       >
-        {/* Fondo con slideshow de imágenes */}
+        {/* Fondo con foto fija */}
         <div className="absolute inset-0 z-[0] overflow-hidden h-full">
-          {[
-            "/modern-marketing-agency-workspace-with-creative-te.jpg",
-            "/creative-marketing-strategy-session-with-team-coll.jpg",
-            "/creative-team-collaboration.png",
-            "/modern-marketing-agency-workspace-with-creative-te.jpg",
-            "/young-marketing-professionals-in-modern-workspace-.jpg",
-          ].map((img, i) => (
-            <motion.div
-              key={i}
-              className="absolute inset-0 bg-contain  bg-center"
-              style={{
-                backgroundImage: `url(${img})`,
-                opacity: 0.9,
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1,1,0] }}
-              transition={{
-                delay: i * 1,
-                duration: 3,
-                repeat: Infinity,
-                repeatDelay: 2,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
+          <Image
+            src="/foto.jpg.jpeg"
+            alt="APA Agency Team"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/65" />
         </div>
 
        {/* Contenido sticky */}
@@ -186,7 +170,7 @@ export function ApproachSection() {
             ease: "easeOut",
           }}
           viewport={{ once: true }}
-          className="relative min-w-[220px] md:min-w-[32  0px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px] /* Altura aumentada */
+          className="relative min-w-[260px] md:min-w-[320px] lg:min-w-[420px] min-h-[280px] md:min-h-[320px] lg:min-h-[320px]
                      bg-gradient-to-br from-white/95 to-white/85 
                      backdrop-blur-2xl rounded-3xl shadow-2xl
                      border border-white/40 border-b-white/20 border-r-white/20
