@@ -38,15 +38,15 @@ export function ProjectsSection() {
     >
 
       {/* ── HEADER: fondo rojo, dos títulos ───────────────────────── */}
-      <div className="w-full bg-[#c0001a] px-6 md:px-8 py-10 md:py-24 mt-5">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6">
+      <div className="w-full  bg-[#c0001a] px-6 md:px-8 py-10 md:py-24 mt-5 overflow-hidden">
+        <div className="max-w-4xl pb-15 mx-auto flex flex-col md:grid md:grid-cols-2 gap-6">
 
           <motion.h2
             initial={{ x: -30, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="text-4xl md:text-4xl lg:text-7xl text-white leading-none"
+            className="text-4xl md:text-4xl lg:text-7xl text-white leading-none self-start"
           >
             ¿QUÉ<br />HACEMOS?
           </motion.h2>
@@ -56,7 +56,7 @@ export function ProjectsSection() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl text-white leading-none text-right"
+            className="text-4xl md:text-6xl lg:text-7xl text-white leading-none text-right self-end"
           >
             ¿CÓMO LO<br />HACEMOS?
           </motion.h2>
