@@ -51,7 +51,7 @@ export function Preloader() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-[46%] w-[18vw] md:w-[12vw] h-[3px] bg-[#c0001a] origin-left"
+            className="absolute bottom-[36%] w-[18vw] md:w-[12vw] h-[3px] bg-[#c0001a] origin-left"
           />
         </motion.div>
       )}

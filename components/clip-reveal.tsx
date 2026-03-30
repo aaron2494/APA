@@ -10,20 +10,21 @@ interface ClipRevealProps {
 
 export function ClipReveal({ children, delay = 0, className }: ClipRevealProps) {
   return (
-    <div className="overflow-hidden">
-      <motion.div
+    <span style={{ display: "block", overflow: "hidden" }}>
+      <motion.span
         initial={{ y: "105%" }}
         whileInView={{ y: "0%" }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{
           duration: 0.9,
           delay,
           ease: [0.16, 1, 0.3, 1],
         }}
+        style={{ display: "block" }}
         className={className}
       >
         {children}
-      </motion.div>
-    </div>
+      </motion.span>
+    </span>
   )
 }
