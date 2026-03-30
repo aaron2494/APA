@@ -45,6 +45,7 @@ export function HeroSection() {
         loop
         muted
         playsInline
+        poster="/fondo-hero-poster.jpg"
         className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
       >
         <source src="/fondo-hero.mp4" type="video/mp4" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const brandLogos = [
@@ -151,13 +152,15 @@ const backgroundColor = useTransform(
                 style={{ opacity: brandOpacity, scale: brandScale }}
                 className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
               >
-                <img
+                <Image
                   src={
                     brandLogos[index]?.image ||
                     "/placeholder.svg?height=200&width=200"
                   }
                   alt={brandLogos[index]?.name || `Brand ${index + 1}`}
-                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  fill
+                  className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  sizes="(max-width: 768px) 33vw, 200px"
                 />
               </motion.div>
             ))}
@@ -167,13 +170,15 @@ const backgroundColor = useTransform(
               style={{ opacity: brandOpacity, scale: brandScale }}
               className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
             >
-              <img
+              <Image
                 src={
                   brandLogos[3]?.image ||
                   "/placeholder.svg?height=200&width=200"
                 }
                 alt={brandLogos[3]?.name || "Brand 4"}
-                className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                fill
+                className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                sizes="(max-width: 768px) 33vw, 200px"
               />
             </motion.div>
 
@@ -186,10 +191,13 @@ const backgroundColor = useTransform(
               }}
               className="relative aspect-square overflow-hidden shadow-2xl ring-4 ring-primary ring-offset-4"
             >
-              <img
+              <Image
                 src="/apa-team-photo.jpg"
                 alt="APA Marketing Team"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 400px"
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
               <motion.div
@@ -204,13 +212,15 @@ const backgroundColor = useTransform(
               style={{ opacity: brandOpacity, scale: brandScale }}
               className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
             >
-              <img
+              <Image
                 src={
                   brandLogos[4]?.image ||
                   "/placeholder.svg?height=200&width=200"
                 }
                 alt={brandLogos[4]?.name || "Brand 5"}
-                className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                fill
+                className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                sizes="(max-width: 768px) 33vw, 200px"
               />
             </motion.div>
 
@@ -221,13 +231,15 @@ const backgroundColor = useTransform(
                 style={{ opacity: brandOpacity, scale: brandScale }}
                 className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-2 md:p-5"
               >
-                <img
+                <Image
                   src={
                     brandLogos[index]?.image ||
                     "/placeholder.svg?height=200&width=200"
                   }
                   alt={brandLogos[index]?.name || `Brand ${index + 1}`}
-                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  fill
+                  className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  sizes="(max-width: 768px) 33vw, 200px"
                 />
               </motion.div>
             ))}

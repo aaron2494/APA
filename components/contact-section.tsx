@@ -2,6 +2,7 @@
 
 import type React from "react"
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -166,8 +167,14 @@ export function ContactSection() {
               </div>
 
               <div className="pt-8">
-                <div className="aspect-video rounded-xl overflow-hidden">
-                  <img src="/buenos-aires-argentina-cityscape-modern-office.jpg" alt="Buenos Aires" className="w-full h-full object-cover" />
+                <div className="aspect-video rounded-xl overflow-hidden relative">
+                  <Image 
+                    src="/buenos-aires-argentina-cityscape-modern-office.jpg" 
+                    alt="Buenos Aires" 
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
               </div>
             </div>
