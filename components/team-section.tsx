@@ -78,21 +78,21 @@ export function TeamSection() {
         </motion.h2>
 
         {/* Two columns */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0 items-start max-w-lg ml-[20%]  ">
-          {/* Left — texto blanco, arriba */}
+        <div className="grid grid-cols-2 gap-x-6 md:gap-x-16 gap-y-0 items-start md:max-w-lg md:ml-[20%]">
+          {/* Left — texto blanco */}
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="space-y-7"
+            className="space-y-6 md:space-y-7"
           >
             {teamLeft.map((member) => (
               <motion.div key={member.name} variants={item}>
-                <p className="text-white text-base md:text-base font-semibold leading-snug">
+                <p className="text-white text-sm md:text-base font-semibold leading-snug">
                   {member.name}
                 </p>
-                <p className="text-white text-base md:text-base mt-0.5">
+                <p className="text-white/80 text-xs md:text-base mt-0.5 leading-snug">
                   {member.role}
                 </p>
               </motion.div>
@@ -105,14 +105,14 @@ export function TeamSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="space-y-7 mt-7 md:mt-[120px]"
+            className="space-y-6 md:space-y-7 mt-[72px] md:mt-[120px]"
           >
             {teamRight.map((member) => (
               <motion.div key={member.name} variants={item}>
-                <p className="text-black text-base md:text-base font-semibold leading-snug">
+                <p className="text-black text-sm md:text-base font-semibold leading-snug">
                   {member.name}
                 </p>
-                <p className="text-black text-base md:text-base mt-0.5">
+                <p className="text-black/80 text-xs md:text-base mt-0.5 leading-snug">
                   {member.role}
                 </p>
               </motion.div>
