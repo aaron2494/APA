@@ -52,6 +52,7 @@ export function HeroSection() {
           priority
           className="object-cover object-center"
           sizes="100vw"
+          quality={85}
         />
       </motion.div>
 

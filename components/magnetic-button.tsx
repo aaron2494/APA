@@ -38,7 +38,7 @@ export function MagneticButton({ children, className, strength = 0.35 }: Magneti
       style={{ x: springX, y: springY, display: "inline-block" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={className}
+      className={`${className} will-change-transform`}
     >
       {children}
     </motion.div>

@@ -47,7 +47,7 @@ export function Cursor() {
         style={{ x: cursorX, y: cursorY }}
         animate={{ opacity: visible ? 1 : 0 }}
         transition={{ opacity: { duration: 0.2 } }}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="w-2 h-2 rounded-full bg-[#c0001a]" />
       </motion.div>
@@ -57,7 +57,7 @@ export function Cursor() {
         style={{ x: springX, y: springY }}
         animate={{ opacity: visible ? 1 : 0 }}
         transition={{ opacity: { duration: 0.2 } }}
-        className="fixed top-0 left-0 z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="w-8 h-8 rounded-full border border-[#c0001a]/50" />
       </motion.div>

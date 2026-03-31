@@ -101,14 +101,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={GeistSans.variable}>
+    <html lang="es" className={GeistSans.variable} suppressHydrationWarning>
       <head>
+        {/* Preconnect a recursos externos */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased ">
         <Preloader />
         <Cursor />
         {children}
