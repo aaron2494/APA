@@ -8,41 +8,55 @@ import { ClipReveal } from "@/components/clip-reveal"
 // ─── Assets ────────────────────────────────────────────────────────────────────
 
 const collageImages = [
+  // Row 1: panorámica ancha (cols 1-3) + retrato derecho (col 4)
   {
-    src: "/imagenes/DJI_20260128160609_0122_D.jpg",
-    alt: "Vista aérea activación TST en balneario",
-    // Aerial grande — ocupa cols 1-2, row 1
-    style: { gridColumn: "1 / 3", gridRow: "1 / 2" },
+    src: "/imagenes/mdq2.png",
+    alt: "Público en la activación TST Mar del Plata",
+    style: { gridColumn: "1 / 4", gridRow: "1 / 2" },
   },
   {
-    src: "/imagenes/DSC04175.jpg",
-    alt: "Logo TST en la activación",
-    // Logo close-up portrait — col 3, rows 1-2 (alto)
-    style: { gridColumn: "3 / 4", gridRow: "1 / 3" },
+    src: "/imagenes/martin.png",
+    alt: "Martin Garabal en grabación para la televisión",
+    style: { gridColumn: "4 / 5", gridRow: "1 / 2" },
   },
+  // Col 1: dos imágenes apiladas (rows 2 y 3)
   {
-    src: "/imagenes/DSC04188.jpg",
-    alt: "Público en la activación TST",
-    // Crowd — col 1, row 2
+    src: "/imagenes/flor.png",
+    alt: "Flor Vigna en la activación TST en balneario",
     style: { gridColumn: "1 / 2", gridRow: "2 / 3" },
   },
   {
-    src: "/imagenes/DSC04208.jpg",
-    alt: "Ruleta TST en balneario",
-    // Ruleta — col 2, row 2
-    style: { gridColumn: "2 / 3", gridRow: "2 / 3" },
-  },
-  {
-    src: "/imagenes/DSC04242.jpg",
-    alt: "Juego MEMOTST en la activación",
-    // Memo — col 1, row 3
+    src: "/imagenes/carilo.png",
+    alt: "Producción en Cariló para la televisión",
     style: { gridColumn: "1 / 2", gridRow: "3 / 4" },
   },
+  // Col 2: ruggeri alto, span rows 2-3
   {
-    src: "/imagenes/_M0A4605.JPG",
-    alt: "Evento nocturno TST",
-    // Night event — cols 2-3, row 3
-    style: { gridColumn: "2 / 4", gridRow: "3 / 4" },
+    src: "/imagenes/ruggeri.png",
+    alt: "Oscar Ruggeri en la activación TST en Mar del Plata",
+    style: { gridColumn: "2 / 3", gridRow: "2 / 4" },
+  },
+  // Row 2 cols 3-4: md13 + gunda
+  {
+    src: "/imagenes/md13.png",
+    alt: "Demo de cocina con backdrop TST",
+    style: { gridColumn: "3 / 4", gridRow: "2 / 3" },
+  },
+  {
+    src: "/imagenes/gunda.png",
+    alt: "La Gunda en grabación para la televisión",
+    style: { gridColumn: "4 / 5", gridRow: "2 / 3" },
+  },
+  // Row 3 cols 3-4: produ + mdq
+  {
+    src: "/imagenes/produ.png",
+    alt: "Producción audiovisual para TST",
+    style: { gridColumn: "3 / 4", gridRow: "3 / 4" },
+  },
+  {
+    src: "/imagenes/mdq.png",
+    alt: "Activación TST en Mar del Plata",
+    style: { gridColumn: "4 / 5", gridRow: "3 / 4" },
   },
 ]
 
@@ -196,8 +210,8 @@ export function AboutSection() {
             className="absolute inset-0 gap-1"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "38% 37% 25%",
+              gridTemplateColumns: "1fr 1.5fr 1.2fr 1.3fr",
+              gridTemplateRows: "33% 34% 33%",
             }}
           >
             {collageImages.map((image, i) => (
