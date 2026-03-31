@@ -7,13 +7,17 @@ import { AboutSection } from "@/components/about-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { TeamSection } from "@/components/team-section"
+import { ScrollProgress } from "@/components/scroll-progress"
+import { ClientsMarquee } from "@/components/clients-marquee"
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <ScrollProgress />
       <Header />
       <HeroSection />
       <StatsSection />
+      <ClientsMarquee />
       <ApproachSection />
       <ProjectsSection />
       <AboutSection />
