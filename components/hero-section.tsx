@@ -206,6 +206,14 @@ export function HeroSection() {
           }}
           className="mt-10 inline-block"
         >
+          <MagneticButton>
+            <a
+              href="#contacto"
+              className="inline-block px-8 py-3 bg-[#b40f1d] text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-[#a0001a] transition-all duration-300"
+            >
+              DA EL PRIMER PASO
+            </a>
+          </MagneticButton>
         </motion.div>
       </div>
     </section>
