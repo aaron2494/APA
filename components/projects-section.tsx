@@ -44,8 +44,11 @@ function ServiceCard({
   return (
     <motion.div
       style={{ y, scale, opacity }}
-      className="sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-26 flex items-center justify-between gap-12"
+      className="relative sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-26 flex items-center justify-between gap-12"
     >
+      <div className="absolute top-6 right-8 text-white/30 text-xs font-mono tracking-widest">
+        {String(index + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
+      </div>
       <div>
         <p className="uppercase text-sm text-white/50 font-medium mb-3 tracking-widest">
           Nuestros servicios

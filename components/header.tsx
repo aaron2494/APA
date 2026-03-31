@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
   // Memoizar el handler de scroll para evitar re-renders
   const handleScroll = useCallback(() => {
@@ -19,10 +20,28 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
+  useEffect(() => {
+    const sections = ["proyectos", "servicios", "nosotros", "contacto"]
+    const observers: IntersectionObserver[] = []
+
+    sections.forEach(id => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { threshold: 0.4 }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
+
   // Memoizar los items de navegación
   const navItems = useMemo(() => [
-    { name: "Proyectos", href: "#proyectos" },
-    { name: "Servicios", href: "#servicios" },
+    { name: "Servicios", href: "#proyectos" },
+    { name: "Clientes", href: "#servicios" },
     { name: "Nosotros", href: "#nosotros" },
     { name: "Contacto", href: "#contacto" },
   ], [])
@@ -49,7 +68,9 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isScrolled ? "text-foreground" : "text-white"
+                  activeSection === item.href.slice(1)
+                    ? "text-primary"
+                    : isScrolled ? "text-foreground" : "text-white"
                 }`}
               >
                 {item.name}
@@ -110,7 +131,9 @@ export function Header() {
                     <Link
                       href={item.href}
                       className={`text-sm font-medium transition-colors hover:text-primary block ${
-                        isScrolled ? "text-foreground" : "text-white"
+                        activeSection === item.href.slice(1)
+                          ? "text-primary"
+                          : isScrolled ? "text-foreground" : "text-white"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

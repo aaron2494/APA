@@ -9,21 +9,21 @@ import { ClipReveal } from "@/components/clip-reveal"
 const TESTIMONIALS = [
   {
     id: 1,
-    text: "APA es lo más, la mejor agencia con la que trabajamos hasta ahora, super comprometidos y responsables.",
+    text: "Trabajar con APA fue un antes y un después para nuestra marca. Entendieron nuestro negocio desde el día uno y lo trasladaron a cada pieza de comunicación.",
     author: "Ignacio Turnaturi",
-    role: "Jefe de prensa TST",
+    role: "Jefe de Prensa · TST",
   },
   {
     id: 2,
-    text: "APA es lo más, la mejor agencia con la que trabajamos hasta ahora, super comprometidos y responsables.",
-    author: "Ignacio Turnaturi",
-    role: "Jefe de prensa TST",
+    text: "La dedicación y el criterio creativo del equipo son increíbles. Cada campaña superó nuestras expectativas y los resultados fueron medibles desde el primer mes.",
+    author: "Valentina Moro",
+    role: "Directora de Marketing · Marca B",
   },
   {
     id: 3,
-    text: "APA es lo más, la mejor agencia con la que trabajamos hasta ahora, super comprometidos y responsables.",
-    author: "Ignacio Turnaturi",
-    role: "Jefe de prensa TST",
+    text: "Lo que más valoro de APA es la transparencia. Siempre saben exactamente qué están haciendo y por qué. Eso en el mundo de las agencias es muy difícil de encontrar.",
+    author: "Rodrigo Castillo",
+    role: "CEO · Empresa C",
   },
 ]
 
@@ -65,8 +65,8 @@ export function ApproachSection() {
         <div className="max-w-6xl mx-auto">
 
           <h2 className="text-5xl md:text-7xl lg:text-7xl text-white leading-none mb-8 md:mb-12">
-            <ClipReveal>¿QUIÉNES</ClipReveal>
-            <ClipReveal delay={0.1}>SOMOS?</ClipReveal>
+            <ClipReveal>LO QUE DICEN</ClipReveal>
+            <ClipReveal delay={0.1}>DE NOSOTROS</ClipReveal>
           </h2>
 
           <motion.p

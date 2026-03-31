@@ -72,8 +72,8 @@ function CollageImage({
   index: number
   scrollYProgress: MotionValue<number>
 }) {
-  const start   = index * 0.055
-  const end     = start + 0.072
+  const start   = index * 0.034
+  const end     = start + 0.045
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1])
   const scale   = useTransform(scrollYProgress, [start, end], [1.06, 1])
 
@@ -102,8 +102,8 @@ function ServiceTag({
   index: number
   scrollYProgress: MotionValue<number>
 }) {
-  const start   = 0.65 + index * 0.022
-  const end     = start + 0.018
+  const start   = 0.41 + index * 0.014
+  const end     = start + 0.011
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1])
   const y       = useTransform(scrollYProgress, [start, end], [14, 0])
 
@@ -126,8 +126,8 @@ function MetricItem({
   index: number
   scrollYProgress: MotionValue<number>
 }) {
-  const start   = 0.83 + index * 0.03
-  const end     = start + 0.025
+  const start   = 0.52 + index * 0.019
+  const end     = start + 0.016
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1])
   const y       = useTransform(scrollYProgress, [start, end], [28, 0])
 
@@ -150,20 +150,20 @@ export function AboutSection() {
   })
 
   // Overlay oscuro que aparece cuando el collage está completo
-  const overlayOpacity = useTransform(scrollYProgress, [0.33, 0.44], [0, 0.80])
+  const overlayOpacity = useTransform(scrollYProgress, [0.21, 0.28], [0, 0.80])
 
-  // Fase 1 — Presentación TST (0.41 – 0.63)
-  const phase1Opacity = useTransform(scrollYProgress, [0.41, 0.48, 0.57, 0.63], [0, 1, 1, 0])
+  // Fase 1 — Presentación TST
+  const phase1Opacity = useTransform(scrollYProgress, [0.26, 0.30, 0.36, 0.39], [0, 1, 1, 0])
 
-  // Fase 2 — Lo que hicimos (0.61 – 0.83)
-  const phase2Opacity = useTransform(scrollYProgress, [0.61, 0.67, 0.77, 0.83], [0, 1, 1, 0])
+  // Fase 2 — Lo que hicimos
+  const phase2Opacity = useTransform(scrollYProgress, [0.38, 0.42, 0.48, 0.52], [0, 1, 1, 0])
 
-  // Fase 3 — Métricas (0.81 – 0.97)
-  const phase3Opacity = useTransform(scrollYProgress, [0.81, 0.87, 0.93, 0.97], [0, 1, 1, 0])
+  // Fase 3 — Métricas
+  const phase3Opacity = useTransform(scrollYProgress, [0.51, 0.54, 0.58, 0.61], [0, 1, 1, 0])
 
-  // Fase 4 — Testimonio (0.94 – fin)
-  const phase4Opacity = useTransform(scrollYProgress, [0.94, 0.99], [0, 1])
-  const phase4Y       = useTransform(scrollYProgress, [0.94, 0.99], [24, 0])
+  // Fase 4 — Testimonio
+  const phase4Opacity = useTransform(scrollYProgress, [0.59, 0.62], [0, 1])
+  const phase4Y       = useTransform(scrollYProgress, [0.59, 0.62], [24, 0])
 
   return (
     <section id="nosotros" className="relative">
@@ -188,7 +188,7 @@ export function AboutSection() {
       </div>
 
       {/* ── Caso TST sticky ─────────────────────────────────────────────────── */}
-      <div ref={wrapperRef} style={{ height: "800vh" }} className="relative">
+      <div ref={wrapperRef} style={{ height: "500vh" }} className="relative">
         <div className="sticky top-0 h-screen overflow-hidden bg-black">
 
           {/* ── Collage grid (desktop) ─────────────────────────────────────── */}
