@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function Header() {
@@ -55,10 +56,15 @@ export function Header() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold tracking-tight">
-              <span className={isScrolled ? "text-primary" : "text-white"}>APA</span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <Image
+              src={isScrolled ? "/logos/LOGO-COMPLETO-ROJO.png" : "/logos/LOGO-COMPLETO-BLANCO.png"}
+              alt="Agencia Paliza"
+              width={140}
+              height={40}
+              className="h-45 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

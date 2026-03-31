@@ -127,7 +127,7 @@ export function ApproachSection() {
           {/* Foto de fondo — B&W, quieta */}
           <div className="absolute inset-0">
             <Image
-              src="/foto.jpg.jpeg"
+              src="/quienessomos.png"
               alt="Equipo de APA Agencia Paliza trabajando en estrategias de marketing digital"
               fill
               className="object-cover object-top grayscale"
