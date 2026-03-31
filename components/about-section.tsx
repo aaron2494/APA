@@ -166,7 +166,7 @@ const backgroundColor = useTransform(
               className="relative aspect-square overflow-hidden shadow-2xl ring-4 ring-primary ring-offset-4"
             >
               <Image
-                src="/apa-team-photo.jpg"
+                src="/foto.jpg.jpeg"
                 alt="Foto del equipo completo de APA Agencia Paliza, Buenos Aires"
                 fill
                 className="object-cover"
