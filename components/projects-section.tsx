@@ -81,7 +81,7 @@ export function ProjectsSection() {
     >
 
       {/* ── HEADER: fondo rojo, dos títulos ───────────────────────── */}
-      <div className="w-full bg-[#c0001a] px-6 md:px-8 py-10 md:py-24 mt-5 overflow-hidden">
+      <div className="w-full bg-[#c0001a] px-6 md:px-8 py-10 md:py-24 overflow-hidden">
         <div className="max-w-4xl pb-15 mx-auto flex flex-col md:grid md:grid-cols-2 gap-6">
 
           <motion.h2

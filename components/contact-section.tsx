@@ -21,7 +21,14 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contacto" className="relative bg-white">
+    <motion.section
+      id="contacto"
+      className="relative bg-white"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
 
       {/* Fondo rojo — cubre la parte superior */}
       <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[460px] bg-[#c0001a]" />
@@ -190,6 +197,6 @@ export function ContactSection() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   )
 }

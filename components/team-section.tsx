@@ -26,31 +26,30 @@ export function TeamSection() {
     offset: ["start start", "end end"],
   })
 
-  // Izquierda — aparecen y desaparecen con el scroll
-  const left1Opacity = useTransform(scrollYProgress, [0.0, 0.10, 0.18, 0.26], [0, 1, 1, 1])
-  const left1Y       = useTransform(scrollYProgress, [0.0, 0.10, 0.18, 0.26], [40, 0, 0, -40])
+  // Izquierda y derecha — intercaladas desde el inicio
+  const left1Opacity  = useTransform(scrollYProgress, [0.00, 0.10], [0, 1])
+  const left1Y        = useTransform(scrollYProgress, [0.00, 0.10], [30, 0])
 
-  const left2Opacity = useTransform(scrollYProgress, [0.14, 0.24, 0.30, 0.38], [0, 0, 1, 1])
-  const left2Y       = useTransform(scrollYProgress, [0.14, 0.24, 0.30, 0.38], [40, 0, 0, -40])
+  const right1Opacity = useTransform(scrollYProgress, [0.10, 0.20], [0, 1])
+  const right1Y       = useTransform(scrollYProgress, [0.10, 0.20], [30, 0])
 
-  const left3Opacity = useTransform(scrollYProgress, [0.28, 0.38, 0.44, 0.52], [0, 1, 1, 1])
-  const left3Y       = useTransform(scrollYProgress, [0.28, 0.38, 0.44, 0.52], [40, 0, 0, -40])
+  const left2Opacity  = useTransform(scrollYProgress, [0.22, 0.32], [0, 1])
+  const left2Y        = useTransform(scrollYProgress, [0.22, 0.32], [30, 0])
 
-  const left4Opacity = useTransform(scrollYProgress, [0.42, 0.52, 0.70, 0.80], [0, 0, 1, 1])
-  const left4Y       = useTransform(scrollYProgress, [0.42, 0.52, 0.70, 0.80], [40, 0, 0, -40])
+  const right2Opacity = useTransform(scrollYProgress, [0.32, 0.42], [0, 1])
+  const right2Y       = useTransform(scrollYProgress, [0.32, 0.42], [30, 0])
 
-  // Derecha — aparecen y desaparecen con el scroll
-  const right1Opacity = useTransform(scrollYProgress, [0.40, 0.50, 0.58, 0.66], [0, 1, 1, 1])
-  const right1Y       = useTransform(scrollYProgress, [0.40, 0.50, 0.58, 0.66], [40, 0, 0, -40])
+  const left3Opacity  = useTransform(scrollYProgress, [0.44, 0.54], [0, 1])
+  const left3Y        = useTransform(scrollYProgress, [0.44, 0.54], [30, 0])
 
-  const right2Opacity = useTransform(scrollYProgress, [0.54, 0.64, 0.70, 0.78], [0, 0, 1, 1])
-  const right2Y       = useTransform(scrollYProgress, [0.54, 0.64, 0.70, 0.78], [40, 0, 0, -40])
+  const right3Opacity = useTransform(scrollYProgress, [0.54, 0.64], [0, 1])
+  const right3Y       = useTransform(scrollYProgress, [0.54, 0.64], [30, 0])
 
-  const right3Opacity = useTransform(scrollYProgress, [0.66, 0.76, 0.82, 0.90], [0, 0, 1, 1])
-  const right3Y       = useTransform(scrollYProgress, [0.66, 0.76, 0.82, 0.90], [40, 0, 0, -40])
+  const left4Opacity  = useTransform(scrollYProgress, [0.66, 0.76], [0, 1])
+  const left4Y        = useTransform(scrollYProgress, [0.66, 0.76], [30, 0])
 
-  const right4Opacity = useTransform(scrollYProgress, [0.78, 0.88, 0.94, 1.0], [0, 0, 1, 1])
-  const right4Y       = useTransform(scrollYProgress, [0.78, 0.88, 0.94, 1.0], [40, 0, 0, -40])
+  const right4Opacity = useTransform(scrollYProgress, [0.76, 0.86], [0, 1])
+  const right4Y       = useTransform(scrollYProgress, [0.76, 0.86], [30, 0])
 
   const leftMotions  = [
     { opacity: left1Opacity,  y: left1Y  },

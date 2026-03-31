@@ -2,12 +2,19 @@
 
 import { Instagram, Linkedin, Facebook } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-accent text-accent-foreground py-12">
+    <motion.footer
+      className="bg-accent text-accent-foreground py-12"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
@@ -28,13 +35,13 @@ export function Footer() {
                 href="#proyectos"
                 className="text-sm text-accent-foreground/80 hover:text-primary transition-colors"
               >
-                Proyectos
+                Servicios
               </Link>
               <Link
                 href="#servicios"
                 className="text-sm text-accent-foreground/80 hover:text-primary transition-colors"
               >
-                Servicios
+                Clientes
               </Link>
               <Link href="#nosotros" className="text-sm text-accent-foreground/80 hover:text-primary transition-colors">
                 Nosotros
@@ -97,6 +104,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

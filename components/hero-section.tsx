@@ -209,7 +209,7 @@ export function HeroSection() {
           <MagneticButton>
             <a
               href="#contacto"
-              className="inline-block px-8 py-3 border border-white/60 text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300"
+              className="inline-block px-8 py-3 bg-[#b40f1d] text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-[#a0001a] transition-all duration-300"
             >
               DA EL PRIMER PASO
             </a>
