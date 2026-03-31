@@ -167,7 +167,7 @@ const backgroundColor = useTransform(
             >
               <Image
                 src="/apa-team-photo.jpg"
-                alt="APA Marketing Team"
+                alt="Foto del equipo completo de APA Agencia Paliza, Buenos Aires"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 400px"

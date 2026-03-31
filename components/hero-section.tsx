@@ -47,7 +47,7 @@ export function HeroSection() {
       >
         <Image
           src="/banner.jpg.jpeg"
-          alt="APA Agency Banner"
+          alt="Fondo visual de la agencia APA — marketing digital boutique en Buenos Aires"
           fill
           priority
           className="object-cover object-center"

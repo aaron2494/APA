@@ -1,21 +1,23 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState, useTransition, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { ClipReveal } from "@/components/clip-reveal"
+import { sendContactEmail, type ContactState } from "@/app/actions/contact"
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    message: "",
-  })
+  const [state, setState] = useState<ContactState>({ status: "idle" })
+  const [isPending, startTransition] = useTransition()
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("[v0] Form submitted:", formData)
+    const formData = new FormData(e.currentTarget)
+    startTransition(async () => {
+      const result = await sendContactEmail({ status: "idle" }, formData)
+      setState(result)
+      if (result.status === "success") formRef.current?.reset()
+    })
   }
 
   return (
@@ -40,55 +42,112 @@ export function ContactSection() {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="bg-black rounded-3xl p-8 md:p-10 w-full max-w-[520px]"
         >
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <AnimatePresence mode="wait">
+            {state.status === "success" ? (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="py-8 flex flex-col items-center gap-4 text-center"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
+                  className="w-14 h-14 rounded-full bg-[#c0001a] flex items-center justify-center"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </motion.div>
+                <p className="text-white text-lg font-semibold">¡Mensaje recibido!</p>
+                <p className="text-white/60 text-sm">Te respondemos a la brevedad.</p>
+                <button
+                  onClick={() => setState({ status: "idle" })}
+                  className="mt-2 text-white/40 text-xs underline underline-offset-2 hover:text-white/70 transition-colors"
+                >
+                  Enviar otro mensaje
+                </button>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="space-y-4"
+                exit={{ opacity: 0 }}
+              >
+                {[
+                  { type: "text", placeholder: "Nombre", name: "name", required: true },
+                  { type: "text", placeholder: "Empresa", name: "company", required: false },
+                  { type: "email", placeholder: "Email", name: "email", required: true },
+                ].map((field, i) => (
+                  <motion.input
+                    key={field.name}
+                    type={field.type}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                    disabled={isPending}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.35 + i * 0.08, duration: 0.35, ease: "easeOut" }}
+                    className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors disabled:opacity-50"
+                  />
+                ))}
 
-            {[
-              { type: "text", placeholder: "Nombre", key: "name", required: true },
-              { type: "text", placeholder: "Empresa", key: "company", required: false },
-              { type: "email", placeholder: "Email", key: "email", required: true },
-            ].map((field, i) => (
-              <motion.input
-                key={field.key}
-                type={field.type}
-                placeholder={field.placeholder}
-                value={formData[field.key as keyof typeof formData]}
-                onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                required={field.required}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.35 + i * 0.08, duration: 0.35, ease: "easeOut" }}
-                className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-full px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors"
-              />
-            ))}
+                <motion.textarea
+                  placeholder="Mensaje"
+                  name="message"
+                  rows={4}
+                  required
+                  disabled={isPending}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.59, duration: 0.35, ease: "easeOut" }}
+                  className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-2xl px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors resize-none disabled:opacity-50"
+                />
 
-            <motion.textarea
-              placeholder="Mensaje"
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              required
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.59, duration: 0.35, ease: "easeOut" }}
-              className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-2xl px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors resize-none"
-            />
+                {state.status === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-400 text-xs px-1"
+                  >
+                    {state.message}
+                  </motion.p>
+                )}
 
-            <motion.button
-              type="submit"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.35, ease: "easeOut" }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="bg-[#c0001a] hover:bg-[#a0001a] text-white rounded-full px-8 py-3 text-sm font-semibold tracking-widest uppercase transition-colors"
-            >
-              ENVIAR
-            </motion.button>
-
-          </form>
+                <motion.button
+                  type="submit"
+                  disabled={isPending}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7, duration: 0.35, ease: "easeOut" }}
+                  whileHover={isPending ? {} : { scale: 1.03 }}
+                  whileTap={isPending ? {} : { scale: 0.97 }}
+                  className="bg-[#c0001a] hover:bg-[#a0001a] text-white rounded-full px-8 py-3 text-sm font-semibold tracking-widest uppercase transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  {isPending ? (
+                    <>
+                      <motion.span
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                        className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full inline-block"
+                      />
+                      ENVIANDO...
+                    </>
+                  ) : (
+                    "ENVIAR"
+                  )}
+                </motion.button>
+              </motion.form>
+            )}
+          </AnimatePresence>
         </motion.div>
 
       </div>

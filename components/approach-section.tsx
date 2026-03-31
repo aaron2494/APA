@@ -94,7 +94,7 @@ export function ApproachSection() {
           <div className="absolute inset-0">
             <Image
               src="/foto.jpg.jpeg"
-              alt="Equipo APA"
+              alt="Equipo de APA Agencia Paliza trabajando en estrategias de marketing digital"
               fill
               className="object-cover object-top grayscale"
               sizes="100vw"

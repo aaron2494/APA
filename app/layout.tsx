@@ -56,6 +56,45 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  name: "APA — Agencia Paliza",
+  description:
+    "Agencia de marketing digital boutique en Buenos Aires. Gestión de redes sociales, contenido, paid media, PR y activaciones de marca.",
+  url: "https://agenciapaliza.com",
+  logo: "https://agenciapaliza.com/logo.png",
+  image: "https://agenciapaliza.com/og-image.jpg",
+  telephone: "",
+  email: "hola@agenciapaliza.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Buenos Aires",
+    addressRegion: "CABA",
+    addressCountry: "AR",
+  },
+  areaServed: [
+    { "@type": "City", name: "Buenos Aires" },
+    { "@type": "Country", name: "Argentina" },
+  ],
+  sameAs: [
+    "https://www.instagram.com/agenciapaliza",
+    "https://www.linkedin.com/company/agenciapaliza",
+  ],
+  knowsAbout: [
+    "Marketing Digital",
+    "Gestión de Redes Sociales",
+    "Paid Media",
+    "Community Management",
+    "Relaciones Públicas",
+    "Producción de Contenido",
+    "Branding",
+  ],
+  foundingDate: "2021",
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 10 },
+  priceRange: "$$",
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,6 +102,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={GeistSans.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <Preloader />
         <Cursor />
