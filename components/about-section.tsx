@@ -1,226 +1,232 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react"
+import Image from "next/image"
+import { motion, useScroll, useTransform, useMotionTemplate, MotionValue } from "framer-motion"
+import { ClipReveal } from "@/components/clip-reveal"
 
-const brandLogos = [
-  { name: "Nike", image: "/nike-logo.jpg" },
-  { name: "Adidas", image: "/adidas-logo.jpg" },
-  { name: "Spotify", image: "/spotify-logo.jpg" },
-  { name: "Apple", image: "/apple-logo.jpg" },
-  { name: "Google", image: "/google-logo.jpg" },
-  { name: "Amazon", image: "/amazon-logo.jpg" },
-  { name: "Microsoft", image: "/microsoft-logo.jpg" },
-  { name: "Samsung", image: "/samsung-logo.jpg" },
-];
+// ─── Datos del caso ────────────────────────────────────────────────────────────
 
-export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-// Transformamos el progreso del scroll para controlar el color
-const backgroundColor = useTransform(
+const services = [
+  "Estrategia de Contenido",
+  "Campañas TV & Radio",
+  "Activaciones de Marca",
+  "Social Media",
+  "Tienda Mercado Libre",
+  "E-commerce",
+]
+
+const metrics = [
+  { value: "4",   label: "canales de aire nacionales" },
+  { value: "2",   label: "activaciones de marca" },
+  { value: "5M+", label: "inversión mensual administrada" },
+]
+
+// ─── Sub-componentes (evitan hooks en loops) ───────────────────────────────────
+
+function ServiceTag({
+  service,
+  index,
   scrollYProgress,
-  [0, 0.5, 1], // Ajusta estos valores según cuando quieras que cambie
-  ["#000000", "#000000", "#ffffff"] // Negro al inicio, blanco al final
-);
-
-  const teamScale = useTransform(scrollYProgress, [0, 0.3, 0.5], [1.5, 1, 0.8]);
-  const teamOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.4, 1],
-    [1, 1, 1, 1]
-  );
-  const teamBorderRadius = useTransform(scrollYProgress, [0, 0.3], [0, 24]);
-
-  const brandOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  const brandScale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1]);
-
-
+}: {
+  service: string
+  index: number
+  scrollYProgress: MotionValue<number>
+}) {
+  const start   = 0.36 + index * 0.03
+  const end     = start + 0.025
+  const opacity = useTransform(scrollYProgress, [start, end], [0, 1])
+  const y       = useTransform(scrollYProgress, [start, end], [16, 0])
 
   return (
- <section id="nosotros" className="relative">
-  {/* Background Container que cambia de color */}
-  <motion.div 
-    className="absolute inset-0 z-0"
- style={{
-    backgroundColor: backgroundColor
-  }}
-  />
-
-
-  {/* Contenido principal con z-index más alto */}
-  <div className="relative z-10">
-    {/* Title section */}
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      className="text-5xl md:text-7xl pt-20  text-white text-center overflow-hidden px-4"
+    <motion.span
+      style={{ opacity, y }}
+      className="will-change-transform inline-block border border-white/30 text-white text-xs md:text-sm px-4 py-2 rounded-full"
     >
-      {/* Impacto */}
-      <motion.span
-        variants={{
-          hidden: { x: -30, opacity: 0 },
-          visible: { x: 0, opacity: 1 },
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeOut",
-          delay: 0.2,
-        }}
-        className="inline-block overflow-hidden"
-      >
-        IMPACTO
-      </motion.span>
+      {service}
+    </motion.span>
+  )
+}
 
-      {/* Espacio */}
-      <span className="inline-block">&nbsp;</span>
+function MetricItem({
+  metric,
+  index,
+  scrollYProgress,
+}: {
+  metric: { value: string; label: string }
+  index: number
+  scrollYProgress: MotionValue<number>
+}) {
+  const start   = 0.61 + index * 0.05
+  const end     = start + 0.04
+  const opacity = useTransform(scrollYProgress, [start, end], [0, 1])
+  const y       = useTransform(scrollYProgress, [start, end], [30, 0])
 
-      {/* Real */}
-      <motion.span
-        variants={{
-          hidden: { x: 30, opacity: 0 },
-          visible: { x: 0, opacity: 1 },
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeOut",
-          delay: 0.4,
-        }}
-        className="inline-block overflow-hidden "
-      >
-        REAL
-      </motion.span>
+  return (
+    <motion.div style={{ opacity, y }} className="will-change-transform">
+      <p className="text-white text-5xl md:text-7xl font-black leading-none">{metric.value}</p>
+      <p className="text-white/55 text-sm md:text-base mt-2">{metric.label}</p>
     </motion.div>
+  )
+}
 
-    <div className="flex mb-10 items-center justify-center px-2 py-5">
-      <div className="max-w-2xl mx-auto text-center space-y-2">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-gray-300"
-        >
-          Historia de transformación digital, creatividad y resultados
-          medibles.
-        </motion.p>
-      </div>
-    </div>
+// ─── Componente principal ──────────────────────────────────────────────────────
 
-    <div ref={containerRef} className="relative" style={{ height: "200vh" }}>
-      <motion.div
-        className="sticky top-0 h-screen overflow-hidden flex items-center justify-center"
-      >
-        <div className="relative w-full max-w-2xl mx-auto px-4">
-          {/* Grid container */}
-          <div className="grid grid-cols-3 gap-4 md:gap-6 lg:gap-6">
-            {/* Top row - brand logos */}
-            {[0, 1, 2].map((index) => (
-              <motion.div
-                key={`top-${index}`}
-                style={{ opacity: brandOpacity, scale: brandScale }}
-                className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
-              >
-                <Image
-                  src={
-                    brandLogos[index]?.image ||
-                    "/placeholder.svg?height=200&width=200"
-                  }
-                  alt={brandLogos[index]?.name || `Brand ${index + 1}`}
-                  fill
-                  className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                  sizes="(max-width: 768px) 33vw, 200px"
-                />
-              </motion.div>
-            ))}
+export function AboutSection() {
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
-            {/* Middle row - brand, team (center), brand */}
-            <motion.div
-              style={{ opacity: brandOpacity, scale: brandScale }}
-              className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
-            >
-              <Image
-                src={
-                  brandLogos[3]?.image ||
-                  "/placeholder.svg?height=200&width=200"
-                }
-                alt={brandLogos[3]?.name || "Brand 4"}
-                fill
-                className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                sizes="(max-width: 768px) 33vw, 200px"
-              />
-            </motion.div>
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start start", "end end"],
+  })
 
-            {/* Center - Team image */}
-            <motion.div
-              style={{
-                scale: teamScale,
-                opacity: teamOpacity,
-                borderRadius: teamBorderRadius,
-              }}
-              className="relative aspect-square overflow-hidden shadow-2xl ring-4 ring-primary ring-offset-4"
-            >
-              <Image
-                src="/foto.jpg.jpeg"
-                alt="Foto del equipo completo de APA Agencia Paliza, Buenos Aires"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 400px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="absolute bottom-6 left-6 right-6 text-white"
-              ></motion.div>
-            </motion.div>
+  // Imagen: escala de grises → color al llegar a métricas
+  const grayscaleAmount = useTransform(scrollYProgress, [0.52, 0.68], [100, 0])
+  const imageFilter     = useMotionTemplate`grayscale(${grayscaleAmount}%)`
+  const overlayOpacity  = useTransform(scrollYProgress, [0, 0.5, 0.85], [0.82, 0.68, 0.55])
 
-            <motion.div
-              style={{ opacity: brandOpacity, scale: brandScale }}
-              className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-6 md:p-10"
-            >
-              <Image
-                src={
-                  brandLogos[4]?.image ||
-                  "/placeholder.svg?height=200&width=200"
-                }
-                alt={brandLogos[4]?.name || "Brand 5"}
-                fill
-                className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                sizes="(max-width: 768px) 33vw, 200px"
-              />
-            </motion.div>
+  // Fase 1 — Presentación de la marca (0 – 0.32)
+  const phase1Opacity = useTransform(scrollYProgress, [0.0, 0.08, 0.24, 0.32], [0, 1, 1, 0])
 
-            {/* Bottom row - brand logos */}
-            {[5, 6, 7].map((index) => (
-              <motion.div
-                key={`bottom-${index}`}
-                style={{ opacity: brandOpacity, scale: brandScale }}
-                className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-200 flex items-center justify-center p-2 md:p-5"
-              >
-                <Image
-                  src={
-                    brandLogos[index]?.image ||
-                    "/placeholder.svg?height=200&width=200"
-                  }
-                  alt={brandLogos[index]?.name || `Brand ${index + 1}`}
-                  fill
-                  className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                  sizes="(max-width: 768px) 33vw, 200px"
-                />
-              </motion.div>
-            ))}
-          </div>
+  // Fase 2 — Lo que hicimos (0.30 – 0.58)
+  const phase2Opacity = useTransform(scrollYProgress, [0.30, 0.38, 0.50, 0.58], [0, 1, 1, 0])
+
+  // Fase 3 — Métricas (0.55 – 0.80)
+  const phase3Opacity = useTransform(scrollYProgress, [0.55, 0.63, 0.72, 0.80], [0, 1, 1, 0])
+
+  // Fase 4 — Testimonio (0.78 – 1.0)
+  const phase4Opacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 1])
+  const phase4Y       = useTransform(scrollYProgress, [0.78, 0.88], [30, 0])
+
+  return (
+    <section id="nosotros" className="relative">
+
+      {/* ── Título de entrada — no sticky ──────────────────────────────────── */}
+      <div className="bg-black px-6 md:px-8 py-14 md:py-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl md:text-7xl text-white leading-none mb-8 md:mb-12">
+            <ClipReveal>IMPACTO</ClipReveal>
+            <ClipReveal delay={0.1}>REAL</ClipReveal>
+          </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-gray-300 text-base md:text-lg leading-relaxed md:ml-[25%]"
+          >
+            No hablamos de lo que podemos hacer. Mostramos lo que ya hicimos.
+          </motion.p>
         </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-  );
+      </div>
+
+      {/* ── Caso de estudio sticky ─────────────────────────────────────────── */}
+      <div ref={wrapperRef} style={{ height: "450vh" }} className="relative">
+        <div className="sticky top-0 h-screen overflow-hidden">
+
+          {/* Imagen de fondo con transición a color */}
+          <div className="absolute inset-0">
+            <motion.div className="absolute inset-0" style={{ filter: imageFilter }}>
+              <Image
+                src="/tst-cover.jpg"
+                alt="Campaña TST — APA Agencia Paliza"
+                fill
+                className="object-cover object-center"
+                sizes="100vw"
+              />
+            </motion.div>
+            <motion.div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />
+          </div>
+
+          {/* Badge cliente */}
+          <div className="absolute top-8 right-6 md:right-10 z-20">
+            <span className="text-white/35 text-xs font-mono uppercase tracking-widest">
+              Caso de estudio · TST
+            </span>
+          </div>
+
+          {/* ── Fase 1: Presentación ─────────────────────────────────────── */}
+          <motion.div
+            style={{ opacity: phase1Opacity }}
+            className="absolute inset-0 flex items-center px-6 md:px-16 will-change-transform"
+          >
+            <div className="max-w-3xl">
+              <p className="text-white/45 text-xs md:text-sm uppercase tracking-widest mb-5 font-mono">
+                Electrodomésticos · Argentina
+              </p>
+              <h3 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-white leading-none mb-6">
+                TST
+              </h3>
+              <p className="text-white text-lg md:text-2xl font-light leading-relaxed max-w-lg">
+                N°1 en campanas extractoras. Una marca consolidada que necesitaba construir su presencia digital desde cero.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* ── Fase 2: Lo que hicimos ───────────────────────────────────── */}
+          <motion.div
+            style={{ opacity: phase2Opacity }}
+            className="absolute inset-0 flex items-center px-6 md:px-16 will-change-transform"
+          >
+            <div className="max-w-3xl">
+              <p className="text-white/45 text-xs md:text-sm uppercase tracking-widest mb-8 font-mono">
+                Lo que hicimos
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {services.map((service, i) => (
+                  <ServiceTag
+                    key={service}
+                    service={service}
+                    index={i}
+                    scrollYProgress={scrollYProgress}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Fase 3: Métricas ─────────────────────────────────────────── */}
+          <motion.div
+            style={{ opacity: phase3Opacity }}
+            className="absolute inset-0 flex items-center px-6 md:px-16 will-change-transform"
+          >
+            <div className="max-w-4xl w-full">
+              <p className="text-white/45 text-xs md:text-sm uppercase tracking-widest mb-10 font-mono">
+                En números
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+                {metrics.map((metric, i) => (
+                  <MetricItem
+                    key={metric.label}
+                    metric={metric}
+                    index={i}
+                    scrollYProgress={scrollYProgress}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Fase 4: Testimonio ───────────────────────────────────────── */}
+          <motion.div
+            style={{ opacity: phase4Opacity, y: phase4Y }}
+            className="absolute inset-0 flex items-center justify-center px-6 md:px-16 will-change-transform"
+          >
+            <div className="max-w-2xl text-center">
+              <p className="text-white/30 text-4xl font-serif mb-6 leading-none">"</p>
+              <p className="text-white text-xl md:text-2xl font-light leading-relaxed mb-8">
+                APA es lo más. La mejor agencia con la que trabajamos hasta ahora, super comprometidos y responsables.
+              </p>
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-8 h-px bg-white/30 mb-3" />
+                <p className="text-white font-semibold text-sm">Ignacio Turnaturi</p>
+                <p className="text-white/45 text-xs uppercase tracking-widest">Jefe de Prensa · TST</p>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  )
 }
