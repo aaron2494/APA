@@ -66,7 +66,7 @@ export function TeamSection() {
   ]
 
   return (
-    <section ref={wrapperRef} className="relative mt-5 mb-5" style={{ height: "200vh" }}>
+    <section ref={wrapperRef} className="relative mt-2 mb-2" style={{ height: "200vh" }}>
 
       <div className="sticky top-0 h-screen overflow-hidden">
 

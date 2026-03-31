@@ -67,21 +67,7 @@ export function HeroSection() {
         
       </div>
       <div className="text-center z-20 px-4 w-full">
-        <motion.span
-          className="absolute text-[100px] md:text-[110px] lg:text-[12vw] left-1/2 -translate-x-1/2 bottom-[45%] font-bold text-white inline-block"
-          initial={{ y: 0, opacity: 0 }}
-          animate={{
-            opacity: [1, 1, 1, 1, 1],
-            y: [0, -120, 0, -800], // dos rebotes y luego se va hacia arriba
-          }}
-          transition={{
-            duration: 1,
-            ease: [0.1, 0.2, 0.3, 2],
-            times: [0, 0.25, 0.45, 0.6, 1],
-          }}
-        >
-          .
-        </motion.span>
+       
         <motion.div
           className="inline-block origin-center"
           initial={{ scale: 1 }}
@@ -155,22 +141,8 @@ export function HeroSection() {
             </motion.h1>
             {/* PUNTO FINAL */}
             <motion.span
-              variants={{
-                hidden: { scale: 0, opacity: 0 },
-                visible: {
-                  scale: 1,
-                  opacity: 1,
-                  y: [-400, 0],
-                  transition: {
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 15,
-                    delay: titleText.length * 0.1 + 0.7,
-                    duration: 1.4,
-                    ease: [0.34, 1.56, 0.64, 1],
-                  },
-                },
-              }}
+              
+                
               className="text-[40px] md:text-[60px] lg:text-[6vw] font-bold text-white inline-block"
             >
               .

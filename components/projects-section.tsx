@@ -43,7 +43,7 @@ function ServiceCard({
 
   return (
     <motion.div
-      style={{ y, scale, opacity }}
+      style={{ y, scale, opacity, }}
       className="relative sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-26 flex items-center justify-between gap-12"
     >
       <div className="absolute top-6 right-8 text-white/30 text-xs font-mono tracking-widest">
@@ -77,7 +77,7 @@ export function ProjectsSection() {
     <section
       id="proyectos"
       ref={ref}
-      className="relative min-h-[200vh] flex flex-col items-center justify-start bg-white"
+      className="relative min-h-[200vh] mt-2 flex flex-col items-center justify-start bg-white"
     >
 
       {/* ── HEADER: fondo rojo, dos títulos ───────────────────────── */}

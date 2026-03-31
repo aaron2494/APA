@@ -15,7 +15,7 @@ const clients = [
 
 export function ClientsMarquee() {
   return (
-    <section className="bg-black border-t border-b border-white/10 overflow-hidden relative" style={{ height: "2.5rem" }}>
+    <section className="bg-black border-t border-b border-white/10 overflow-hidden relative" style={{ height: "2.5rem",marginBottom:"2px" }}>
       <motion.div
         className="absolute top-1/2 -translate-y-1/2 left-0 flex gap-12 whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}

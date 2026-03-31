@@ -158,42 +158,7 @@ export function ContactSection() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Columna derecha — info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="pt-2 md:pt-4"
-          >
-            <div className="space-y-8">
-              <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest font-mono mb-2">Atención</p>
-                <p className="text-white text-sm leading-relaxed">Lunes a viernes<br />9:00 — 17:00 hs</p>
-              </div>
-              <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest font-mono mb-3">Redes sociales</p>
-                <div className="flex flex-col gap-2">
-                  <a href="https://instagram.com/agenciapaliza" target="_blank" rel="noopener noreferrer"
-                    className="text-white text-sm hover:text-primary transition-colors">
-                    Instagram · @agenciapaliza
-                  </a>
-                  <a href="https://instagram.com/palizamedia" target="_blank" rel="noopener noreferrer"
-                    className="text-white text-sm hover:text-primary transition-colors">
-                    Instagram · @palizamedia
-                  </a>
-                  <a href="https://linkedin.com/company/agencia-paliza" target="_blank" rel="noopener noreferrer"
-                    className="text-white text-sm hover:text-primary transition-colors">
-                    LinkedIn · Agencia Paliza
-                  </a>
-                </div>
-              </div>
-              <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest font-mono mb-2">Ubicación</p>
-                <p className="text-white text-sm leading-relaxed">Buenos Aires, Argentina<br />Trabajo 100% remoto</p>
-              </div>
-            </div>
-          </motion.div>
+         
         </div>
 
       </div>
