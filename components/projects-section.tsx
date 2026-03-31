@@ -38,13 +38,13 @@ function ServiceCard({
   const end = (index + 1.2) / services.length;
 
   const y       = useTransform(scrollYProgress, [start, end], [100, -150]);
-  const scale   = useTransform(scrollYProgress, [start, end], [1, 0.5]);
+  const scale   = useTransform(scrollYProgress, [start, end], [1, 0.6]);
   const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
   return (
     <motion.div
       style={{ y, scale, opacity }}
-      className="sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-16 flex items-center justify-between gap-12"
+      className="sticky top-1/2 -translate-y-1/2 bg-black rounded-[30px] p-12 md:p-26 flex items-center justify-between gap-12"
     >
       <div>
         <p className="uppercase text-sm text-white/50 font-medium mb-3 tracking-widest">
@@ -57,13 +57,7 @@ function ServiceCard({
           {service.description}
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="mt-10 px-6 py-3 border-2 border-white rounded-full text-white text-base font-medium flex items-center gap-2 hover:bg-white hover:text-black transition-all"
-        >
-          Descubrí más <span className="text-lg leading-none">↗</span>
-        </motion.button>
+      
       </div>
     </motion.div>
   );

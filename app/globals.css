@@ -126,7 +126,7 @@
     cursor: none;
   }
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-white overflow-x-hidden;
     cursor: none;
   }
   a, button, [role="button"] {
