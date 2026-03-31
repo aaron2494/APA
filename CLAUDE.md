@@ -186,13 +186,39 @@ text-[10vw] md:text-[9vw] lg:text-[10vw]  — Hero principal
 ---
 
 ## Reglas Generales
-
-- **Dark mode forzado.** El `html` tiene `className="dark"`. No hay toggle de tema.
 - **No construir después de cambios** (`next build`). Solo `next dev` para desarrollo.
 - **No añadir comentarios** al código existente salvo que la lógica sea verdaderamente no obvia.
 - **No refactorizar** lo que no se pidió. El código existente tiene decisiones intencionales.
 - **No mover animaciones a CSS** cuando ya están en Framer Motion. La fuente de verdad de movimiento es Framer Motion.
 - El archivo `tailwind.config` no existe explícitamente — Tailwind 4 lee la configuración desde `globals.css` y `postcss.config.mjs`.
+
+---
+
+## ⛔ Reglas Anti-Romper — Aprendidas en producción
+
+### Scroll y sticky
+- **NUNCA poner `overflow: hidden`, `overflow-x: hidden` o `overflow-x: clip` en `html` o `body`.**
+  Rompe `position: sticky`, `useScroll()` de Framer Motion y el `IntersectionObserver`. Todas las secciones sticky dejan de funcionar porque el scroll container deja de ser `window`.
+- **No agregar `overflow: hidden` a ningún ancestro de secciones sticky** (`main`, `html`, `body`). El overflow de elementos puntuales se maneja en el componente mismo.
+
+### Animaciones horizontales (x) en mobile
+- **NUNCA usar `initial={{ x: N }}` en elementos que ocupen ancho cercano al 100vw en mobile.**
+  El elemento se desplaza N px fuera del viewport. Como las secciones no tienen `overflow: hidden`, aparece una franja blanca en el costado derecho.
+- Usar siempre `initial={{ y: N }}` (vertical) para animaciones de entrada en elementos de ancho completo. Reservar `x` para elementos pequeños (botones, badges, íconos).
+
+### Marquee y elementos wide
+- **No usar `width: max-content` en un `div` en flujo normal** si el contenido puede ser más ancho que el viewport.
+  Aunque el padre tenga `overflow: hidden`, algunos browsers mobile calculan el `scrollWidth` del documento con el elemento en su estado SSR (sin transform aplicado) y crean scroll horizontal.
+- Solución: usar `position: absolute` en el elemento animado con `overflow: hidden` en el padre y altura explícita en el contenedor.
+
+### Elementos fixed con transform
+- **El `ScrollProgress` usa `scaleX` con spring — el spring puede overshooting > 1.** Si se cambia la configuración del spring, verificar que `restDelta` y `damping` sean suficientes para no exceder scaleX: 1 visualmente.
+
+### Secciones sticky — alturas y timings
+- **No reducir la altura de secciones sticky sin reescalar TODOS los `useTransform` proporcionalmente.**
+  Si se reduce la altura, todos los rangos de `scrollYProgress` deben multiplicarse por el factor `nueva_altura / altura_original`. Si no, las fases se acumulan al inicio y el resto de la sección queda vacío.
+- La `AboutSection` tiene actualmente `400vh`. Si se cambia, reescalar: `CollageImage`, `overlayOpacity`, `phase1–4Opacity/Y`, `ServiceTag`, `MetricItem`.
+- **No tocar los timings del Hero** sin revisar todos los `delay` encadenados. El subtítulo y el CTA dependen de `titleText.length * factor + offset`.
 
 ---
 
