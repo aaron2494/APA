@@ -25,7 +25,7 @@ export function HeroSection() {
 
   return (
     
-    <section className="relative h-screen flex items-center justify-center overflow-hidden ">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden w-100vh">
       {/* Floating Orbs - Mantenemos solo las orbes flotantes */}
 
         <motion.div
@@ -171,7 +171,7 @@ export function HeroSection() {
                   },
                 },
               }}
-              className="text-[80px] md:text-[100px] lg:text-[8vw] font-bold text-white inline-block"
+              className="text-[40px] md:text-[60px] lg:text-[6vw] font-bold text-white inline-block"
             >
               .
             </motion.span>
