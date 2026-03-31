@@ -42,7 +42,7 @@ const backgroundColor = useTransform(
 
 
   return (
- <section id="proyectos" className="relative">
+ <section id="nosotros" className="relative">
   {/* Background Container que cambia de color */}
   <motion.div 
     className="absolute inset-0 z-0"

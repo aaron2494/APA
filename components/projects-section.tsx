@@ -78,6 +78,7 @@ export function ProjectsSection() {
 
   return (
     <section
+      id="proyectos"
       ref={ref}
       className="relative min-h-[200vh] flex flex-col items-center justify-start bg-white"
     >

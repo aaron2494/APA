@@ -58,7 +58,7 @@ export function ApproachSection() {
   ]
 
   return (
-    <section id="nosotros" className="mt-5">
+    <section id="servicios" className="mt-5">
 
       {/* ── PARTE SUPERIOR: fondo negro ─────────────────────────── */}
       <div className="bg-black px-6 md:px-8 py-14 md:py-20">
