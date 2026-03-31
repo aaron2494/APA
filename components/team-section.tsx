@@ -96,7 +96,7 @@ export function TeamSection() {
             <div className="grid grid-cols-2 gap-x-6 md:gap-x-12 gap-y-0 items-start md:ml-[20%]">
 
               {/* Izquierda — texto blanco */}
-              <div className="space-y-4 md:space-y-4 ">
+              <div className="space-y-4 mt-5 md:space-y-4 ">
                 {teamLeft.map((member, i) => (
                   <motion.div
                     key={member.name}
