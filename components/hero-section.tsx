@@ -195,26 +195,7 @@ export function HeroSection() {
           </span>
         </motion.p>
 
-        {/* CTA BUTTON */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            delay: titleText.length * 0.07 + 2.8,
-            duration: 0.5,
-            ease: "easeOut",
-          }}
-          className="mt-10 inline-block"
-        >
-          <MagneticButton>
-            <a
-              href="#contacto"
-              className="inline-block px-8 py-3 bg-[#b40f1d] text-white text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-[#a0001a] transition-all duration-300"
-            >
-              DA EL PRIMER PASO
-            </a>
-          </MagneticButton>
-        </motion.div>
+       
       </div>
     </section>
   );
