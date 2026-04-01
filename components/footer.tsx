@@ -1,6 +1,7 @@
 "use client"
 
 import { Instagram, Linkedin, Facebook } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
@@ -19,8 +20,8 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="text-2xl font-bold">
-              <span className="text-primary">APA</span> 
+            <div className="relative h-14 w-24">
+              <Image src="/logos/APA-ROJO.png" alt="APA" fill className="object-contain object-left" sizes="96px" />
             </div>
             <p className="text-sm text-accent-foreground/80 text-pretty">
               Creamos impacto real para marcas que quieren destacar.

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useTransition, useRef } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ClipReveal } from "@/components/clip-reveal"
 import { sendContactEmail, type ContactState } from "@/app/actions/contact"
@@ -33,7 +34,7 @@ export function ContactSection() {
       {/* Fondo rojo — cubre la parte superior */}
       <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[460px] bg-[#c0001a]" />
 
-      <div className="relative px-6 md:px-12 pt-10 md:pt-14 pb-20">
+      <div className="relative px-6 md:px-12 pt-10 md:pt-14 pb-6">
 
         {/* Título */}
         <h2 className="text-5xl md:text-7xl text-white leading-tight mb-8">
@@ -158,7 +159,28 @@ export function ContactSection() {
             </AnimatePresence>
           </motion.div>
 
-         
+        </div>
+
+        {/* Logos — parte blanca, debajo del form */}
+        <div className="flex items-center justify-center gap-16 mt-10 flex-wrap">
+          <div className="relative h-[200px] w-[320px]">
+            <Image
+              src="/logos/LOGO-COMPLETO-ROJO.png"
+              alt="Agencia Paliza"
+              fill
+              className="object-contain"
+              sizes="320px"
+            />
+          </div>
+          <div className="relative h-[200px] w-[320px]">
+            <Image
+              src="/logos/PALIZA-MEDIA NEGRO.png"
+              alt="Paliza Media"
+              fill
+              className="object-contain"
+              sizes="320px"
+            />
+          </div>
         </div>
 
       </div>

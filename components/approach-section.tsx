@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useState } from "react"
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
 import Image from "next/image"
 import { MagneticButton } from "@/components/magnetic-button"
 import { ClipReveal } from "@/components/clip-reveal"
@@ -10,43 +10,66 @@ const TESTIMONIALS = [
   {
     id: 1,
     text: "Nativo bar está contento con el trabajo que realizan en nuestras redes sociales, son muy atentos en cada cosa que les pedimos. Tienen mucha dedicación y lo más importante es que se ponen la camiseta como nosotros, hacen un trabajo muy valioso.",
-    author: "Valentina Moro",
-    role: "Nativo Bar",
+    author: "Nativo Bar",
+    role: "Valentina Moro",
   },
   {
     id: 2,
-    text: "Nuestra experiencia fue positiva. El manejo de nuestro Instagram cambió de forma notable, logrando una comunicación mucho más moderna, alineada con tendencias y con el estilo que estábamos buscando para la marca. Destacamos la calidad del trabajo y la buena comunicación",
+    text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
     author: "Rodrigo Castillo",
     role: "CEO · Empresa C",
   },
   {
     id: 3,
     text: "Una empresa eficiente con metas claras, en constante crecimiento, gente capacitada profesional sobre todo honesta. Su trabajo es muy muy bueno, te guían y marcan el camino hacia nuevas tendencias. Los volvería a contratar sin dudarlo!",
-    author: "Rodrigo Castillo",
-    role: "CEO · Empresa C",
+    author: "SatenClean",
+    role: "Maximiliano",
   },
   {
     id: 4,
     text: "Nuestra experiencia fue positiva. El manejo de nuestro Instagram cambió de forma notable, logrando una comunicación mucho más moderna, alineada con tendencias y con el estilo que estábamos buscando para la marca. Destacamos la calidad del trabajo y la buena comunicación",
-    author: "Rodrigo Castillo",
-    role: "CEO · Empresa C",
+    author: "Lure",
+    role: "",
   },
   {
     id: 5,
     text: "Trabajamos con Agencia Paliza hace 2 años y estamos contentos con los resultados que generamos en conjunto con la marca. Al ser fabricantes de electrodomésticos, a veces es un desafío mostrar nuestros productos, pero la agencia logra mes a mes generar contenido de productos estáticos y lo hacen desde ideas creativas e innovadoras. Lograron que la gestión de las redes sociales sea mucho más dinámica, moderna y amigable con el público. Destacamos la calidad humana de todo el equipo.",
-    author: "Rodrigo Castillo",
-    role: "CEO · Empresa C",
+    author: "tst",
+    role: "",
   },
   {
     id: 6,
     text: "Estamos muy contentos con el trabajo de APA. Desde que las conocimos, la imagen mejoró muchísimo, y gran parte de clientes nuevos nos hacen mención a nuestras redes. Siempre que podemos las recomendamos, porque generan confianza ciega.",
-    author: "Rodrigo Castillo",
-    role: "CEO · Empresa C",
+    author: "Troncoso Transfers",
+    role: "",
   },
 ]
 
 const GROUP_1 = TESTIMONIALS.slice(0, 3)
 const GROUP_2 = TESTIMONIALS.slice(3, 6)
+
+function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[0] }) {
+  const [expanded, setExpanded] = useState(false)
+  return (
+    <div className="flex flex-col gap-3 md:gap-5">
+      <div className={expanded ? "max-h-40 overflow-y-auto pr-1" : ""}>
+        <p className={`text-gray-900 text-xs md:text-base leading-relaxed ${expanded ? "" : "line-clamp-4"}`}>
+          {t.text}
+        </p>
+      </div>
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="self-start text-xs text-gray-500 underline underline-offset-2 hover:text-gray-800 transition-colors"
+      >
+        {expanded ? "Ver menos" : "Ver más"}
+      </button>
+      <div>
+        <p className="text-gray-900 font-semibold text-xs md:text-sm">{t.author}</p>
+        <p className="text-gray-500 text-xs">{t.role}</p>
+      </div>
+    </div>
+  )
+}
 
 export function ApproachSection() {
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -91,6 +114,12 @@ export function ApproachSection() {
     { opacity: card5Opacity, y: card5Y },
     { opacity: card6Opacity, y: card6Y },
   ]
+
+  // Pointer-events: Group 2 bloquea clicks de Group 1 cuando está invisible
+  const [group2Active, setGroup2Active] = useState(false)
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setGroup2Active(v >= 0.50)
+  })
 
   return (
     <section id="servicios">
@@ -140,7 +169,7 @@ export function ApproachSection() {
           </div>
 
           {/* Contenido encima de la foto */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-16 gap-6 md:gap-10">
+          <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-16 gap-6 md:gap-10 pt-20 md:pt-0">
 
             {/* Wrapper de cards — grupo 1 en flujo, grupo 2 superpuesto */}
             <div className="relative w-full max-w-6xl">
@@ -151,34 +180,25 @@ export function ApproachSection() {
                   <motion.article
                     key={t.id}
                     style={group1Motions[i]}
-                    className="bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-8 flex flex-col gap-3 md:gap-5"
+                    className="bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-8"
                   >
-                    <p className="text-gray-900 text-xs md:text-base leading-relaxed line-clamp-4">
-                      {t.text}
-                    </p>
-                    <div>
-                      <p className="text-gray-900 font-semibold text-xs md:text-sm">{t.author}</p>
-                      <p className="text-gray-500 text-xs">{t.role}</p>
-                    </div>
+                    <TestimonialCard t={t} />
                   </motion.article>
                 ))}
               </div>
 
               {/* Grupo 2 — superpuesto, entra cuando grupo 1 sale */}
-              <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
+              <div
+                className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6"
+                style={{ pointerEvents: group2Active ? "auto" : "none" }}
+              >
                 {GROUP_2.map((t, i) => (
                   <motion.article
                     key={t.id}
                     style={group2Motions[i]}
-                    className="bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-8 flex flex-col gap-3 md:gap-5"
+                    className="bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-8"
                   >
-                    <p className="text-gray-900 text-xs md:text-base leading-relaxed line-clamp-4">
-                      {t.text}
-                    </p>
-                    <div>
-                      <p className="text-gray-900 font-semibold text-xs md:text-sm">{t.author}</p>
-                      <p className="text-gray-500 text-xs">{t.role}</p>
-                    </div>
+                    <TestimonialCard t={t} />
                   </motion.article>
                 ))}
               </div>

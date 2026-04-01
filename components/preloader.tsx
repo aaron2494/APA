@@ -21,14 +21,14 @@ export function Preloader() {
         >
           {/* Letras APA — entran una por una */}
           <motion.div
-            className="flex items-center gap-1"
+            className="flex items-start gap-1"
             initial="hidden"
             animate="visible"
             variants={{
               visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
             }}
           >
-            {["A", "P", "A"].map((letter, i) => (
+            {["A", "P", "A", "®"].map((letter, i) => (
               <motion.span
                 key={i}
                 variants={{
@@ -39,7 +39,11 @@ export function Preloader() {
                     transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
                   },
                 }}
-                className="text-[18vw] md:text-[12vw] font-black text-white leading-none tracking-tighter"
+                className={
+                  i === 3
+                    ? "text-[4vw] md:text-[2.8vw] font-black text-white mt-[1.5vw] md:mt-[0.8vw]"
+                    : "text-[18vw] md:text-[12vw] font-black text-white leading-none tracking-tighter"
+                }
               >
                 {letter}
               </motion.span>
@@ -51,7 +55,7 @@ export function Preloader() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-[36%] w-[18vw] md:w-[12vw] h-[3px] bg-[#c0001a] origin-left"
+            className="absolute bottom-[42%] md:bottom-[36%] w-[18vw] md:w-[12vw] h-[3px] bg-[#c0001a] origin-left"
           />
         </motion.div>
       )}
