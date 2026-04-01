@@ -23,11 +23,14 @@ export function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          from_name: "Agencia Paliza — Web",
+          subject: `Nuevo contacto — ${formData.get("name")}${formData.get("company") ? ` (${formData.get("company")})` : ""}`,
+          replyto: formData.get("email"),
           name: formData.get("name"),
           email: formData.get("email"),
-          company: formData.get("company") || "",
-          message: formData.get("message"),
-          subject: `Nuevo contacto web — ${formData.get("name")}${formData.get("company") ? ` (${formData.get("company")})` : ""}`,
+          empresa: formData.get("company") || "—",
+          mensaje: formData.get("message"),
+          botcheck: formData.get("botcheck"),
         }),
       })
 
@@ -142,6 +145,8 @@ export function ContactSection() {
                     transition={{ delay: 0.59, duration: 0.35, ease: "easeOut" }}
                     className="w-full bg-transparent border border-white/30 text-white placeholder:text-white/50 rounded-2xl px-5 py-3 text-sm outline-none focus:border-white/70 transition-colors resize-none disabled:opacity-50"
                   />
+
+                  <input type="checkbox" name="botcheck" className="hidden" />
 
                   {state.status === "error" && (
                     <motion.p
