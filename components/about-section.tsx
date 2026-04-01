@@ -35,6 +35,11 @@ const collageImages = [
     className: "collage-img-4",
   },
   {
+    src: "/imagenes/carilo.png",
+    alt: "Activación TST en balneario cariló",
+    className: "collage-img-6",
+  },
+  {
     src: "/imagenes/flor.png",
     alt: "Flor Vigna en la activación TST en balneario",
     className: "collage-img-5",
@@ -225,9 +230,9 @@ export function AboutSection() {
               <p className="text-white/40 text-xs uppercase tracking-widest mb-5 font-mono">
                 Electrodomésticos · Argentina
               </p>
-              <h3 className="text-7xl md:text-9xl lg:text-[11rem] font-black text-white leading-none mb-6">
-                TST
-              </h3>
+              <div className="relative mb-6" style={{ width: "clamp(200px, 40vw, 520px)", height: "clamp(80px, 16vw, 210px)" }}>
+                <Image src="/TST.png" alt="TST" fill className="object-contain object-left" />
+              </div>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed max-w-lg">
                 Líderes en el mercado de campañas extractoras hace 60 años. Una marca consolidada pero que necesitaba construir reconocimiento y posicionamiento digital.
               </p>

@@ -108,7 +108,7 @@ export function ProjectsSection() {
       </div>
 
       {/* ── SCROLL AREA: fondo blanco + cards negras ─────────────── */}
-      <div className="w-full relative max-w-4xl mt-[10vh]">
+      <div className="w-full relative max-w-4xl mt-[5vh]">
         {services.map((service, i) => (
           <ServiceCard
             key={i}

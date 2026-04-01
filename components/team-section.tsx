@@ -7,15 +7,15 @@ import { ClipReveal } from "@/components/clip-reveal"
 const teamLeft = [
   { name: "Dana Santelli & Agostina Mariani",              role: "Fundadoras · Directoras Creativas" },
   { name: "Giuliana Zambaglione",                          role: "Project Manager · Coordinación & Estrategia" },
-  { name: "Oriana Restaneo",                               role: "Ejecutiva de cuentas · Coordinación & Estrategia" },
-  { name: "Uriel Pollak / Victoria Scarrone / Valentina Penela", role: "Social Media Management · Community Building." },
+  { name: " Victoria Scarrone",                            role: "Social Media Management · Community Building." },
+  { name: "Daniela Guerrini",                              role: "Diseño Grafico · Identidad Visual & Creatividad" },
 ]
 
 const teamRight = [
-  { name: "Juliana Dell'Acqua",   role: "Editora & Motion Designer" },
+   { name: "Alejandro Toledo",     role: "Analista de Medios Digitales · Performance & Data" },
   { name: "Aaron Francolino",     role: "Full Stack Developer · Soluciones Digitales" },
-  { name: "Ignacio Scordia",      role: "Fotógrafo & Filmmaker · Producción Audiovisual" },
-  { name: "Alejandro Toledo",     role: "Analista de Medios Digitales · Performance & Data" },
+  { name: "Ignacio Scordia",      role: "Fotógrafo & Filmmaker · Producción Audiovisual  Edición y animación·" },
+ 
 ]
 
 export function TeamSection() {
@@ -23,7 +23,7 @@ export function TeamSection() {
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end end"], 
   })
 
   // Izquierda y derecha — intercaladas desde el inicio
