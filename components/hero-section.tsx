@@ -9,18 +9,10 @@ const titleText = "Hacelo distinto";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [showBounce, setShowBounce] = useState(false);
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 600], [0, 300]); // efecto parallax sutil
+  const y = useTransform(scrollY, [0, 600], [0, 300]);
   useEffect(() => {
     setIsVisible(true);
-
-    // Activar el crecimiento después de que termine la animación letra por letra
-    const bounceTimer = setTimeout(() => {
-      setShowBounce(true);
-    }, titleText.length * 70 + 500);
-
-    return () => clearTimeout(bounceTimer);
   }, []);
 
   return (
@@ -68,94 +60,16 @@ export function HeroSection() {
       </div>
       <div className="text-center z-20 px-4 w-full">
        
-        <motion.div
-          className="inline-block origin-center"
-          initial={{ scale: 1 }}
-          animate={
-            isVisible
-              ? {
-                  scale: [0.8, 1.5, 1], // Aumentados valores para más impacto visual
-                }
-              : {}
-          }
-          transition={{
-            duration: 1.2, // Reducido de 1.6 para que sea más rápido
-            delay: titleText.length * 0.06 + 0.2, // Reducido delay para acelerar la secuencia
-            ease: [0.25, 1.35, 0.6, 1], // Ajustado easing para más elasticidad
-            times: [0, 0.25, 0.5, 0.75, 1],
-          }}
-        >
-          {/* CONTENEDOR PRINCIPAL - Similar a Monks */}
-          <motion.div
-            className="inline-block"
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.02,
-                  delayChildren: 0.7,
-                },
-              },
-            }}
-     
-          >
-            {/* TEXTO PRINCIPAL - Aparece letra por letra muy pequeño */}
-            <motion.h1 className="inline-block text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
-              {titleText.split("").map((char, i) => (
-                <motion.span
-                  key={i}
-                  variants={{
-                    hidden: {
-                      opacity: 0,
-                      scale: 0.2, // Reducido de 0.1 para empezar más pequeño
-                      y: 100, // Aumentado de 40 para efecto más dramático
-                      rotateX: -10,
-                      filter: "blur(12px)", // Aumentado blur
-                    },
-                    visible: {
-                      opacity: 1,
-                      scale: 1,
-                      y: 0,
-                      filter: "blur(0px)",
-                      transition: {
-                        type: "spring",
-                        stiffness: 300, // Aumentado de 350 para más elasticidad
-                        damping: 20, // Reducido de 30 para más rebote
-
-                        duration: 0.6, // Reducido de 0.8
-                      },
-                    },
-                  }}
-                  className="inline-block"
-      transition={{
-        duration: 0.45,
-        ease: "easeInOut",
-      }}
-    
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
-            </motion.h1>
-            {/* PUNTO FINAL */}
-            <motion.span
-              
-                
-              className="text-[40px] md:text-[60px] lg:text-[6vw] font-bold text-white inline-block"
-            >
-              .
-            </motion.span>
-          </motion.div>
-        </motion.div>
+        <h1 className="inline-block text-[10vw] md:text-[9vw] lg:text-[10vw] font-bold text-white leading-none">
+          {titleText}<span className="text-[40px] md:text-[60px] lg:text-[6vw]">.</span>
+        </h1>
 
         {/* SUBTÍTULO - aparece después del texto */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{
-            delay: titleText.length * 0.07 + 2.2, // ⬅️ ajustado para aparecer luego del punto rojo + texto
+            delay: 0.4,
             duration: 0.6,
             ease: "easeOut",
           }}

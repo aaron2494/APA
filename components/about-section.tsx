@@ -234,7 +234,7 @@ export function AboutSection() {
                 <Image src="/TST.png" alt="TST" fill className="object-contain object-left" />
               </div>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                Líderes en el mercado de campañas extractoras hace 60 años. Una marca consolidada pero que necesitaba construir reconocimiento y posicionamiento digital.
+                Líderes en el mercado de campanas extractoras hace 60 años. Una marca consolidada pero que necesitaba construir reconocimiento y posicionamiento digital.
               </p>
             </div>
           </motion.div>

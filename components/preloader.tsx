@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 export function Preloader() {
   const [show, setShow] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), 2200)
+    const timer = setTimeout(() => setShow(false), 1300)
     return () => clearTimeout(timer)
   }, [])
 
@@ -19,44 +20,31 @@ export function Preloader() {
           exit={{ y: "-100%" }}
           transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
         >
-          {/* Letras APA — entran una por una */}
-          <motion.div
-            className="flex items-start gap-1"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
-            }}
-          >
-            {["A", "P", "A", "®"].map((letter, i) => (
-              <motion.span
-                key={i}
-                variants={{
-                  hidden: { y: 60, opacity: 0 },
-                  visible: {
-                    y: 0,
-                    opacity: 1,
-                    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-                  },
-                }}
-                className={
-                  i === 3
-                    ? "text-[4vw] md:text-[2.8vw] font-black text-white mt-[1.5vw] md:mt-[0.8vw]"
-                    : "text-[18vw] md:text-[12vw] font-black text-white leading-none tracking-tighter"
-                }
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.div>
+          <div className="relative flex flex-col items-center gap-0">
+            {/* Logo oficial — blur + scale con spring */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.4, filter: "blur(18px)" }}
+              animate={{ opacity: 1, scale: 2, filter: "blur(0px)" }}
+              transition={{ delay: 0.15, duration: 0.45, type: "spring", stiffness: 500, damping: 30 }}
+              className="relative w-[52vw] md:w-[28vw] lg:w-[20vw] aspect-[2/1]"
+            >
+              <Image
+                src="/logos/APA-BLANCO.png"
+                alt="APA"
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
 
-          {/* Línea roja debajo — aparece después de las letras */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-[42%] md:bottom-[36%] w-[18vw] md:w-[12vw] h-[3px] bg-[#c0001a] origin-left"
-          />
+            {/* Línea roja debajo — aparece después del logo */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.75, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full h-[2px] bg-[#c0001a] origin-left mt-1"
+            />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

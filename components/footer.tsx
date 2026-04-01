@@ -24,7 +24,7 @@ export function Footer() {
               <Image src="/logos/APA-ROJO.png" alt="APA" fill className="object-contain object-left" sizes="96px" />
             </div>
             <p className="text-sm text-accent-foreground/80 text-pretty">
-              Creamos impacto real para marcas que quieren destacar.
+              Creamos un impacto juntos
             </p>
           </div>
 
@@ -74,16 +74,7 @@ export function Footer() {
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/agenciapaliza"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
+              </a>es
             </div>
           </div>
         </div>

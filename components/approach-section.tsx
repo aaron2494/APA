@@ -7,41 +7,44 @@ import { MagneticButton } from "@/components/magnetic-button"
 import { ClipReveal } from "@/components/clip-reveal"
 
 const TESTIMONIALS = [
-  {
+    {
     id: 1,
-    text: "Nativo bar está contento con el trabajo que realizan en nuestras redes sociales, son muy atentos en cada cosa que les pedimos. Tienen mucha dedicación y lo más importante es que se ponen la camiseta como nosotros, hacen un trabajo muy valioso.",
-    author: "Nativo Bar",
-    role: "Valentina Moro",
-  },
-  {
-    id: 2,
     text: "Trabajamos con Agencia Paliza hace 2 años y estamos contentos con los resultados que generamos en conjunto con la marca. Al ser fabricantes de electrodomésticos, a veces es un desafío mostrar nuestros productos, pero la agencia logra mes a mes generar contenido de productos estáticos y lo hacen desde ideas creativas e innovadoras. Lograron que la gestión de las redes sociales sea mucho más dinámica, moderna y amigable con el público. Destacamos la calidad humana de todo el equipo.",
-    author: "tst",
+    author: "TST",
+    role: "",
+  },
+   {
+    id: 2,
+    text: "Nuestra experiencia fue positiva. El manejo de nuestro Instagram cambió de forma notable, logrando una comunicación mucho más moderna, alineada con tendencias y con el estilo que estábamos buscando para la marca. Destacamos la calidad del trabajo y la buena comunicación",
+    author: "LURE",
     role: "",
   },
   {
     id: 3,
-    text: "Una empresa eficiente con metas claras, en constante crecimiento, gente capacitada profesional sobre todo honesta. Su trabajo es muy muy bueno, te guían y marcan el camino hacia nuevas tendencias. Los volvería a contratar sin dudarlo!",
-    author: "SatenClean",
-    role: "Maximiliano",
+    text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
+    author: "NATIVO BAR",
+    role: "",
   },
   {
     id: 4,
-    text: "Nuestra experiencia fue positiva. El manejo de nuestro Instagram cambió de forma notable, logrando una comunicación mucho más moderna, alineada con tendencias y con el estilo que estábamos buscando para la marca. Destacamos la calidad del trabajo y la buena comunicación",
-    author: "Lure",
+    text: "Estamos muy contentos con el trabajo que realizan en nuestras redes sociales, son muy atentos en cada cosa que les pedimos. Tienen mucha dedicación y lo más importante es que se ponen la camiseta como nosotros, hacen un trabajo muy valioso.",
+    author: "NATIVO BAR",
     role: "",
   },
-  {
-    id: 5,
-    text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
-    author: "Nativo Bar",
-    role: "",
-  },
+  
+
+
 
   {
-    id: 6,
+    id: 5,
     text: "Estamos muy contentos con el trabajo de APA. Desde que las conocimos, la imagen mejoró muchísimo, y gran parte de clientes nuevos nos hacen mención a nuestras redes. Siempre que podemos las recomendamos, porque generan confianza ciega.",
-    author: "Troncoso Transfers",
+    author: "TRONCOSO TRANSFERS",
+    role: "",
+  },
+   {
+    id: 6,
+    text: "Una empresa eficiente con metas claras, en constante crecimiento, gente capacitada profesional sobre todo honesta. Su trabajo es muy muy bueno, te guían y marcan el camino hacia nuevas tendencias. Los volvería a contratar sin dudarlo!",
+    author: "SATENCLEAN",
     role: "",
   },
 ]
@@ -141,9 +144,7 @@ export function ApproachSection() {
             viewport={{ once: true, amount: 0.3 }}
             className="text-gray-300 text-base md:text-lg leading-relaxed md:ml-[25%]"
           >
-            Podríamos presentarnos y contarte nuestra historia en un breve
-            párrafo, pero nos pareció una buena idea que nuestros clientes les
-            cuenten que significa APA para ellos.
+           Podríamos presentarnos y contarte nuestra historia en un breve párrafo, pero nos pareció mejor idea que sean nuestros clientes quienes te cuenten qué significa APA para ellos.
           </motion.p>
 
         </div>
