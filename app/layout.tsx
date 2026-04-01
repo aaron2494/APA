@@ -1,6 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
+import { Manrope } from "next/font/google"
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+})
 import { Cursor } from "@/components/cursor"
 import { Preloader } from "@/components/preloader"
 import "./globals.css"
@@ -108,7 +114,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={GeistSans.variable} suppressHydrationWarning>
+    <html lang="es" className={manrope.variable} suppressHydrationWarning>
       <head>
         {/* Preconnect a recursos externos */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -25,7 +25,7 @@ export async function sendContactEmail(
   try {
     await resend.emails.send({
       from: "APA Web <onboarding@resend.dev>",
-      to: ["aaron.e.francolino@gmail.com"],
+      to: ["Infoagenciapaliza@gmail.com"],
       replyTo: email,
       subject: `Nuevo contacto de ${name}${company ? ` — ${company}` : ""}`,
       html: `
