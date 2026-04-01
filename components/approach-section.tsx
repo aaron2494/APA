@@ -15,9 +15,9 @@ const TESTIMONIALS = [
   },
   {
     id: 2,
-    text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
-    author: "Rodrigo Castillo",
-    role: "CEO · Empresa C",
+    text: "Trabajamos con Agencia Paliza hace 2 años y estamos contentos con los resultados que generamos en conjunto con la marca. Al ser fabricantes de electrodomésticos, a veces es un desafío mostrar nuestros productos, pero la agencia logra mes a mes generar contenido de productos estáticos y lo hacen desde ideas creativas e innovadoras. Lograron que la gestión de las redes sociales sea mucho más dinámica, moderna y amigable con el público. Destacamos la calidad humana de todo el equipo.",
+    author: "tst",
+    role: "",
   },
   {
     id: 3,
@@ -33,10 +33,11 @@ const TESTIMONIALS = [
   },
   {
     id: 5,
-    text: "Trabajamos con Agencia Paliza hace 2 años y estamos contentos con los resultados que generamos en conjunto con la marca. Al ser fabricantes de electrodomésticos, a veces es un desafío mostrar nuestros productos, pero la agencia logra mes a mes generar contenido de productos estáticos y lo hacen desde ideas creativas e innovadoras. Lograron que la gestión de las redes sociales sea mucho más dinámica, moderna y amigable con el público. Destacamos la calidad humana de todo el equipo.",
-    author: "tst",
+    text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
+    author: "Nativo Bar",
     role: "",
   },
+
   {
     id: 6,
     text: "Estamos muy contentos con el trabajo de APA. Desde que las conocimos, la imagen mejoró muchísimo, y gran parte de clientes nuevos nos hacen mención a nuestras redes. Siempre que podemos las recomendamos, porque generan confianza ciega.",
