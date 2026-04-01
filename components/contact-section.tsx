@@ -1,24 +1,47 @@
 "use client"
 
-import { useState, useTransition, useRef } from "react"
+import { useState, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ClipReveal } from "@/components/clip-reveal"
-import { sendContactEmail, type ContactState } from "@/app/actions/contact"
+
+type FormState = { status: "idle" | "success" | "error"; message?: string }
 
 export function ContactSection() {
-  const [state, setState] = useState<ContactState>({ status: "idle" })
-  const [isPending, startTransition] = useTransition()
+  const [state, setState] = useState<FormState>({ status: "idle" })
+  const [isPending, setIsPending] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsPending(true)
     const formData = new FormData(e.currentTarget)
-    startTransition(async () => {
-      const result = await sendContactEmail({ status: "idle" }, formData)
-      setState(result)
-      if (result.status === "success") formRef.current?.reset()
-    })
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company") || "",
+          message: formData.get("message"),
+          subject: `Nuevo contacto web — ${formData.get("name")}${formData.get("company") ? ` (${formData.get("company")})` : ""}`,
+        }),
+      })
+
+      if (res.ok) {
+        setState({ status: "success" })
+        formRef.current?.reset()
+      } else {
+        setState({ status: "error", message: "No pudimos enviar tu mensaje. Intentá de nuevo más tarde." })
+      }
+    } catch {
+      setState({ status: "error", message: "No pudimos enviar tu mensaje. Intentá de nuevo más tarde." })
+    } finally {
+      setIsPending(false)
+    }
   }
 
   return (

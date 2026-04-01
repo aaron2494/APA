@@ -12,7 +12,7 @@ import { Preloader } from "@/components/preloader"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agenciapaliza.com"),
+  metadataBase: new URL("https://agenciapaliza.com.ar"),
   title: {
     default: "APA — Agencia Paliza | Marketing Digital Buenos Aires",
     template: "%s | APA Agencia Paliza",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://agenciapaliza.com",
+    url: "https://agenciapaliza.com.ar",
     title: "APA — Agencia Paliza | Marketing Digital Buenos Aires",
     description: "Agencia boutique 360°. Redes, contenido, paid media, PR y activaciones. Construyamos un impacto juntos.",
     siteName: "APA — Agencia Paliza",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://agenciapaliza.com",
+    canonical: "https://agenciapaliza.com.ar",
   },
   icons: {
     icon: "/logos/APA-ROJO.png",
@@ -76,10 +76,10 @@ const jsonLd = {
   name: "APA — Agencia Paliza",
   description:
     "Agencia de marketing digital boutique en Buenos Aires. Gestión de redes sociales, contenido, paid media, PR y activaciones de marca.",
-  url: "https://agenciapaliza.com",
-  logo: "https://agenciapaliza.com/logos/APA-ROJO.png",
-  image: "https://agenciapaliza.com/og-image.jpg",
-  email: "hola@agenciapaliza.com",
+  url: "https://agenciapaliza.com.ar",
+  logo: "https://agenciapaliza.com.ar/logos/APA-ROJO.png",
+  image: "https://agenciapaliza.com.ar/og-image.jpg",
+  email: "hola@agenciapaliza.com.ar",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Buenos Aires",
