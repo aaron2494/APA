@@ -8,71 +8,56 @@ import { ClipReveal } from "@/components/clip-reveal"
 // ─── Assets ────────────────────────────────────────────────────────────────────
 
 const collageImages = [
-  // Row 1: panorámica ancha (cols 1-3) + retrato derecho (col 4)
   {
-    src: "/imagenes/mdq2.png",
+    src: "/imagenes/mdq.png",
     alt: "Público en la activación TST Mar del Plata",
-    style: { gridColumn: "1 / 4", gridRow: "1 / 2" },
+    className: "collage-img-0",
+    objectPosition: "center 20%",
   },
   {
     src: "/imagenes/martin.png",
     alt: "Martin Garabal en grabación para la televisión",
-    style: { gridColumn: "4 / 5", gridRow: "1 / 2" },
-  },
-  // Col 1: dos imágenes apiladas (rows 2 y 3)
-  {
-    src: "/imagenes/flor.png",
-    alt: "Flor Vigna en la activación TST en balneario",
-    style: { gridColumn: "1 / 2", gridRow: "2 / 3" },
-  },
-  {
-    src: "/imagenes/carilo.png",
-    alt: "Producción en Cariló para la televisión",
-    style: { gridColumn: "1 / 2", gridRow: "3 / 4" },
-  },
-  // Col 2: ruggeri alto, span rows 2-3
-  {
-    src: "/imagenes/ruggeri.png",
-    alt: "Oscar Ruggeri en la activación TST en Mar del Plata",
-    style: { gridColumn: "2 / 3", gridRow: "2 / 4" },
-  },
-  // Row 2 cols 3-4: md13 + gunda
-  {
-    src: "/imagenes/md13.png",
-    alt: "Demo de cocina con backdrop TST",
-    style: { gridColumn: "3 / 4", gridRow: "2 / 3" },
+    className: "collage-img-1",
   },
   {
     src: "/imagenes/gunda.png",
     alt: "La Gunda en grabación para la televisión",
-    style: { gridColumn: "4 / 5", gridRow: "2 / 3" },
-  },
-  // Row 3 cols 3-4: produ + mdq
-  {
-    src: "/imagenes/produ.png",
-    alt: "Producción audiovisual para TST",
-    style: { gridColumn: "3 / 4", gridRow: "3 / 4" },
+    className: "collage-img-2",
   },
   {
-    src: "/imagenes/mdq.png",
-    alt: "Activación TST en Mar del Plata",
-    style: { gridColumn: "4 / 5", gridRow: "3 / 4" },
+    src: "/imagenes/ruggeri.png",
+    alt: "cande ruggeri en producción la televisión",
+    className: "collage-img-3",
+  },
+  {
+    src: "/imagenes/mdq2.png",
+    alt: "Activación TST en balneario Mar del Plata",
+    className: "collage-img-4",
+  },
+  {
+    src: "/imagenes/flor.png",
+    alt: "Flor Vigna en la activación TST en balneario",
+    className: "collage-img-5",
+    objectPosition: "center 20%",
   },
 ]
 
 const services = [
-  "Estrategia de Contenido",
-  "Campañas TV & Radio",
-  "Activaciones de Marca",
-  "Social Media",
-  "Tienda Mercado Libre",
-  "E-commerce",
+  "Estrategia global de marca",
+  "Creación de contenido",
+  "Spot Publicitario",
+  "Campañas en TV",
+  "Posicionamiento Digital",
+  "Campañas digitales",
+  "Activaciones de marca",
+  "Influencer Marketing",
 ]
 
 const metrics = [
-  { value: "4",   label: "canales de aire nacionales" },
-  { value: "2",   label: "activaciones de marca" },
-  { value: "5M+", label: "inversión mensual administrada" },
+  { value: "+1M ",   label: "de personas alcanzas (en TV los ultimos 4 meses)" },
+  { value: "+9M ",   label: "de cuentas alcanzadas en redes sociales" },
+  { value: "+70M ", label: "de visualizaciones en redes sociales" },
+  { value: "+10Mil ", label: "impactos en activaciones de marca" },
 ]
 
 // ─── Sub-componentes ────────────────────────────────────────────────────────────
@@ -93,14 +78,15 @@ function CollageImage({
 
   return (
     <motion.div
-      className="relative overflow-hidden will-change-transform"
-      style={{ ...image.style, opacity, scale }}
+      className={`relative overflow-hidden will-change-transform ${image.className}`}
+      style={{ opacity, scale }}
     >
       <Image
         src={image.src}
         alt={image.alt}
         fill
         className="object-cover"
+        style={{ objectPosition: image.objectPosition ?? "center" }}
         sizes="(max-width: 768px) 100vw, 50vw"
       />
     </motion.div>
@@ -203,17 +189,10 @@ export function AboutSection() {
 
       {/* ── Caso TST sticky ─────────────────────────────────────────────────── */}
       <div ref={wrapperRef} style={{ height: "400vh" }} className="relative">
-        <div className="sticky top-0 h-screen overflow-hidden bg-black">
+        <div className="sticky top-20 h-[calc(100vh-5rem)] overflow-hidden bg-black">
 
           {/* ── Collage grid (desktop) ─────────────────────────────────────── */}
-          <div
-            className="absolute inset-0 gap-1"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1.5fr 1.2fr 1.3fr",
-              gridTemplateRows: "33% 34% 33%",
-            }}
-          >
+          <div className="absolute inset-0 gap-1 collage-grid">
             {collageImages.map((image, i) => (
               <CollageImage
                 key={image.src}
@@ -250,7 +229,7 @@ export function AboutSection() {
                 TST
               </h3>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                N°1 en campanas extractoras. Una marca consolidada que necesitaba construir su presencia digital desde cero.
+                Líderes en el mercado de campañas extractoras hace 60 años. Una marca consolidada pero que necesitaba construir reconocimiento y posicionamiento digital.
               </p>
             </div>
           </motion.div>
