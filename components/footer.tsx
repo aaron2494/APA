@@ -31,7 +31,7 @@ export function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="font-semibold">Enlaces</h3>
-            <nav className="flex flex-col space-y-2">
+            <nav aria-label="Navegación footer" className="flex flex-col space-y-2">
               <Link
                 href="#proyectos"
                 className="text-sm text-accent-foreground/80 hover:text-primary transition-colors"
@@ -76,7 +76,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://www.linkedin.com/company/agencia-paliza"
+                href="https://www.facebook.com/agenciapaliza"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"

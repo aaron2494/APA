@@ -4,8 +4,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: "https://agenciapaliza.com",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      lastModified: new Date("2025-04-01"),
+      changeFrequency: "weekly",
       priority: 1,
     },
   ]

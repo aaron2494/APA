@@ -26,7 +26,7 @@ const collageImages = [
   },
   {
     src: "/imagenes/ruggeri.png",
-    alt: "cande ruggeri en producción la televisión",
+    alt: "Cande Ruggeri en producción para la televisión",
     className: "collage-img-3",
   },
   {

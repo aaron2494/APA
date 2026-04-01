@@ -43,6 +43,14 @@ export const metadata: Metadata = {
     description: "Agencia boutique 360°. Redes, contenido, paid media, PR y activaciones.",
     images: ["/og-image.jpg"],
   },
+  alternates: {
+    canonical: "https://agenciapaliza.com",
+  },
+  icons: {
+    icon: "/logos/APA-ROJO.png",
+    shortcut: "/logos/APA-ROJO.png",
+    apple: "/logos/APA-ROJO.png",
+  },
   robots: {
     index: true,
     follow: true,
@@ -63,9 +71,8 @@ const jsonLd = {
   description:
     "Agencia de marketing digital boutique en Buenos Aires. Gestión de redes sociales, contenido, paid media, PR y activaciones de marca.",
   url: "https://agenciapaliza.com",
-  logo: "https://agenciapaliza.com/logo.png",
+  logo: "https://agenciapaliza.com/logos/APA-ROJO.png",
   image: "https://agenciapaliza.com/og-image.jpg",
-  telephone: "",
   email: "hola@agenciapaliza.com",
   address: {
     "@type": "PostalAddress",
@@ -90,7 +97,7 @@ const jsonLd = {
     "Producción de Contenido",
     "Branding",
   ],
-  foundingDate: "2021",
+  foundingDate: "2023",
   numberOfEmployees: { "@type": "QuantitativeValue", value: 10 },
   priceRange: "$$",
 }
