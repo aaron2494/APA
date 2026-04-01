@@ -42,7 +42,7 @@ export function ContactSection() {
           <ClipReveal delay={0.12}><span className="font-black">JUNTOS.</span></ClipReveal>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-stretch">
           {/* Columna izquierda — formulario */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -159,26 +159,48 @@ export function ContactSection() {
             </AnimatePresence>
           </motion.div>
 
+          {/* Columna derecha — logos desktop */}
+          <div className="hidden md:flex flex-col justify-between py-6">
+            <div className="relative h-[180px] w-full">
+              <Image
+                src="/logos/LOGO-COMPLETO-BLANCO.png"
+                alt="Agencia Paliza"
+                fill
+                className="object-contain object-left"
+                sizes="50vw"
+              />
+            </div>
+            <div className="relative h-[180px] w-full">
+              <Image
+                src="/logos/PALIZA-MEDIA NEGRO.png"
+                alt="Paliza Media"
+                fill
+                className="object-contain object-left"
+                sizes="50vw"
+              />
+            </div>
+          </div>
+
         </div>
 
-        {/* Logos — parte blanca, debajo del form */}
-        <div className="flex items-center justify-center gap-16 mt-10 flex-wrap">
-          <div className="relative h-[200px] w-[320px]">
+        {/* Logos — solo mobile, debajo del form */}
+        <div className="flex md:hidden items-center justify-center gap-8 mt-10 ">
+          <div className="relative h-[120px] w-[240px]">
             <Image
               src="/logos/LOGO-COMPLETO-ROJO.png"
               alt="Agencia Paliza"
               fill
               className="object-contain"
-              sizes="320px"
+              sizes="240px"
             />
           </div>
-          <div className="relative h-[200px] w-[320px]">
+          <div className="relative h-[120px] w-[240px]">
             <Image
               src="/logos/PALIZA-MEDIA NEGRO.png"
               alt="Paliza Media"
               fill
               className="object-contain"
-              sizes="320px"
+              sizes="240px"
             />
           </div>
         </div>
