@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   {
     id: 3,
     text: "La mejor agencia para trabajar. Nos encantó que APA nos acompañe impulsando nuestro negocio. Estamos súper contentos de tener una agencia que nos ayuda día a día a implementar ideas para hacernos crecer. Sin dudas recomendamos trabajar con ellas, por su energía, la buena onda que le ponen y porque sus ideas son increíbles. Gracias por todo lo recorrido en este 2025!",
-    author: "NATIVO BAR",
+    author: "WE REST",
     role: "",
   },
   {

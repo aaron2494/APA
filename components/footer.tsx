@@ -24,7 +24,7 @@ export function Footer() {
               <Image src="/logos/APA-ROJO.png" alt="APA" fill className="object-contain object-left" sizes="96px" />
             </div>
             <p className="text-sm text-accent-foreground/80 text-pretty">
-              Creamos un impacto juntos
+              Construyamos un impacto juntos
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export function Footer() {
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
-              </a>es
+              </a>
             </div>
           </div>
         </div>

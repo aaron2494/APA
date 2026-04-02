@@ -291,13 +291,9 @@ export function AboutSection() {
             <div className="max-w-xl text-center">
               <p className="text-white/25 text-5xl font-serif leading-none mb-4">"</p>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed mb-8">
-                APA es lo más. La mejor agencia con la que trabajamos hasta ahora, super comprometidos y responsables.
+                Este año comenzamos a trabajar una nueva estrategia de promoción, venta y posicionamiento ecommerce.
               </p>
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-8 h-px bg-white/25 mb-3" />
-                <p className="text-white font-semibold text-sm">Ignacio Turnaturi</p>
-                <p className="text-white/40 text-xs uppercase tracking-widest">Jefe de Prensa · TST</p>
-              </div>
+            
             </div>
           </motion.div>
 
