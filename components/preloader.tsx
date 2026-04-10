@@ -23,9 +23,9 @@ export function Preloader() {
           <div className="relative flex flex-col items-center gap-0">
             {/* Logo oficial — blur + scale con spring */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.4, filter: "blur(18px)" }}
-              animate={{ opacity: 1, scale: 2, filter: "blur(0px)" }}
-              transition={{ delay: 0.15, duration: 0.45, type: "spring", stiffness: 500, damping: 30 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.15, duration: 0.45, type: "spring", stiffness: 400, damping: 28 }}
               className="relative w-[52vw] md:w-[28vw] lg:w-[20vw] aspect-[2/1]"
             >
               <Image

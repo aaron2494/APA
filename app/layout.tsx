@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Manrope } from "next/font/google"
+import { TrustLogoWidget } from "@/components/trust-logo-widget"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -116,10 +117,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={manrope.variable} suppressHydrationWarning>
       <head>
-        {/* Preconnect a recursos externos */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        
+        {/* Preload LCP image — el browser la descubre antes de parsear el JS */}
+        <link
+          rel="preload"
+          as="image"
+          href="/banner.jpg.jpeg"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -129,6 +133,7 @@ export default function RootLayout({
         <Preloader />
         <Cursor />
         {children}
+        <TrustLogoWidget />
       </body>
     </html>
   )
