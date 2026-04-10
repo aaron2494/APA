@@ -9,38 +9,38 @@ import { ClipReveal } from "@/components/clip-reveal"
 
 const collageImages = [
   {
-    src: "/imagenes/mdq.png",
+    src: "/imagenes/mdq.webp",
     alt: "Público en la activación TST Mar del Plata",
     className: "collage-img-0",
     objectPosition: "center 20%",
   },
   {
-    src: "/imagenes/martin.png",
+    src: "/imagenes/martin.webp",
     alt: "Martin Garabal en grabación para la televisión",
     className: "collage-img-1",
   },
   {
-    src: "/imagenes/gunda.png",
+    src: "/imagenes/gunda.webp",
     alt: "La Gunda en grabación para la televisión",
     className: "collage-img-2",
   },
   {
-    src: "/imagenes/ruggeri.png",
+    src: "/imagenes/ruggeri.webp",
     alt: "Cande Ruggeri en producción para la televisión",
     className: "collage-img-3",
   },
   {
-    src: "/imagenes/mdq2.png",
+    src: "/imagenes/mdq2.webp",
     alt: "Activación TST en balneario Mar del Plata",
     className: "collage-img-4",
   },
   {
-    src: "/imagenes/carilo.png",
+    src: "/imagenes/carilo.webp",
     alt: "Activación TST en balneario cariló",
     className: "collage-img-6",
   },
   {
-    src: "/imagenes/flor.png",
+    src: "/imagenes/flor.webp",
     alt: "Flor Vigna en la activación TST en balneario",
     className: "collage-img-5",
     objectPosition: "center 20%",
