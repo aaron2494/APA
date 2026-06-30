@@ -191,7 +191,7 @@ function CtaBar() {
         <MagneticButton>
           <a
             href="#contacto"
-            className="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:border-[#c0001a] hover:bg-[#c0001a]"
+            className="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 bg-[#c0001a]"
           >
             <span>Hablemos de tu próxima activación</span>
             <ArrowUpRight className="h-4 w-4" />
