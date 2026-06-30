@@ -1,61 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { useRef } from "react"
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowUpRight, Camera, Megaphone, Sparkles, Target, type LucideIcon } from "lucide-react"
 import { ClipReveal } from "@/components/clip-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
-
-// ─── Datos ──────────────────────────────────────────────────────────────────
-// Cada "moment" puede usar imagen O video como media.
-// Si mediaType es "video", mediaSrc apunta a un .mp4 (o .webm) en /public.
-// Si mediaType es "image", mediaSrc apunta a la imagen como antes.
-//
-// Opcional: posterSrc — imagen que se muestra mientras el video carga
-// (recomendado en mobile / conexiones lentas).
-
-const moments = [
-  {
-    tag: "Punto de Venta",
-    title: "El espacio\ncomo arma.",
-    desc: "Convertimos cualquier punto de contacto físico en una experiencia que frena, impacta y queda. Pop-ups, degustaciones, displays y espacios que la gente fotografía sola.",
-    mediaType: "video" as const,
-    mediaSrc: "/videos/RECAP-MDQ.mp4",
-    posterSrc: undefined,
-    mediaAlt: "Activación de marca en un espacio al aire libre con público y stand",
-    mediaAspect: "aspect-[4/5]",
-    stat: "+10K",
-    statLabel: "impactos directos",
-    side: "left" as const,
-  },
-  {
-    tag: "Eventos & Lanzamientos",
-    title: "El momento\nque todos\nrecuerdan.",
-    desc: "Lanzamientos de producto, fiestas de marca, shows y presentaciones. Producción integral desde la idea hasta el último detalle.",
-    mediaType: "video" as const,
-    mediaSrc: "/videos/RECAP-MDQ.mp4",
-    posterSrc: "/imagenes/produ.png",
-    mediaAlt: "Producción de una activación de marca con luces y set fotográfico",
-    mediaAspect: "aspect-[3/4]",
-    stat: "+1M",
-    statLabel: "personas alcanzadas",
-    side: "right" as const,
-  },
-  {
-    tag: "Activaciones Digitales",
-    title: "La pantalla\ncomo escena.",
-    desc: "Filtros AR, challenges virales, gamificación y experiencias interactivas. Campañas que la gente comparte porque quiere ser parte.",
-    mediaType: "image" as const,
-    mediaSrc: "/imagenes/flor.webp",
-    posterSrc: undefined,
-    mediaAlt: "Contenido de marca con estética editorial para redes sociales",
-    mediaAspect: "aspect-[3/4]",
-    stat: "+70M",
-    statLabel: "visualizaciones",
-    side: "left" as const,
-  },
-]
 
 const pillars: Array<{
   title: string
@@ -84,114 +33,49 @@ const pillars: Array<{
   },
 ]
 
-const desktopMomentTimings = [
-  { start: 0.04, end: 0.43 },
-  { start: 0.42, end: 0.76 },
-  { start: 0.7, end: 0.96 },
+const videoPanels = [
+  {
+    slot: "",
+    title: "",
+    src: "/videos/NIEVE.mp4",
+    poster: "/imagenes/mdq2.webp",
+    alt: "Video de nieve para la activación de marca",
+  },
+  {
+    slot: "",
+    title: "",
+    src: "/videos/BALC.mp4",
+    poster: "/imagenes/produ.png",
+    alt: "Video balcón para la activación de marca",
+  },
+  {
+    slot: "",
+    title: "",
+    src: "/videos/VERANO.mp4",
+    poster: "/imagenes/flor.webp",
+    alt: "Video de verano para la activación de marca",
+  },
 ] as const
 
-// ─── ActivationVisual ──────────────────────────────────────────────────────
-// Renderiza imagen O video según item.mediaType. La capa de overlay (label,
-// gradiente, textura) es idéntica para ambos casos para que no se note el
-// cambio de un media a otro al recorrer la sección.
+const featuredMoment = {
+  tag: "Momento central",
+  title: "EL ESPACIO COMO PUNTO DE ENCUENTRO.",
+  desc: "El impacto de la experiencia es un acierto. Las marcas que conectan y se sienten, prevalecen. En APA diseñamos activaciones, eventos y popu-ps memorables generando conversaciones reales y contactos valiosos. Hacemos que un espacio se transforme en territorio.",
+} as const
 
-function ActivationVisual({
-  mediaType,
-  mediaSrc,
-  posterSrc,
-  alt,
-  aspect,
-  label,
-}: {
-  mediaType: "image" | "video"
-  mediaSrc: string
-  posterSrc?: string
+type FeatureMedia = {
+  kind: "image" | "video"
+  src: string
+  poster?: string
   alt: string
-  aspect: string
   label: string
-}) {
-  return (
-    <div
-      className={`${aspect} group relative w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d] shadow-[0_30px_100px_rgba(0,0,0,0.35)]`}
-    >
-      <div className="absolute inset-0 md:inset-2 overflow-hidden rounded-[24px]">
-        {mediaType === "video" ? (
-          <video
-            src={mediaSrc}
-            poster={posterSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label={alt}
-            className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-110 brightness-95 transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <Image
-            src={mediaSrc}
-            alt={alt}
-            fill
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover object-top grayscale contrast-110 brightness-95 transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-        )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-black/10" />
-        <div
-          className="absolute inset-0 opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle at 18% 20%, rgba(192, 0, 26, 0.25), transparent 34%), radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.06), transparent 30%)",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 flex h-full flex-col justify-between p-5 md:p-6">
-        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.4em] text-white/50">
-          <span>{label}</span>
-          <span>APA</span>
-        </div>
-
-        <div className="flex items-end justify-between gap-4">
-          <p className="max-w-[14rem] text-[10px] uppercase tracking-[0.35em] text-white/55 leading-relaxed">
-            {mediaType === "video" ? "Video real de archivo." : "Imágenes reales de archivo."}
-          </p>
-          <span className="text-white/25 text-[10px] uppercase tracking-[0.35em]">
-            Preview
-          </span>
-        </div>
-      </div>
-    </div>
-  )
 }
 
-function MomentContent({ item }: { item: (typeof moments)[number] }) {
-  return (
-    <div>
-      <span className="text-[#c0001a] text-[10px] tracking-[0.35em] uppercase font-medium">
-        {item.tag}
-      </span>
-
-      <h3
-        className="mt-3 text-white font-black uppercase leading-[0.9] whitespace-pre-line"
-        style={{ fontSize: "clamp(2rem, 4.2vw, 5rem)" }}
-      >
-        {item.title}
-      </h3>
-
-      <p className="mt-5 max-w-xl text-white/50 text-sm md:text-[15px] leading-relaxed">
-        {item.desc}
-      </p>
-
-      <div className="mt-8 flex items-baseline gap-3 border-t border-white/10 pt-4">
-        <span className="text-[#c0001a] font-black text-3xl md:text-4xl">{item.stat}</span>
-        <span className="text-white/30 text-[10px] md:text-xs uppercase tracking-[0.35em]">
-          {item.statLabel}
-        </span>
-      </div>
-    </div>
-  )
+const featuredMomentMedia: FeatureMedia = {
+  kind: "video",
+  src: "/videos/lev.mp4",
+  alt: "Momento destacado de la activación de marca",
+  label: "",
 }
 
 function PillarCard({
@@ -212,112 +96,150 @@ function PillarCard({
       <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#c0001a]/15 text-[#c0001a]">
         <Icon className="h-5 w-5" />
       </div>
-      <h3 className="text-lg md:text-xl font-semibold text-white">{item.title}</h3>
+      <h3 className="text-lg font-semibold text-white md:text-xl">{item.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-white/45">{item.copy}</p>
     </motion.article>
   )
 }
 
-function MomentSlide({
+function MomentContent({
   item,
-  scrollYProgress,
-  start,
-  end,
+}: {
+  item: typeof featuredMoment
+}) {
+  return (
+    <div>
+      <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-[#c0001a]">
+        {item.tag}
+      </span>
+
+      <h3
+        className="mt-3 whitespace-pre-line font-black uppercase leading-[0.9] text-white"
+        style={{ fontSize: "clamp(2rem, 4.2vw, 5rem)" }}
+      >
+        {item.title}
+      </h3>
+
+      <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/50 md:text-[15px]">
+        {item.desc}
+      </p>
+
+    </div>
+  )
+}
+
+function MediaFrame({
+  media,
+}: {
+  media: FeatureMedia
+}) {
+  return (
+    <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d] shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+      {media.kind === "video" ? (
+        <video
+          src={media.src}
+          poster={media.poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={media.alt}
+          className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-110 brightness-90 transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+      ) : (
+        <Image
+          src={media.src}
+          alt={media.alt}
+          fill
+          sizes="(min-width: 1024px) 42vw, 100vw"
+          className="object-cover object-center grayscale contrast-110 brightness-90 transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/10" />
+      <div
+        className="absolute inset-0 opacity-25"
+        style={{
+          background:
+            "radial-gradient(circle at 18% 20%, rgba(192, 0, 26, 0.25), transparent 34%), radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.06), transparent 30%)",
+        }}
+      />
+
+      <div className="relative z-10 flex h-full flex-col justify-between p-5 md:p-6">
+        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.4em] text-white/50">
+          <span>{media.label}</span>
+          <span>APA</span>
+        </div>
+
+      
+      </div>
+    </div>
+  )
+}
+
+function TriptychPanel({
+  panel,
   index,
 }: {
-  item: (typeof moments)[number]
-  scrollYProgress: MotionValue<number>
-  start: number
-  end: number
+  panel: (typeof videoPanels)[number]
   index: number
 }) {
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, start + 0.08, end - 0.05, end],
-    [0, 1, 1, 0]
-  )
-  const y = useTransform(scrollYProgress, [start, start + 0.1], [28, 0])
-  const scale = useTransform(scrollYProgress, [start, start + 0.1], [0.97, 1])
-
-  const isRight = item.side === "right"
-
   return (
     <motion.article
-      style={{ opacity, y, scale, zIndex: moments.length - index }}
-      className="absolute inset-0 flex items-center  px-6 md:px-16 "
+      initial={{ opacity: 0, y: 18, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.4 }}
+      className="group relative min-h-[24rem] overflow-hidden border-b border-white/10 bg-[#0a0a0a] md:h-full md:min-h-0 md:border-b-0 md:border-r md:last:border-r-0"
     >
-      <div className="mx-auto w-full max-w-7xl">
-        <div
-          className={`flex flex-col gap-8 lg:items-center lg:gap-10 ${
-            isRight ? "lg:flex-row-reverse" : "lg:flex-row"
-          }`}
-        >
-          <div className="w-full lg:w-[52%]">
-            <MomentContent item={item} />
-          </div>
+      <video
+        src={panel.src}
+        poster={panel.poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={panel.alt}
+        className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-110 brightness-90 transition-transform duration-700 group-hover:scale-[1.04]"
+      />
 
-          <div className="w-full h-95 lg:w-[35%]">
-            <ActivationVisual
-              mediaType={item.mediaType}
-              mediaSrc={item.mediaSrc}
-              posterSrc={item.posterSrc}
-              alt={item.mediaAlt}
-              aspect={item.mediaAspect}
-              label={item.tag}
-            />
-          </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-black/10" />
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 18%, rgba(192, 0, 26, 0.18), transparent 26%)",
+        }}
+      />
+
+      <div className="relative z-10 flex h-full flex-col justify-between p-5 md:p-6">
+        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.4em] text-white/45">
+          <span>{panel.slot}</span>
+          <span>APA</span>
+        </div>
+
+        <div className="flex flex-1 items-center justify-center">
+          <h3 className="text-center text-3xl font-black uppercase leading-none text-white drop-shadow-[0_10px_25px_rgba(0,0,0,0.45)] md:text-[clamp(2rem,3vw,4rem)]">
+            {panel.title}
+          </h3>
         </div>
       </div>
     </motion.article>
   )
 }
 
-function MobileMomentCard({
-  item,
-  index,
-}: {
-  item: (typeof moments)[number]
-  index: number
-}) {
+function CtaBar() {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 28, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.65, delay: index * 0.08, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.35 }}
-      className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5 will-change-transform"
-    >
-      <ActivationVisual
-        mediaType={item.mediaType}
-        mediaSrc={item.mediaSrc}
-        posterSrc={item.posterSrc}
-        alt={item.mediaAlt}
-        aspect={item.mediaAspect}
-        label={item.tag}
-      />
-      <div className="mt-5">
-        <MomentContent item={item} />
-      </div>
-    </motion.article>
-  )
-}
-
-function CtaBar({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
-  const opacity = useTransform(scrollYProgress, [0.93, 0.99], [0, 1])
-  const y = useTransform(scrollYProgress, [0.72, 0.88], [20, 0])
-
-  return (
-    <motion.div
-      style={{ opacity, y }}
-      className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/80 px-6 py-5 backdrop-blur-md md:px-16 md:py-6"
-    >
+    <div className="border-t border-white/10 bg-black/80 px-6 py-5 backdrop-blur-md md:px-16 md:py-6">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 md:flex-row md:items-center">
         <div>
-          <p className="text-white/25 text-xs uppercase tracking-widest mb-1">
+          <p className="mb-1 text-xs uppercase tracking-widest text-white/25">
             La pregunta no es si activar tu marca.
           </p>
-          <p className="text-white font-black uppercase text-lg md:text-2xl leading-none">
-            Es cuándo lo hacemos.
+          <p className="text-lg font-black uppercase leading-none text-white md:text-2xl">
+            Hablemos de tu próxima activación
           </p>
         </div>
 
@@ -331,31 +253,21 @@ function CtaBar({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
           </a>
         </MagneticButton>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export function ActivationSection() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: wrapperRef,
-    offset: ["start start", "end end"],
-  })
-
-  const bigNumberX = useTransform(scrollYProgress, [0, 1], ["-5%", "60%"])
-  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1])
-
   return (
-    <section ref={wrapperRef} className="relative mt-2 bg-black text-white">
-      <div className="px-6 md:px-16 pt-16 pb-8 md:pb-10">
-        <p className="text-[#c0001a] text-xs tracking-[0.3em] uppercase font-medium mb-3">
+    <section className="relative mt-2 bg-black text-white">
+      <div className="px-6 pb-8 pt-24 md:px-16 md:pb-10 md:pt-28">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-[#c0001a]">
           Activación de Marca
         </p>
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <h2
-            className="text-white leading-[0.9] font-black uppercase"
+            className="font-black uppercase leading-[0.9] text-white"
             style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
           >
             <ClipReveal>Tu marca</ClipReveal>
@@ -370,7 +282,7 @@ export function ActivationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
-            className="max-w-[520px] text-sm md:text-base leading-relaxed text-white/45"
+            className="max-w-[520px] text-sm leading-relaxed text-white/45 md:text-base"
           >
             Una activación no es un evento. Es el momento en que alguien pasa de conocer tu marca
             a sentir algo por ella.
@@ -378,7 +290,7 @@ export function ActivationSection() {
         </div>
       </div>
 
-      <div className="px-6 md:px-16 pb-10 md:pb-14">
+      <div className="px-6 pb-10 md:px-16 md:pb-14">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
           {pillars.map((item) => (
             <PillarCard key={item.title} item={item} />
@@ -386,94 +298,47 @@ export function ActivationSection() {
         </div>
       </div>
 
-      <div className="md:hidden px-6 pb-16">
-        <div className="space-y-6">
-          {moments.map((item, index) => (
-            <MobileMomentCard key={item.tag} item={item} index={index} />
+      <div className="px-6 pb-12 md:hidden">
+        <div className="space-y-4">
+          {videoPanels.map((panel, index) => (
+            <TriptychPanel key={panel.title} panel={panel} index={index} />
           ))}
-        </div>
-
-        <div className="mt-10 border-t border-white/10 pt-8">
-          <div className="flex flex-col items-start gap-6">
-            <div>
-              <p className="text-white/25 text-xs uppercase tracking-widest mb-1">
-                La pregunta no es si activar tu marca.
-              </p>
-              <p className="text-white font-black uppercase text-lg leading-none">
-                Es cuándo lo hacemos.
-              </p>
-            </div>
-
-            <MagneticButton>
-              <a
-                href="#contacto"
-                className="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:border-[#c0001a] hover:bg-[#c0001a]"
-              >
-                <span>Activá tu marca</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </MagneticButton>
-          </div>
         </div>
       </div>
 
       <div className="hidden md:block">
-        <div style={{ height: `${moments.length * 110 + 40}vh` }} className="relative">
-          <div className="sticky top-0 z-10 h-screen overflow-hidden">
-            <div className="absolute inset-0" style={{ background: "#0a0a0a" }} />
-
-            <div className="absolute left-0 top-0 bottom-0 z-0 w-[3px]" style={{ background: "#c0001a" }} />
-
-            <div className="absolute inset-0 z-0 flex items-center overflow-hidden pointer-events-none select-none">
-              <motion.span
-                className="font-black leading-none whitespace-nowrap"
-                style={{
-                  fontSize: "clamp(800px, 12vw, 80px)",
-                  color: "transparent",
-                  WebkitTextStroke: "1px rgba(255,255,255,0.05)",
-                  x: bigNumberX,
-                }}
-              >
-               POTENCIA TU MARCA
-              </motion.span>
-            </div>
-
-            <div className="absolute inset-0 z-10">
-              {moments.map((item, index) => {
-                const start = 0.05 + index * 0.28
-                const end = start + 0.24
-
-                return (
-                  <MomentSlide
-                    key={item.tag}
-                    item={item}
-                    scrollYProgress={scrollYProgress}
-                    start={desktopMomentTimings[index]?.start ?? start}
-                    end={desktopMomentTimings[index]?.end ?? end}
-                    index={index}
-                  />
-                )
-              })}
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 z-20">
-              <CtaBar scrollYProgress={scrollYProgress} />
-            </div>
-
-            <div className="absolute inset-y-0 right-8 hidden lg:flex flex-col items-center gap-4 pointer-events-none z-20">
-              <div className="relative h-40 w-px overflow-hidden rounded-full bg-white/10">
-                <motion.div
-                  style={{ scaleY: progressScale }}
-                  className="absolute inset-0 origin-top bg-[#c0001a]"
-                />
-              </div>
-              <span className="text-[10px] uppercase tracking-[0.45em] text-white/35">
-                03 / 03
-              </span>
-            </div>
+        <div className="h-[calc(100svh-5rem)]">
+          <div className="grid h-full grid-cols-3 overflow-hidden border-y border-white/10">
+            {videoPanels.map((panel, index) => (
+              <TriptychPanel key={panel.title} panel={panel} index={index} />
+            ))}
           </div>
         </div>
       </div>
+
+      <div className="mx-auto max-w-7xl px-6 py-20 md:px-16 md:py-28">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.35 }}
+          >
+            <MomentContent item={featuredMoment} />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.08 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <MediaFrame media={featuredMomentMedia} />
+          </motion.div>
+        </div>
+      </div>
+
+      <CtaBar />
     </section>
   )
 }
