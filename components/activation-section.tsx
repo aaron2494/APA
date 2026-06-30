@@ -145,7 +145,7 @@ function MediaFrame({
           playsInline
           preload="metadata"
           aria-label={media.alt}
-          className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-110 brightness-90 transition-transform duration-700 group-hover:scale-[1.03]"
+          className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
         />
       ) : (
         <Image
@@ -202,7 +202,7 @@ function TriptychPanel({
         playsInline
         preload="metadata"
         aria-label={panel.alt}
-        className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-110 brightness-90 transition-transform duration-700 group-hover:scale-[1.04]"
+        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
       />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-black/10" />
