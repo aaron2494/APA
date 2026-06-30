@@ -71,7 +71,7 @@ const pillars: Array<{
 ]
 
 const desktopMomentTimings = [
-  { start: 0.04, end: 0.4 },
+  { start: 0.04, end: 0.43 },
   { start: 0.42, end: 0.76 },
   { start: 0.7, end: 0.96 },
 ] as const
@@ -264,7 +264,7 @@ function MobileMomentCard({
 }
 
 function CtaBar({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
-  const opacity = useTransform(scrollYProgress, [0.72, 0.88], [0, 1])
+  const opacity = useTransform(scrollYProgress, [0.93, 0.99], [0, 1])
   const y = useTransform(scrollYProgress, [0.72, 0.88], [20, 0])
 
   return (
