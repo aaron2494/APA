@@ -18,6 +18,8 @@ export function Header() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true })
+    setIsScrolled(window.scrollY > 50)
+
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
@@ -48,9 +50,11 @@ export function Header() {
   ], [])
 
   return (
-    <header
+    <motion.header
+      initial={false}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-background/60 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -152,6 +156,6 @@ export function Header() {
           )}
         </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   )
 }
