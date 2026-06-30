@@ -7,41 +7,55 @@ import { ArrowUpRight, Camera, Megaphone, Sparkles, Target, type LucideIcon } fr
 import { ClipReveal } from "@/components/clip-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
 
+// ─── Datos ──────────────────────────────────────────────────────────────────
+// Cada "moment" puede usar imagen O video como media.
+// Si mediaType es "video", mediaSrc apunta a un .mp4 (o .webm) en /public.
+// Si mediaType es "image", mediaSrc apunta a la imagen como antes.
+//
+// Opcional: posterSrc — imagen que se muestra mientras el video carga
+// (recomendado en mobile / conexiones lentas).
+
 const moments = [
   {
     tag: "Punto de Venta",
     title: "El espacio\ncomo arma.",
     desc: "Convertimos cualquier punto de contacto físico en una experiencia que frena, impacta y queda. Pop-ups, degustaciones, displays y espacios que la gente fotografía sola.",
-    imageSrc: "/imagenes/mdq.webp",
-    imageAlt: "Activación de marca en un espacio al aire libre con público y stand",
-    imageAspect: "aspect-[4/5]",
+    mediaType: "video" as const,
+    mediaSrc: "/videos/RECAP-MDQ.MOV",
+    posterSrc: undefined,
+    mediaAlt: "Activación de marca en un espacio al aire libre con público y stand",
+    mediaAspect: "aspect-[4/5]",
     stat: "+10K",
     statLabel: "impactos directos",
-    side: "left",
+    side: "left" as const,
   },
   {
     tag: "Eventos & Lanzamientos",
     title: "El momento\nque todos\nrecuerdan.",
     desc: "Lanzamientos de producto, fiestas de marca, shows y presentaciones. Producción integral desde la idea hasta el último detalle.",
-    imageSrc: "/imagenes/produ.png",
-    imageAlt: "Producción de una activación de marca con luces y set fotográfico",
-    imageAspect: "aspect-[3/4]",
+    mediaType: "video" as const,
+    mediaSrc: "/videos/RECAP-MDQ.MOV",
+    posterSrc: "/imagenes/produ.png",
+    mediaAlt: "Producción de una activación de marca con luces y set fotográfico",
+    mediaAspect: "aspect-[3/4]",
     stat: "+1M",
     statLabel: "personas alcanzadas",
-    side: "right",
+    side: "right" as const,
   },
   {
     tag: "Activaciones Digitales",
     title: "La pantalla\ncomo escena.",
     desc: "Filtros AR, challenges virales, gamificación y experiencias interactivas. Campañas que la gente comparte porque quiere ser parte.",
-    imageSrc: "/imagenes/flor.webp",
-    imageAlt: "Contenido de marca con estética editorial para redes sociales",
-    imageAspect: "aspect-[3/4]",
+    mediaType: "image" as const,
+    mediaSrc: "/imagenes/flor.webp",
+    posterSrc: undefined,
+    mediaAlt: "Contenido de marca con estética editorial para redes sociales",
+    mediaAspect: "aspect-[3/4]",
     stat: "+70M",
     statLabel: "visualizaciones",
-    side: "left",
+    side: "left" as const,
   },
-] as const
+]
 
 const pillars: Array<{
   title: string
@@ -76,13 +90,22 @@ const desktopMomentTimings = [
   { start: 0.7, end: 0.96 },
 ] as const
 
+// ─── ActivationVisual ──────────────────────────────────────────────────────
+// Renderiza imagen O video según item.mediaType. La capa de overlay (label,
+// gradiente, textura) es idéntica para ambos casos para que no se note el
+// cambio de un media a otro al recorrer la sección.
+
 function ActivationVisual({
-  src,
+  mediaType,
+  mediaSrc,
+  posterSrc,
   alt,
   aspect,
   label,
 }: {
-  src: string
+  mediaType: "image" | "video"
+  mediaSrc: string
+  posterSrc?: string
   alt: string
   aspect: string
   label: string
@@ -92,13 +115,27 @@ function ActivationVisual({
       className={`${aspect} group relative w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d] shadow-[0_30px_100px_rgba(0,0,0,0.35)]`}
     >
       <div className="absolute inset-0 md:inset-2 overflow-hidden rounded-[24px]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 42vw, 100vw"
-          className="object-cover object-top grayscale contrast-110 brightness-95 transition-transform duration-700 group-hover:scale-[1.03]"
-        />
+        {mediaType === "video" ? (
+          <video
+            src={mediaSrc}
+            poster={posterSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={alt}
+            className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-110 brightness-95 transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <Image
+            src={mediaSrc}
+            alt={alt}
+            fill
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="object-cover object-top grayscale contrast-110 brightness-95 transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-black/10" />
         <div
@@ -118,7 +155,7 @@ function ActivationVisual({
 
         <div className="flex items-end justify-between gap-4">
           <p className="max-w-[14rem] text-[10px] uppercase tracking-[0.35em] text-white/55 leading-relaxed">
-            Imágenes reales de archivo.
+            {mediaType === "video" ? "Video real de archivo." : "Imágenes reales de archivo."}
           </p>
           <span className="text-white/25 text-[10px] uppercase tracking-[0.35em]">
             Preview
@@ -128,8 +165,6 @@ function ActivationVisual({
     </div>
   )
 }
-
-
 
 function MomentContent({ item }: { item: (typeof moments)[number] }) {
   return (
@@ -223,9 +258,11 @@ function MomentSlide({
 
           <div className="w-full h-95 lg:w-[35%]">
             <ActivationVisual
-              src={item.imageSrc}
-              alt={item.imageAlt}
-              aspect={item.imageAspect}
+              mediaType={item.mediaType}
+              mediaSrc={item.mediaSrc}
+              posterSrc={item.posterSrc}
+              alt={item.mediaAlt}
+              aspect={item.mediaAspect}
               label={item.tag}
             />
           </div>
@@ -251,9 +288,11 @@ function MobileMomentCard({
       className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5 will-change-transform"
     >
       <ActivationVisual
-        src={item.imageSrc}
-        alt={item.imageAlt}
-        aspect={item.imageAspect}
+        mediaType={item.mediaType}
+        mediaSrc={item.mediaSrc}
+        posterSrc={item.posterSrc}
+        alt={item.mediaAlt}
+        aspect={item.mediaAspect}
         label={item.tag}
       />
       <div className="mt-5">
