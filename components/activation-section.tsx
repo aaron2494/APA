@@ -6,32 +6,7 @@ import { ArrowUpRight, Camera, Megaphone, Sparkles, Target, type LucideIcon } fr
 import { ClipReveal } from "@/components/clip-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
 
-const pillars: Array<{
-  title: string
-  copy: string
-  icon: LucideIcon
-}> = [
-  {
-    title: "Presencia",
-    copy: "La marca entra al territorio y corta el ruido.",
-    icon: Megaphone,
-  },
-  {
-    title: "Interacción",
-    copy: "La gente toca, prueba y participa.",
-    icon: Target,
-  },
-  {
-    title: "Recuerdo",
-    copy: "La escena se transforma en relato.",
-    icon: Camera,
-  },
-  {
-    title: "Deseo",
-    copy: "La experiencia deja ganas de volver.",
-    icon: Sparkles,
-  },
-]
+
 
 const videoPanels = [
   {
@@ -78,29 +53,6 @@ const featuredMomentMedia: FeatureMedia = {
   label: "",
 }
 
-function PillarCard({
-  item,
-}: {
-  item: (typeof pillars)[number]
-}) {
-  const Icon = item.icon
-
-  return (
-    <motion.article
-      initial={{ y: 16, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.35 }}
-      className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm"
-    >
-      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#c0001a]/15 text-[#c0001a]">
-        <Icon className="h-5 w-5" />
-      </div>
-      <h3 className="text-lg font-semibold text-white md:text-xl">{item.title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-white/45">{item.copy}</p>
-    </motion.article>
-  )
-}
 
 function MomentContent({
   item,
@@ -233,22 +185,15 @@ function TriptychPanel({
 function CtaBar() {
   return (
     <div className="border-t border-white/10 bg-black/80 px-6 py-5 backdrop-blur-md md:px-16 md:py-6">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 md:flex-row md:items-center">
-        <div>
-          <p className="mb-1 text-xs uppercase tracking-widest text-white/25">
-            La pregunta no es si activar tu marca.
-          </p>
-          <p className="text-lg font-black uppercase leading-none text-white md:text-2xl">
-            Hablemos de tu próxima activación
-          </p>
-        </div>
+      <div className=" flex max-w-7xl flex-col items-center gap-5 md:flex-row md:items-center">
+      
 
         <MagneticButton>
           <a
             href="#contacto"
             className="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:border-[#c0001a] hover:bg-[#c0001a]"
           >
-            <span>Activá tu marca</span>
+            <span>Hablemos de tu próxima activación</span>
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </MagneticButton>
@@ -259,45 +204,10 @@ function CtaBar() {
 
 export function ActivationSection() {
   return (
-    <section className="relative mt-2 bg-black text-white">
-      <div className="px-6 pb-8 pt-24 md:px-16 md:pb-10 md:pt-28">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-[#c0001a]">
-          Activación de Marca
-        </p>
+    <section className="relative pt-5 bg-black text-white">
+      
 
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <h2
-            className="font-black uppercase leading-[0.9] text-white"
-            style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
-          >
-            <ClipReveal>Tu marca</ClipReveal>
-            <ClipReveal delay={0.08}>
-              <span style={{ color: "#c0001a" }}>se vive.</span>
-            </ClipReveal>
-            <ClipReveal delay={0.16}>No se ve.</ClipReveal>
-          </h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="max-w-[520px] text-sm leading-relaxed text-white/45 md:text-base"
-          >
-            Una activación no es un evento. Es el momento en que alguien pasa de conocer tu marca
-            a sentir algo por ella.
-          </motion.p>
-        </div>
-      </div>
-
-      <div className="px-6 pb-10 md:px-16 md:pb-14">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {pillars.map((item) => (
-            <PillarCard key={item.title} item={item} />
-          ))}
-        </div>
-      </div>
-
+  
       <div className="px-6 pb-12 md:hidden">
         <div className="space-y-4">
           {videoPanels.map((panel, index) => (
