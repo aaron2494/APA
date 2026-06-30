@@ -301,7 +301,7 @@ export function ActivationSection() {
       <div className="px-6 pb-12 md:hidden">
         <div className="space-y-4">
           {videoPanels.map((panel, index) => (
-            <TriptychPanel key={panel.title} panel={panel} index={index} />
+            <TriptychPanel key={panel.src} panel={panel} index={index} />
           ))}
         </div>
       </div>
@@ -310,7 +310,7 @@ export function ActivationSection() {
         <div className="h-[calc(100svh-5rem)]">
           <div className="grid h-full grid-cols-3 overflow-hidden border-y border-white/10">
             {videoPanels.map((panel, index) => (
-              <TriptychPanel key={panel.title} panel={panel} index={index} />
+              <TriptychPanel key={panel.src} panel={panel} index={index} />
             ))}
           </div>
         </div>
