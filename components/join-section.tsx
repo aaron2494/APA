@@ -91,7 +91,7 @@ export function JoinSection() {
             >
               <MagneticButton>
                 <a
-                  href="https://forms.gle/TU-ENLACE-AQUI"
+                  href="https://forms.gle/zdJNkX8vi8ozj7Yr9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-[#c0001a] hover:bg-[#a0001a] text-white px-12 py-4 rounded-full text-sm font-semibold tracking-widest uppercase transition-colors"
